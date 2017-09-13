@@ -4,9 +4,8 @@ public interface GlobalConstants {
 
     String APP_NAME = "MockTPO";
 
-    String COMMUNITY_EDITION = "A";
-    String COMMERCIAL_EDITION = "B";
-    String DEFAULT_EDITION = COMMUNITY_EDITION;
+    String STANDARD_EDITION = "Standard";
+    String DEFAULT_EDITION = STANDARD_EDITION;
 
     int MAJOR_VERSION = 1;
 

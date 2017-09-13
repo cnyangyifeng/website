@@ -7,10 +7,8 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private long userId;
-    private String userName;
-    private long groupId;
-    private String groupName;
-    private long serialNumber;
+    private String email;
+    private String password;
 
     public long getUserId() {
         return userId;
@@ -20,40 +18,24 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public long getGroupId() {
-        return groupId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGroupId(long groupId) {
-        this.groupId = groupId;
-    }
-
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
-    public long getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(long serialNumber) {
-        this.serialNumber = serialNumber;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "{userId:" + this.getUserId() + ";userName:" + this.getUserName() + ";groupId:" + this.getGroupId() + ";groupName:" + this.getGroupName() + ";serialNumber:" + this.getSerialNumber() + "}";
+        return "{userId:" + this.getUserId() + ";email:" + this.getEmail() + ";password:" + this.getPassword() + "}";
     }
 }

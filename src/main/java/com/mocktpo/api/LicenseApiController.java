@@ -1,7 +1,7 @@
 package com.mocktpo.api;
 
-import com.mocktpo.domain.Agent;
 import com.mocktpo.domain.License;
+import com.mocktpo.domain.User;
 import com.mocktpo.service.LicenseService;
 import com.mocktpo.util.EmailUtils;
 import com.mocktpo.util.constants.GlobalConstants;
@@ -27,14 +27,13 @@ public class LicenseApiController {
     @Autowired
     private LicenseService service;
 
-
     @RequestMapping(value = "/api/licenses/require", method = RequestMethod.POST)
     public ResponseEntity<Void> require(@RequestBody RequireActivationVo vo) {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         String email = vo.getEmail();
         String hardware = vo.getHardware();
         List<License> lz = service.findByEmail(email);
-        if (null != lz && lz.size() > 0) { // email exists, filled in by agents previously.
+        if (null != lz && lz.size() > 0) { // email exists, filled in by users previously.
             License lic = lz.get(0);
             String licensedHardware = lic.getHardware();
             if (StringUtils.isEmpty(licensedHardware)) { // hardware remains blank
@@ -60,8 +59,8 @@ public class LicenseApiController {
     @RequestMapping(value = "/api/licenses/from/{offset}", method = RequestMethod.GET)
     public List<License> find(HttpSession session, @PathVariable long offset) throws Exception {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             return service.find(offset, GlobalConstants.PAGINATION_LIMIT);
@@ -71,8 +70,8 @@ public class LicenseApiController {
     @RequestMapping(value = "/api/licenses/{id}", method = RequestMethod.GET)
     public License findById(HttpSession session, @PathVariable long id) throws Exception {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             return service.findById(id);
@@ -83,8 +82,8 @@ public class LicenseApiController {
     @ResponseStatus(HttpStatus.CREATED)
     public void create(HttpSession session, @RequestBody License license) throws Exception {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             Date date = new Date();
@@ -97,8 +96,8 @@ public class LicenseApiController {
     @RequestMapping(value = "/api/licenses/{id}", method = RequestMethod.PATCH)
     public void update(HttpSession session, @RequestBody License license, @PathVariable long id) throws Exception {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             license.setLicenseId(id);
@@ -112,8 +111,8 @@ public class LicenseApiController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteByIds(HttpSession session, @RequestBody long[] licenseIds) throws Exception {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             service.deleteByIds(licenseIds);
@@ -124,8 +123,8 @@ public class LicenseApiController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(HttpSession session, @PathVariable long id) throws Exception {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             service.deleteById(id);
@@ -135,8 +134,8 @@ public class LicenseApiController {
     @RequestMapping(value = "/api/search/licenses", method = RequestMethod.GET)
     public List<License> searchDataOfFirstPageByName(HttpSession session, @RequestParam String q) throws Exception {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             return service.searchByName(q, 0, GlobalConstants.PAGINATION_LIMIT);
@@ -146,8 +145,8 @@ public class LicenseApiController {
     @RequestMapping(value = "/api/search/licenses/from/{offset}", method = RequestMethod.GET)
     public List<License> searchByName(HttpSession session, @PathVariable long offset, @RequestParam String q) throws Exception {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             return service.searchByName(q, offset, GlobalConstants.PAGINATION_LIMIT);
@@ -156,8 +155,8 @@ public class LicenseApiController {
 
     @RequestMapping(value = "/api/licenses/count", method = RequestMethod.GET)
     public long findCount(HttpSession session) throws Exception {
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             return service.findCount();
@@ -166,8 +165,8 @@ public class LicenseApiController {
 
     @RequestMapping(value = "/api/search/licenses/count", method = RequestMethod.GET)
     public long searchByNameCount(HttpSession session, @RequestParam String q) throws Exception {
-        Agent agent = (Agent) session.getAttribute("agent");
-        if (null == agent) {
+        User user = (User) session.getAttribute("user");
+        if (null == user) {
             throw new HttpSessionRequiredException("");
         } else {
             return service.searchByNameCount(q);
