@@ -13,7 +13,7 @@ public class IndexController {
     private static final Logger logger = LogManager.getLogger();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView showIndexView() {
+    public ModelAndView toIndexView() {
         logger.info("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
         mv.setViewName("index");

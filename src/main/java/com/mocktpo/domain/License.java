@@ -9,23 +9,15 @@ public class License implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private long licenseId;
     private String appName = GlobalConstants.APP_NAME;
     private String edition = GlobalConstants.DEFAULT_EDITION;
-    private int majorVersion = GlobalConstants.MAJOR_VERSION;
+    private String version = GlobalConstants.DEFAULT_VERSION;
+    private String activationCode;
     private String email;
     private String hardware;
     private String validThrough = GlobalConstants.DEFAULT_VALID_THROUGH;
     private Date dateCreated;
     private Date dateUpdated;
-
-    public long getLicenseId() {
-        return licenseId;
-    }
-
-    public void setLicenseId(long licenseId) {
-        this.licenseId = licenseId;
-    }
 
     public String getAppName() {
         return appName;
@@ -43,12 +35,20 @@ public class License implements Serializable {
         this.edition = edition;
     }
 
-    public int getMajorVersion() {
-        return majorVersion;
+    public String getVersion() {
+        return version;
     }
 
-    public void setMajorVersion(int majorVersion) {
-        this.majorVersion = majorVersion;
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 
     public String getEmail() {
@@ -89,10 +89,5 @@ public class License implements Serializable {
 
     public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
-    }
-
-    @Override
-    public String toString() {
-        return "{licenseId:" + this.getLicenseId() + ";appName:" + this.getAppName() + ";edition:" + this.getEdition() + ";majorVersion:" + this.getMajorVersion() + ";email:" + this.getEmail() + ";hardware:" + this.getHardware() + ";validThrough:" + this.getValidThrough() + ";dateCreated:" + this.getDateCreated() + ";dateUpdated:" + this.getDateUpdated() + "}";
     }
 }

@@ -44,18 +44,20 @@
 <div class="container">
   <div class="row">
     <div class="col s12 l8 offset-l2">
-      <div class="row">
-        <div class="input-field col s12">
-          <input type="text" class="validate" id="email">
-          <label for="email">Email</label>
+      <form th:action="@{/login.do}" th:object="${loginVo}" th:method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate" id="email" th:field="*{email}">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <input type="password" class="validate" id="password" th:field="*{password}">
+            <label for="password">Password</label>
+          </div>
         </div>
-        <div class="input-field col s12">
-          <input type="password" class="validate" id="password">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <button class="btn waves-effect waves-light" type="submit">Log In</button>
-      <a class="btn-flat waves-effect waves-light" th:href="@{/signup}">Sign Up</a>
+        <button class="btn waves-effect waves-light" type="submit">Log In</button>
+        <a class="btn-flat waves-effect waves-light" th:href="@{/signup}">Sign Up</a>
+      </form>
     </div>
   </div>
 </div>

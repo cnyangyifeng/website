@@ -38,7 +38,7 @@ public class EmailUtils {
 
     private static String getActivationCode(License lic) {
         String plain = prepareActivationCode(lic);
-        String encoded = ActivationCodeUtils.encode(plain);
+        String encoded = LicenseUtils.encode(plain);
         encoded = StringUtils.replace(encoded, "-----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.52", "-----BEGIN MOCKTPO ACTIVATION CODE-----");
         encoded = StringUtils.replace(encoded, "-----END PGP MESSAGE-----", "\n-----END MOCKTPO ACTIVATION CODE-----");
         return encoded;
@@ -50,8 +50,10 @@ public class EmailUtils {
         sb.append(lic.getAppName());
         sb.append("\nedition=");
         sb.append(lic.getEdition());
-        sb.append("\nmajor_version=");
-        sb.append(lic.getMajorVersion());
+        sb.append("\nversion=");
+        sb.append(lic.getVersion());
+        sb.append("\nactivation_code=");
+        sb.append(lic.getActivationCode());
         sb.append("\nemail=");
         sb.append(lic.getEmail());
         sb.append("\nhardware=");

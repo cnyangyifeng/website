@@ -7,15 +7,27 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 
-public class ActivationCodeUtils {
+public class LicenseUtils {
 
     protected static final Logger logger = LogManager.getLogger();
 
-    private ActivationCodeUtils() {
+    private LicenseUtils() {
+    }
+
+    public static String encode(String plain) {
+        String path = LicenseUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
+        try {
+            License lic = new License();
+            lic.setLicense(plain);
+            return lic.loadKey(path + GlobalConstants.GPG_SECRING_FILE, GlobalConstants.GPG_KEY).encodeLicense(GlobalConstants.GPG_PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void encode(String plainFile, String encodedFile) {
-        String path = ActivationCodeUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
+        String path = LicenseUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
         try {
             File f = new File(path + encodedFile);
             boolean created = f.createNewFile();
@@ -27,20 +39,8 @@ public class ActivationCodeUtils {
         }
     }
 
-    public static String encode(String plain) {
-        String path = ActivationCodeUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
-        try {
-            License lic = new License();
-            lic.setLicense(plain);
-            return lic.loadKey(path + GlobalConstants.GPG_SECRING_FILE, GlobalConstants.GPG_KEY).encodeLicense(GlobalConstants.GPG_PASSWORD);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public static void decode(String encodedFile, String plainFile) {
-        String path = ActivationCodeUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
+        String path = LicenseUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
         try {
             final License license;
             if ((license = new License()).loadKeyRing(path + GlobalConstants.GPG_PUBRING_FILE, null).setLicenseEncodedFromFile(path + encodedFile).isVerified()) {

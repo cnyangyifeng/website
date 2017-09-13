@@ -3,12 +3,9 @@ package com.mocktpo.util.constants;
 public interface GlobalConstants {
 
     String APP_NAME = "MockTPO";
-
     String STANDARD_EDITION = "Standard";
     String DEFAULT_EDITION = STANDARD_EDITION;
-
-    int MAJOR_VERSION = 1;
-
+    String DEFAULT_VERSION = "1.0";
     String DEFAULT_VALID_THROUGH = "99999999";
 
     //====================
@@ -25,8 +22,4 @@ public interface GlobalConstants {
     String GPG_SECRING_FILE = "secring.gpg";
     String GPG_KEY = "cnyangyifeng";
     String GPG_PASSWORD = "Yyf19851128";
-
-    //====================
-
-    int PAGINATION_LIMIT = 10;
 }
