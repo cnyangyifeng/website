@@ -20,91 +20,25 @@
         LIMIT #{offset}, #{limit}
     </select>
 
-    <select id="findById" resultType="User">
+    <select id="findByEmailAndPassword" resultType="User">
         SELECT
-        CMP_USER.CMP_USER_ID AS userId,
-        CMP_USER.CMP_USER_NAME AS userName,
-        CMP_USER.CMP_GROUP_ID AS groupId,
-        CMP_GROUP.CMP_GROUP_NAME AS groupName,
-        CMP_USER.CMP_SERIAL_NUMBER AS serialNumber
-        FROM CMP_USER, CMP_GROUP
+        CMP_USER.CMP_EMAIL AS email,
+        CMP_USER.CMP_PASSWORD AS password
+        FROM CMP_USER
         WHERE
-        CMP_USER.CMP_GROUP_ID = CMP_GROUP.CMP_GROUP_ID AND
-        CMP_USER.CMP_USER_ID = #{userId}
+        CMP_USER.CMP_EMAIL = #{email} AND
+        CMP_USER.CMP_PASSWORD = #{password}
     </select>
 
     <insert id="create" parameterType="User">
         INSERT
         INTO CMP_USER (
-        CMP_USER.CMP_USER_NAME,
-        CMP_USER.CMP_GROUP_ID,
-        CMP_USER.CMP_SERIAL_NUMBER
+        CMP_USER.CMP_EMAIL,
+        CMP_USER.CMP_PASSWORD
         ) VALUES (
-        #{userName},
-        #{groupId},
-        #{serialNumber}
+        #{email},
+        #{password}
         )
     </insert>
-
-    <update id="update" parameterType="User">
-        UPDATE
-        CMP_USER
-        SET
-        CMP_USER.CMP_USER_NAME = #{userName},
-        CMP_USER.CMP_GROUP_ID = #{groupId},
-        CMP_USER.CMP_SERIAL_NUMBER = #{serialNumber}
-        WHERE
-        CMP_USER.CMP_USER_ID = #{userId}
-    </update>
-
-    <delete id="deleteByIds">
-        DELETE
-        FROM CMP_USER
-        WHERE
-        CMP_USER.CMP_USER_ID
-        IN
-        <foreach collection="array" item="userId" open="(" separator="," close=")">
-            #{userId}
-        </foreach>
-    </delete>
-
-    <delete id="deleteById">
-        DELETE
-        FROM CMP_USER
-        WHERE
-        CMP_USER.CMP_USER_ID = #{userId}
-    </delete>
-
-    <select id="searchByName" resultType="User">
-        SELECT
-        CMP_USER.CMP_USER_ID AS userId,
-        CMP_USER.CMP_USER_NAME AS userName,
-        CMP_USER.CMP_GROUP_ID AS groupId,
-        CMP_GROUP.CMP_GROUP_NAME AS groupName,
-        CMP_USER.CMP_SERIAL_NUMBER AS serialNumber
-        FROM CMP_USER, CMP_GROUP
-        WHERE
-        CMP_USER.CMP_GROUP_ID = CMP_GROUP.CMP_GROUP_ID AND
-        CMP_USER.CMP_USER_NAME LIKE "%"#{q}"%"
-        ORDER BY
-        CMP_USER.CMP_GROUP_ID ASC,
-        CMP_USER.CMP_SERIAL_NUMBER ASC
-        LIMIT #{offset}, #{limit}
-    </select>
-
-    <select id="findCount" resultType="long">
-        SELECT
-        COUNT(*)
-        FROM CMP_USER
-    </select>
-
-    <select id="searchByNameCount" resultType="long">
-        SELECT
-        COUNT(*)
-        FROM CMP_USER, CMP_GROUP
-        WHERE
-        CMP_USER.CMP_GROUP_ID = CMP_GROUP.CMP_GROUP_ID AND
-        CMP_USER.CMP_USER_NAME LIKE "%"#{q}"%"
-    </select>
 
 </mapper>
