@@ -6,103 +6,103 @@
 
     <select id="find" resultType="License">
         SELECT
-        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
-        CMP_LICENSE.CMP_APP_NAME AS appName,
-        CMP_LICENSE.CMP_EDITION AS edition,
-        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
-        CMP_LICENSE.CMP_EMAIL AS email,
-        CMP_LICENSE.CMP_HARDWARE AS hardware,
-        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
-        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
-        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
-        FROM CMP_LICENSE
+        MT_LICENSE.MT_LICENSE_ID AS licenseId,
+        MT_LICENSE.MT_APP_NAME AS appName,
+        MT_LICENSE.MT_EDITION AS edition,
+        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
+        MT_LICENSE.MT_EMAIL AS email,
+        MT_LICENSE.MT_HARDWARE AS hardware,
+        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
+        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
+        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
+        FROM MT_LICENSE
         ORDER BY
-        CMP_LICENSE.CMP_DATE_UPDATED DESC
+        MT_LICENSE.MT_DATE_UPDATED DESC
         LIMIT #{offset}, #{limit}
     </select>
 
     <select id="findById" resultType="License">
         SELECT
-        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
-        CMP_LICENSE.CMP_APP_NAME AS appName,
-        CMP_LICENSE.CMP_EDITION AS edition,
-        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
-        CMP_LICENSE.CMP_EMAIL AS email,
-        CMP_LICENSE.CMP_HARDWARE AS hardware,
-        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
-        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
-        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
-        FROM CMP_LICENSE
+        MT_LICENSE.MT_LICENSE_ID AS licenseId,
+        MT_LICENSE.MT_APP_NAME AS appName,
+        MT_LICENSE.MT_EDITION AS edition,
+        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
+        MT_LICENSE.MT_EMAIL AS email,
+        MT_LICENSE.MT_HARDWARE AS hardware,
+        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
+        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
+        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
+        FROM MT_LICENSE
         WHERE
-        CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
+        MT_LICENSE.MT_LICENSE_ID = #{licenseId}
     </select>
 
     <select id="findByEmail" resultType="License">
         SELECT
-        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
-        CMP_LICENSE.CMP_APP_NAME AS appName,
-        CMP_LICENSE.CMP_EDITION AS edition,
-        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
-        CMP_LICENSE.CMP_EMAIL AS email,
-        CMP_LICENSE.CMP_HARDWARE AS hardware,
-        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
-        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
-        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
-        FROM CMP_LICENSE
+        MT_LICENSE.MT_LICENSE_ID AS licenseId,
+        MT_LICENSE.MT_APP_NAME AS appName,
+        MT_LICENSE.MT_EDITION AS edition,
+        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
+        MT_LICENSE.MT_EMAIL AS email,
+        MT_LICENSE.MT_HARDWARE AS hardware,
+        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
+        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
+        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
+        FROM MT_LICENSE
         WHERE
-        CMP_LICENSE.CMP_EMAIL = #{email}
+        MT_LICENSE.MT_EMAIL = #{email}
         ORDER BY
-        CMP_LICENSE.CMP_DATE_UPDATED DESC
+        MT_LICENSE.MT_DATE_UPDATED DESC
     </select>
 
     <select id="findByHardware" resultType="License">
         SELECT
-        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
-        CMP_LICENSE.CMP_APP_NAME AS appName,
-        CMP_LICENSE.CMP_EDITION AS edition,
-        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
-        CMP_LICENSE.CMP_EMAIL AS email,
-        CMP_LICENSE.CMP_HARDWARE AS hardware,
-        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
-        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
-        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
-        FROM CMP_LICENSE
+        MT_LICENSE.MT_LICENSE_ID AS licenseId,
+        MT_LICENSE.MT_APP_NAME AS appName,
+        MT_LICENSE.MT_EDITION AS edition,
+        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
+        MT_LICENSE.MT_EMAIL AS email,
+        MT_LICENSE.MT_HARDWARE AS hardware,
+        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
+        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
+        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
+        FROM MT_LICENSE
         WHERE
-        CMP_LICENSE.CMP_HARDWARE = #{hardware}
+        MT_LICENSE.MT_HARDWARE = #{hardware}
         ORDER BY
-        CMP_LICENSE.CMP_DATE_UPDATED DESC
+        MT_LICENSE.MT_DATE_UPDATED DESC
     </select>
 
     <select id="findByEmailAndHardware" resultType="License">
         SELECT
-        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
-        CMP_LICENSE.CMP_APP_NAME AS appName,
-        CMP_LICENSE.CMP_EDITION AS edition,
-        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
-        CMP_LICENSE.CMP_EMAIL AS email,
-        CMP_LICENSE.CMP_HARDWARE AS hardware,
-        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
-        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
-        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
-        FROM CMP_LICENSE
+        MT_LICENSE.MT_LICENSE_ID AS licenseId,
+        MT_LICENSE.MT_APP_NAME AS appName,
+        MT_LICENSE.MT_EDITION AS edition,
+        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
+        MT_LICENSE.MT_EMAIL AS email,
+        MT_LICENSE.MT_HARDWARE AS hardware,
+        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
+        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
+        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
+        FROM MT_LICENSE
         WHERE
-        CMP_LICENSE.CMP_EMAIL = #{email}
-        AND CMP_LICENSE.CMP_HARDWARE = #{hardware}
+        MT_LICENSE.MT_EMAIL = #{email}
+        AND MT_LICENSE.MT_HARDWARE = #{hardware}
         ORDER BY
-        CMP_LICENSE.CMP_DATE_UPDATED DESC
+        MT_LICENSE.MT_DATE_UPDATED DESC
     </select>
 
     <insert id="create" parameterType="License">
         INSERT
-        INTO CMP_LICENSE (
-        CMP_LICENSE.CMP_APP_NAME,
-        CMP_LICENSE.CMP_EDITION,
-        CMP_LICENSE.CMP_MAJOR_VERSION,
-        CMP_LICENSE.CMP_EMAIL,
-        CMP_LICENSE.CMP_HARDWARE,
-        CMP_LICENSE.CMP_VALID_THROUGH,
-        CMP_LICENSE.CMP_DATE_CREATED,
-        CMP_LICENSE.CMP_DATE_UPDATED
+        INTO MT_LICENSE (
+        MT_LICENSE.MT_APP_NAME,
+        MT_LICENSE.MT_EDITION,
+        MT_LICENSE.MT_MAJOR_VERSION,
+        MT_LICENSE.MT_EMAIL,
+        MT_LICENSE.MT_HARDWARE,
+        MT_LICENSE.MT_VALID_THROUGH,
+        MT_LICENSE.MT_DATE_CREATED,
+        MT_LICENSE.MT_DATE_UPDATED
         ) VALUES (
         #{appName},
         #{edition},
@@ -117,24 +117,24 @@
 
     <update id="update" parameterType="License">
         UPDATE
-        CMP_LICENSE
+        MT_LICENSE
         SET
-        CMP_LICENSE.CMP_APP_NAME = #{appName},
-        CMP_LICENSE.CMP_EDITION = #{edition},
-        CMP_LICENSE.CMP_MAJOR_VERSION = #{majorVersion},
-        CMP_LICENSE.CMP_EMAIL = #{email},
-        CMP_LICENSE.CMP_HARDWARE = #{hardware},
-        CMP_LICENSE.CMP_VALID_THROUGH = #{validThrough},
-        CMP_LICENSE.CMP_DATE_UPDATED = #{dateUpdated}
+        MT_LICENSE.MT_APP_NAME = #{appName},
+        MT_LICENSE.MT_EDITION = #{edition},
+        MT_LICENSE.MT_MAJOR_VERSION = #{majorVersion},
+        MT_LICENSE.MT_EMAIL = #{email},
+        MT_LICENSE.MT_HARDWARE = #{hardware},
+        MT_LICENSE.MT_VALID_THROUGH = #{validThrough},
+        MT_LICENSE.MT_DATE_UPDATED = #{dateUpdated}
         WHERE
-        CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
+        MT_LICENSE.MT_LICENSE_ID = #{licenseId}
     </update>
 
     <delete id="deleteByIds">
         DELETE
-        FROM CMP_LICENSE
+        FROM MT_LICENSE
         WHERE
-        CMP_LICENSE.CMP_LICENSE_ID
+        MT_LICENSE.MT_LICENSE_ID
         IN
         <foreach collection="array" item="licenseId" open="(" separator="," close=")">
             #{licenseId}
@@ -143,42 +143,42 @@
 
     <delete id="deleteById">
         DELETE
-        FROM CMP_LICENSE
+        FROM MT_LICENSE
         WHERE
-        CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
+        MT_LICENSE.MT_LICENSE_ID = #{licenseId}
     </delete>
 
     <select id="searchByName" resultType="License">
         SELECT
-        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
-        CMP_LICENSE.CMP_APP_NAME AS appName,
-        CMP_LICENSE.CMP_EDITION AS edition,
-        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
-        CMP_LICENSE.CMP_EMAIL AS email,
-        CMP_LICENSE.CMP_HARDWARE AS hardware,
-        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
-        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
-        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
-        FROM CMP_LICENSE
+        MT_LICENSE.MT_LICENSE_ID AS licenseId,
+        MT_LICENSE.MT_APP_NAME AS appName,
+        MT_LICENSE.MT_EDITION AS edition,
+        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
+        MT_LICENSE.MT_EMAIL AS email,
+        MT_LICENSE.MT_HARDWARE AS hardware,
+        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
+        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
+        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
+        FROM MT_LICENSE
         WHERE
-        CMP_LICENSE.CMP_EMAIL LIKE "%"#{q}"%"
+        MT_LICENSE.MT_EMAIL LIKE "%"#{q}"%"
         ORDER BY
-        CMP_LICENSE.CMP_DATE_UPDATED DESC
+        MT_LICENSE.MT_DATE_UPDATED DESC
         LIMIT #{offset}, #{limit}
     </select>
 
     <select id="findCount" resultType="long">
         SELECT
         COUNT(*)
-        FROM CMP_LICENSE
+        FROM MT_LICENSE
     </select>
 
     <select id="searchByNameCount" resultType="long">
         SELECT
         COUNT(*)
-        FROM CMP_LICENSE
+        FROM MT_LICENSE
         WHERE
-        CMP_LICENSE.CMP_HARDWARE LIKE "%"#{q}"%"
+        MT_LICENSE.MT_HARDWARE LIKE "%"#{q}"%"
     </select>
 
 </mapper>

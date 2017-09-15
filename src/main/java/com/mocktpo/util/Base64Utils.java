@@ -2,9 +2,9 @@ package com.mocktpo.util;
 
 import org.apache.commons.codec.binary.Base64;
 
-public class CipherUtils {
+public class Base64Utils {
 
-    private CipherUtils() {
+    private Base64Utils() {
     }
 
     public static String encode(String plain) {

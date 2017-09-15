@@ -4,40 +4,35 @@
 
     <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 
-    <select id="find" resultType="User">
+    <select id="findByEmail" resultType="User">
         SELECT
-        CMP_USER.CMP_USER_ID AS userId,
-        CMP_USER.CMP_USER_NAME AS userName,
-        CMP_USER.CMP_GROUP_ID AS groupId,
-        CMP_GROUP.CMP_GROUP_NAME AS groupName,
-        CMP_USER.CMP_SERIAL_NUMBER AS serialNumber
-        FROM CMP_USER, CMP_GROUP
+        MT_USER.MT_ID AS id,
+        MT_USER.MT_EMAIL AS email,
+        MT_USER.MT_PASSCODE AS passcode
+        FROM MT_USER
         WHERE
-        CMP_USER.CMP_GROUP_ID = CMP_GROUP.CMP_GROUP_ID
-        ORDER BY
-        CMP_USER.CMP_GROUP_ID ASC,
-        CMP_USER.CMP_SERIAL_NUMBER ASC
-        LIMIT #{offset}, #{limit}
+        MT_USER.MT_EMAIL = #{email}
     </select>
 
-    <select id="findByEmailAndPassword" resultType="User">
+    <select id="findByEmailAndPasscode" resultType="User">
         SELECT
-        CMP_USER.CMP_EMAIL AS email,
-        CMP_USER.CMP_PASSWORD AS password
-        FROM CMP_USER
+        MT_USER.MT_ID AS id,
+        MT_USER.MT_EMAIL AS email,
+        MT_USER.MT_PASSCODE AS passcode
+        FROM MT_USER
         WHERE
-        CMP_USER.CMP_EMAIL = #{email} AND
-        CMP_USER.CMP_PASSWORD = #{password}
+        MT_USER.MT_EMAIL = #{email} AND
+        MT_USER.MT_PASSCODE = #{passcode}
     </select>
 
-    <insert id="create" parameterType="User">
+    <insert id="create" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="MT_ID">
         INSERT
-        INTO CMP_USER (
-        CMP_USER.CMP_EMAIL,
-        CMP_USER.CMP_PASSWORD
+        INTO MT_USER (
+        MT_USER.MT_EMAIL,
+        MT_USER.MT_PASSCODE
         ) VALUES (
         #{email},
-        #{password}
+        #{passcode}
         )
     </insert>
 

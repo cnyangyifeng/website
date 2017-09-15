@@ -11,8 +11,12 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public User findByEmailAndPassword(String email, String password) {
-        return userMapper.findByEmailAndPassword(email, password);
+    public User findByEmail(String email) {
+        return userMapper.findByEmail(email);
+    }
+
+    public User findByEmailAndPasscode(String email, String passcode) {
+        return userMapper.findByEmailAndPasscode(email, passcode);
     }
 
     public void create(User user) {
