@@ -4,6 +4,7 @@ import com.mocktpo.domain.User;
 import com.mocktpo.service.UserService;
 import com.mocktpo.util.Base64Utils;
 import com.mocktpo.vo.LoginVo;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +45,7 @@ public class LoginController {
         String email = loginVo.getEmail();
         String password = loginVo.getPassword();
         if (!StringUtils.isEmpty(email) && !StringUtils.isEmpty(password)) {
-            User user = service.findByEmailAndPasscode(email, Base64Utils.encode(password));
+            User user = service.findByEmailAndPasscode(email, DigestUtils.md5Hex(password));
             if (user != null) {
                 session.setAttribute("email", email);
                 mv.setViewName("redirect:/users/" + Base64Utils.encode(email) + "/home");
