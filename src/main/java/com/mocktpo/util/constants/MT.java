@@ -1,8 +1,8 @@
 package com.mocktpo.util.constants;
 
-public interface GlobalConstants {
+public interface MT {
 
-    String APP_NAME = "MockTPO";
+    String DEFAULT_PRODUCT = "MockTPO";
     String STANDARD_EDITION = "Standard";
     String DEFAULT_EDITION = STANDARD_EDITION;
     String DEFAULT_VERSION = "1.0";

@@ -34,7 +34,7 @@ public class SignupController {
             mv.addObject("signupVo", new LoginVo());
             mv.setViewName("signup");
         } else {
-            mv.setViewName("redirect:/users/" + Base64Utils.encode(email) + "/home");
+            mv.setViewName("redirect:/home");
         }
         return mv;
     }
@@ -53,7 +53,7 @@ public class SignupController {
                 newUser.setPasscode(DigestUtils.md5Hex(password));
                 service.create(newUser);
                 session.setAttribute("email", email);
-                mv.setViewName("redirect:/users/" + Base64Utils.encode(email) + "/home");
+                mv.setViewName("redirect:/home");
             } else {
                 mv.setViewName("redirect:/signup");
             }

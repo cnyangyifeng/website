@@ -33,7 +33,7 @@ public class LoginController {
             mv.addObject("loginVo", new LoginVo());
             mv.setViewName("login");
         } else {
-            mv.setViewName("redirect:/users/" + Base64Utils.encode(email) + "/home");
+            mv.setViewName("redirect:/home");
         }
         return mv;
     }
@@ -48,13 +48,25 @@ public class LoginController {
             User user = service.findByEmailAndPasscode(email, DigestUtils.md5Hex(password));
             if (user != null) {
                 session.setAttribute("email", email);
-                mv.setViewName("redirect:/users/" + Base64Utils.encode(email) + "/home");
+                mv.setViewName("redirect:/home");
             } else {
                 mv.setViewName("redirect:/login");
             }
         } else {
             mv.setViewName("redirect:/login");
         }
+        return mv;
+    }
+
+    @RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+    public ModelAndView logout(HttpSession session) {
+        logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
+        ModelAndView mv = new ModelAndView();
+        String email = (String) session.getAttribute("email");
+        if (!StringUtils.isEmpty(email)) {
+            session.removeAttribute("email");
+        }
+        mv.setViewName("redirect:/");
         return mv;
     }
 }

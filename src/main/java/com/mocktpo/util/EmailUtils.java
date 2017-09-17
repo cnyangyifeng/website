@@ -1,7 +1,7 @@
 package com.mocktpo.util;
 
 import com.mocktpo.domain.License;
-import com.mocktpo.util.constants.GlobalConstants;
+import com.mocktpo.util.constants.MT;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,16 +19,16 @@ public class EmailUtils {
 
     public static void sendActivationCode(License lic) {
         JavaMailSenderImpl sender = new JavaMailSenderImpl();
-        sender.setHost(GlobalConstants.SMTP_HOST);
-        sender.setUsername(GlobalConstants.SMTP_SENDER_EMAIL);
-        sender.setPassword(GlobalConstants.SMTP_SENDER_PASSWORD);
+        sender.setHost(MT.SMTP_HOST);
+        sender.setUsername(MT.SMTP_SENDER_EMAIL);
+        sender.setPassword(MT.SMTP_SENDER_PASSWORD);
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
-            helper.setFrom(GlobalConstants.SMTP_SENDER_EMAIL);
-            helper.setBcc(GlobalConstants.SMTP_SENDER_EMAIL);
+            helper.setFrom(MT.SMTP_SENDER_EMAIL);
+            helper.setBcc(MT.SMTP_SENDER_EMAIL);
             helper.setTo(lic.getEmail());
-            helper.setSubject(GlobalConstants.LICENSE_EMAIL_SUBJECT);
+            helper.setSubject(MT.LICENSE_EMAIL_SUBJECT);
             helper.setText(getActivationCode(lic));
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class EmailUtils {
     private static String prepareActivationCode(License lic) {
         StringBuilder sb = new StringBuilder();
         sb.append("app_name=");
-        sb.append(lic.getAppName());
+        sb.append(lic.getProduct());
         sb.append("\nedition=");
         sb.append(lic.getEdition());
         sb.append("\nversion=");

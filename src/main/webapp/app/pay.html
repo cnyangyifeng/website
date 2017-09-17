@@ -20,8 +20,8 @@
     <ul class="right hide-on-med-and-down">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="home.html" th:href="@{/home}">Home</a></li>
       <li><a class="cyan-text text-lighten-4" href="download.html" th:href="@{/download}">Download</a></li>
-      <li><a class="cyan-text text-lighten-4" href="buy.html" th:href="@{/buy}">Buy</a></li>
-      <li class="active" th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-5" href="login.html" th:href="@{/login}">Log In</a></li>
+      <li class="active"><a class="cyan-text text-lighten-5" href="buy.html" th:href="@{/buy}">Buy</a></li>
+      <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="login.html" th:href="@{/login}">Log In</a></li>
       <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="signup.html" th:href="@{/signup}">Sign Up</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="account.html" th:href="@{/account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="login.html" th:href="@{/logout.do}">Log Out</a></li>
@@ -29,8 +29,8 @@
     <ul class="side-nav" id="nav-mobile">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="home.html" th:href="@{/home}">Home</a></li>
       <li><a class="black-text" href="download.html" th:href="@{/download}">Download</a></li>
-      <li><a class="black-text" href="buy.html" th:href="@{/buy}">Buy</a></li>
-      <li class="active" th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="login.html" th:href="@{/login}">Log In</a></li>
+      <li class="active"><a class="black-text" href="buy.html" th:href="@{/buy}">Buy</a></li>
+      <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="login.html" th:href="@{/login}">Log In</a></li>
       <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="signup.html" th:href="@{/signup}">Sign Up</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="account.html" th:href="@{/account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="login.html" th:href="@{/logout}">Log Out</a></li>
@@ -40,26 +40,26 @@
 </nav>
 <div class="container">
   <div class="row">
-    <div class="section center">
-      <h5>Log In</h5>
+    <div class="section">
+      <h5>Pay</h5>
     </div>
   </div>
   <div class="row">
-    <div class="col s12 l8 offset-l2">
-      <form th:action="@{/login.do}" th:object="${loginVo}" th:method="post">
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate" id="email" th:field="*{email}">
-            <label for="email">Email</label>
-          </div>
-          <div class="input-field col s12">
-            <input type="password" class="validate" id="password" th:field="*{password}">
-            <label for="password">Password</label>
-          </div>
-        </div>
-        <button class="btn waves-effect waves-light" type="submit">Log In</button>
-        <a class="btn-flat waves-effect waves-light" th:href="@{/signup}">Sign Up</a>
-      </form>
+    <div class="col s12">
+      <ul class="collection">
+        <a class="collection-item avatar" href="home.html" th:href="@{/post-pay}">
+          <i class="material-icons circle blue">payment</i>
+          <span class="title">Alipay</span>
+          <p>This is a passage.</p>
+          <span class="secondary-content"><i class="material-icons">chevron_right</i></span>
+        </a>
+        <a class="collection-item avatar" href="home.html" th:href="@{/post-pay}">
+          <i class="material-icons circle blue">payment</i>
+          <span class="title">Paypal</span>
+          <p>This is a passage.</p>
+          <span class="secondary-content"><i class="material-icons">chevron_right</i></span>
+        </a>
+      </ul>
     </div>
   </div>
 </div>

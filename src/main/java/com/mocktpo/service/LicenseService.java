@@ -21,6 +21,10 @@ public class LicenseService {
         return mapper.findByEmail(email);
     }
 
+    public void create(License license) {
+        mapper.create(license);
+    }
+
     public void update(License license) {
         mapper.update(license);
     }

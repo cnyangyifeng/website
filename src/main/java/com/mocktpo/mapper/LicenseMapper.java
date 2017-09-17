@@ -11,5 +11,7 @@ public interface LicenseMapper {
 
     List<License> findByEmail(@Param("email") String email);
 
+    void create(License license);
+
     void update(License license);
 }

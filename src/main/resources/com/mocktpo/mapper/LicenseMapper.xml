@@ -4,90 +4,34 @@
 
     <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 
-    <select id="find" resultType="License">
+    <select id="findByActivationCode" resultType="License">
         SELECT
-        MT_LICENSE.MT_LICENSE_ID AS licenseId,
-        MT_LICENSE.MT_APP_NAME AS appName,
+        MT_LICENSE.MT_ID AS id,
+        MT_LICENSE.MT_PRODUCT AS product,
         MT_LICENSE.MT_EDITION AS edition,
-        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
+        MT_LICENSE.MT_VERSION AS version,
+        MT_LICENSE.MT_ACTIVATION_CODE AS activationCode,
         MT_LICENSE.MT_EMAIL AS email,
         MT_LICENSE.MT_HARDWARE AS hardware,
-        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
-        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
-        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
-        FROM MT_LICENSE
-        ORDER BY
-        MT_LICENSE.MT_DATE_UPDATED DESC
-        LIMIT #{offset}, #{limit}
-    </select>
-
-    <select id="findById" resultType="License">
-        SELECT
-        MT_LICENSE.MT_LICENSE_ID AS licenseId,
-        MT_LICENSE.MT_APP_NAME AS appName,
-        MT_LICENSE.MT_EDITION AS edition,
-        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
-        MT_LICENSE.MT_EMAIL AS email,
-        MT_LICENSE.MT_HARDWARE AS hardware,
-        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
-        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
-        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
+        MT_LICENSE.MT_VALID_THROUGH AS validThrough
         FROM MT_LICENSE
         WHERE
-        MT_LICENSE.MT_LICENSE_ID = #{licenseId}
+        MT_LICENSE.MT_ACTIVATION_CODE = #{activationCode}
     </select>
 
     <select id="findByEmail" resultType="License">
         SELECT
-        MT_LICENSE.MT_LICENSE_ID AS licenseId,
-        MT_LICENSE.MT_APP_NAME AS appName,
+        MT_LICENSE.MT_ID AS id,
+        MT_LICENSE.MT_PRODUCT AS product,
         MT_LICENSE.MT_EDITION AS edition,
-        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
+        MT_LICENSE.MT_VERSION AS version,
+        MT_LICENSE.MT_ACTIVATION_CODE AS activationCode,
         MT_LICENSE.MT_EMAIL AS email,
         MT_LICENSE.MT_HARDWARE AS hardware,
-        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
-        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
-        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
+        MT_LICENSE.MT_VALID_THROUGH AS validThrough
         FROM MT_LICENSE
         WHERE
         MT_LICENSE.MT_EMAIL = #{email}
-        ORDER BY
-        MT_LICENSE.MT_DATE_UPDATED DESC
-    </select>
-
-    <select id="findByHardware" resultType="License">
-        SELECT
-        MT_LICENSE.MT_LICENSE_ID AS licenseId,
-        MT_LICENSE.MT_APP_NAME AS appName,
-        MT_LICENSE.MT_EDITION AS edition,
-        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
-        MT_LICENSE.MT_EMAIL AS email,
-        MT_LICENSE.MT_HARDWARE AS hardware,
-        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
-        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
-        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
-        FROM MT_LICENSE
-        WHERE
-        MT_LICENSE.MT_HARDWARE = #{hardware}
-        ORDER BY
-        MT_LICENSE.MT_DATE_UPDATED DESC
-    </select>
-
-    <select id="findByEmailAndHardware" resultType="License">
-        SELECT
-        MT_LICENSE.MT_LICENSE_ID AS licenseId,
-        MT_LICENSE.MT_APP_NAME AS appName,
-        MT_LICENSE.MT_EDITION AS edition,
-        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
-        MT_LICENSE.MT_EMAIL AS email,
-        MT_LICENSE.MT_HARDWARE AS hardware,
-        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
-        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
-        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
-        FROM MT_LICENSE
-        WHERE
-        MT_LICENSE.MT_EMAIL = #{email}
-        AND MT_LICENSE.MT_HARDWARE = #{hardware}
         ORDER BY
         MT_LICENSE.MT_DATE_UPDATED DESC
     </select>
@@ -95,23 +39,19 @@
     <insert id="create" parameterType="License">
         INSERT
         INTO MT_LICENSE (
-        MT_LICENSE.MT_APP_NAME,
+        MT_LICENSE.MT_PRODUCT,
         MT_LICENSE.MT_EDITION,
-        MT_LICENSE.MT_MAJOR_VERSION,
+        MT_LICENSE.MT_VERSION,
+        MT_LICENSE.MT_ACTIVATION_CODE,
         MT_LICENSE.MT_EMAIL,
-        MT_LICENSE.MT_HARDWARE,
-        MT_LICENSE.MT_VALID_THROUGH,
-        MT_LICENSE.MT_DATE_CREATED,
-        MT_LICENSE.MT_DATE_UPDATED
+        MT_LICENSE.MT_VALID_THROUGH
         ) VALUES (
-        #{appName},
+        #{product},
         #{edition},
-        #{majorVersion},
+        #{version},
+        #{activationCode},
         #{email},
-        #{hardware},
-        #{validThrough},
-        #{dateCreated},
-        #{dateUpdated}
+        #{validThrough}
         )
     </insert>
 
@@ -119,66 +59,10 @@
         UPDATE
         MT_LICENSE
         SET
-        MT_LICENSE.MT_APP_NAME = #{appName},
-        MT_LICENSE.MT_EDITION = #{edition},
-        MT_LICENSE.MT_MAJOR_VERSION = #{majorVersion},
         MT_LICENSE.MT_EMAIL = #{email},
-        MT_LICENSE.MT_HARDWARE = #{hardware},
-        MT_LICENSE.MT_VALID_THROUGH = #{validThrough},
-        MT_LICENSE.MT_DATE_UPDATED = #{dateUpdated}
+        MT_LICENSE.MT_HARDWARE = #{hardware}
         WHERE
-        MT_LICENSE.MT_LICENSE_ID = #{licenseId}
+        MT_LICENSE.MT_ACTIVATION_CODE = #{activationCode}
     </update>
-
-    <delete id="deleteByIds">
-        DELETE
-        FROM MT_LICENSE
-        WHERE
-        MT_LICENSE.MT_LICENSE_ID
-        IN
-        <foreach collection="array" item="licenseId" open="(" separator="," close=")">
-            #{licenseId}
-        </foreach>
-    </delete>
-
-    <delete id="deleteById">
-        DELETE
-        FROM MT_LICENSE
-        WHERE
-        MT_LICENSE.MT_LICENSE_ID = #{licenseId}
-    </delete>
-
-    <select id="searchByName" resultType="License">
-        SELECT
-        MT_LICENSE.MT_LICENSE_ID AS licenseId,
-        MT_LICENSE.MT_APP_NAME AS appName,
-        MT_LICENSE.MT_EDITION AS edition,
-        MT_LICENSE.MT_MAJOR_VERSION AS majorVersion,
-        MT_LICENSE.MT_EMAIL AS email,
-        MT_LICENSE.MT_HARDWARE AS hardware,
-        MT_LICENSE.MT_VALID_THROUGH AS validThrough,
-        MT_LICENSE.MT_DATE_CREATED AS dateCreated,
-        MT_LICENSE.MT_DATE_UPDATED AS dateUpdated
-        FROM MT_LICENSE
-        WHERE
-        MT_LICENSE.MT_EMAIL LIKE "%"#{q}"%"
-        ORDER BY
-        MT_LICENSE.MT_DATE_UPDATED DESC
-        LIMIT #{offset}, #{limit}
-    </select>
-
-    <select id="findCount" resultType="long">
-        SELECT
-        COUNT(*)
-        FROM MT_LICENSE
-    </select>
-
-    <select id="searchByNameCount" resultType="long">
-        SELECT
-        COUNT(*)
-        FROM MT_LICENSE
-        WHERE
-        MT_LICENSE.MT_HARDWARE LIKE "%"#{q}"%"
-    </select>
 
 </mapper>

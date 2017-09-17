@@ -1,6 +1,5 @@
 package com.mocktpo.webmvc;
 
-import com.mocktpo.domain.User;
 import com.mocktpo.util.Base64Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -13,20 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class IndexController {
+public class DownloadController {
 
     private static final Logger logger = LogManager.getLogger();
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView toIndexView(HttpSession session) {
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
+    public ModelAndView toDownloadView() {
         logger.info("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
-        String email = (String) session.getAttribute("email");
-        if (StringUtils.isEmpty(email)) {
-            mv.setViewName("index");
-        } else {
-            mv.setViewName("redirect:/home");
-        }
+        mv.setViewName("download");
         return mv;
     }
 }

@@ -36,8 +36,6 @@ public class LicenseApiController {
             String licensedHardware = lic.getHardware();
             if (StringUtils.isEmpty(licensedHardware)) { // hardware remains blank
                 lic.setHardware(hardware);
-                Date date = new Date();
-                lic.setDateUpdated(date);
                 service.update(lic);
                 return ResponseEntity.ok().build();
             } else {

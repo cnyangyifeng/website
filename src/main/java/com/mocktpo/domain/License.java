@@ -1,28 +1,34 @@
 package com.mocktpo.domain;
 
-import com.mocktpo.util.constants.GlobalConstants;
+import com.mocktpo.util.constants.MT;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class License implements Serializable {
 
-    private String appName = GlobalConstants.APP_NAME;
-    private String edition = GlobalConstants.DEFAULT_EDITION;
-    private String version = GlobalConstants.DEFAULT_VERSION;
+    private long id;
+    private String product = MT.DEFAULT_PRODUCT;
+    private String edition = MT.DEFAULT_EDITION;
+    private String version = MT.DEFAULT_VERSION;
     private String activationCode;
     private String email;
     private String hardware;
-    private String validThrough = GlobalConstants.DEFAULT_VALID_THROUGH;
-    private Date dateCreated;
-    private Date dateUpdated;
+    private String validThrough = MT.DEFAULT_VALID_THROUGH;
 
-    public String getAppName() {
-        return appName;
+    public long getId() {
+        return id;
     }
 
-    public void setAppName(String appName) {
-        this.appName = appName;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
     }
 
     public String getEdition() {
@@ -71,21 +77,5 @@ public class License implements Serializable {
 
     public void setValidThrough(String validThrough) {
         this.validThrough = validThrough;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public Date getDateUpdated() {
-        return dateUpdated;
-    }
-
-    public void setDateUpdated(Date dateUpdated) {
-        this.dateUpdated = dateUpdated;
     }
 }
