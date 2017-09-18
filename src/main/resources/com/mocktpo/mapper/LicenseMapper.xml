@@ -32,8 +32,6 @@
         FROM MT_LICENSE
         WHERE
         MT_LICENSE.MT_EMAIL = #{email}
-        ORDER BY
-        MT_LICENSE.MT_DATE_UPDATED DESC
     </select>
 
     <insert id="create" parameterType="License">
