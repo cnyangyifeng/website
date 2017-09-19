@@ -1,7 +1,5 @@
 package com.mocktpo.webmvc;
 
-import com.mocktpo.domain.User;
-import com.mocktpo.util.Base64Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

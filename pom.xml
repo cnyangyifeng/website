@@ -257,6 +257,16 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>${tomcat7-maven-plugin}</version>
+                <configuration>
+                    <url>http://118.190.210.249:8080/manager/text</url>
+                    <path>/website</path>
+                    <update>true</update>
+                    <!-- Edit /etc/tomcat/tomcat-users.xml and add the following. -->
+                    <!-- <role rolename="manager-script"/> -->
+                    <!-- <user username="mocktpo" password="5suozhu2sheng7xin" roles="manager-script"/> -->
+                    <username>mocktpo</username>
+                    <password>5suozhu2sheng7xin</password>
+                </configuration>
             </plugin>
         </plugins>
     </build>

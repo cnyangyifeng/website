@@ -19,25 +19,39 @@
     <a href="/" th:href="@{/}" class="brand-logo white-text">MockTPO</a>
     <ul class="right hide-on-med-and-down">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="home.html" th:href="@{/home}">Home</a></li>
-      <li class="active"><a class="cyan-text text-lighten-5" href="download.html" th:href="@{/download}">Download</a></li>
-      <li><a class="cyan-text text-lighten-4" href="buy.html" th:href="@{/buy}">Buy</a></li>
+      <li><a class="waves-effect waves-light btn orange" href="download.html" th:href="@{/download}">Download MockTPO</a></li>
       <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="login.html" th:href="@{/login}">Log In</a></li>
-      <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="signup.html" th:href="@{/signup}">Sign Up</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="account.html" th:href="@{/account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="login.html" th:href="@{/logout.do}">Log Out</a></li>
     </ul>
     <ul class="side-nav" id="nav-mobile">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="home.html" th:href="@{/home}">Home</a></li>
       <li class="active"><a class="black-text" href="download.html" th:href="@{/download}">Download</a></li>
-      <li><a class="black-text" href="buy.html" th:href="@{/buy}">Buy</a></li>
       <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="login.html" th:href="@{/login}">Log In</a></li>
-      <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="signup.html" th:href="@{/signup}">Sign Up</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="account.html" th:href="@{/account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="login.html" th:href="@{/logout}">Log Out</a></li>
     </ul>
     <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="material-icons">menu</i></a>
   </div>
 </nav>
+<div class="container">
+  <div class="row">
+    <div class="section">
+      <h5>Download</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 l6">
+      <div class="card-panel grey lighten-5" style="height: 120px;">
+      </div>
+    </div>
+    <div class="col s12 l6">
+      <div class="card-panel grey lighten-5" style="height: 120px;">
+        <div id="paypal-button"></div>
+      </div>
+    </div>
+  </div>
+</div>
 <footer class="page-footer blue-grey darken-4">
   <div class="container">
     <div class="row">
@@ -59,5 +73,50 @@
 </footer>
 <script src="/assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="/assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
+<script src="/assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
+<script src="/assets/js/paypal/checkout.min.js" th:src="@{/assets/js/paypal/checkout.min.js}"></script>
+<script>
+  paypal.Button.render({
+    env: 'production',
+    style: {
+      label: 'pay',
+      fundingicons: true,
+      size: 'responsive',
+      shape: 'pill',
+      color: 'gold'
+    },
+    client: {
+      sandbox: 'AVcpMi7pU8snHgEZzY0LzEtpKJ0l4pwF4d_gahxfb5P6ZCwcZT0t0bdemVghs4Ggo8Tcgu2V2YDMTet6',
+      production: 'AY4Tej-i4FaiE-vkBitWPREYibDgI1XFCYYGukZepD7gEWSqSfLuAk6nBhSOl1_yMXLrifp-8XBWk3XY'
+
+    },
+    commit: true,
+    payment: function (data, actions) {
+      return actions.payment.create({
+        payment: {
+          intent: 'sale',
+          transactions: [
+            {
+              amount: {total: '0.01', currency: 'USD'}
+            }
+          ]
+        },
+        experience: {
+          input_fields: {
+            no_shipping: 1
+          }
+        }
+      });
+    },
+    onAuthorize: function (data, actions) {
+      return actions.payment.execute().then(function () {
+        window.alert("Payment Complete.");
+      });
+    },
+    onCancel: function (data, actions) {
+
+    }
+  }, '#paypal-button');
+</script>
 </body>
 </html>

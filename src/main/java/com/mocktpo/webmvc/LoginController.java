@@ -2,7 +2,6 @@ package com.mocktpo.webmvc;
 
 import com.mocktpo.domain.User;
 import com.mocktpo.service.UserService;
-import com.mocktpo.util.Base64Utils;
 import com.mocktpo.vo.LoginVo;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;

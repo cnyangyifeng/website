@@ -19,19 +19,15 @@
     <a href="/" th:href="@{/}" class="brand-logo white-text">MockTPO</a>
     <ul class="right hide-on-med-and-down">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="home.html" th:href="@{/home}">Home</a></li>
-      <li><a class="cyan-text text-lighten-4" href="download.html" th:href="@{/download}">Download</a></li>
-      <li><a class="cyan-text text-lighten-4" href="buy.html" th:href="@{/buy}">Buy</a></li>
+      <li><a class="waves-effect waves-light btn orange" href="download.html" th:href="@{/download}">Download MockTPO</a></li>
       <li class="active" th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-5" href="login.html" th:href="@{/login}">Log In</a></li>
-      <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="signup.html" th:href="@{/signup}">Sign Up</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="account.html" th:href="@{/account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="login.html" th:href="@{/logout.do}">Log Out</a></li>
     </ul>
     <ul class="side-nav" id="nav-mobile">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="home.html" th:href="@{/home}">Home</a></li>
       <li><a class="black-text" href="download.html" th:href="@{/download}">Download</a></li>
-      <li><a class="black-text" href="buy.html" th:href="@{/buy}">Buy</a></li>
       <li class="active" th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="login.html" th:href="@{/login}">Log In</a></li>
-      <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="signup.html" th:href="@{/signup}">Sign Up</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="account.html" th:href="@{/account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="login.html" th:href="@{/logout}">Log Out</a></li>
     </ul>
@@ -84,5 +80,6 @@
 </footer>
 <script src="/assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="/assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
+<script src="/assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
 </body>
 </html>
