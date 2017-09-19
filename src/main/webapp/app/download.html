@@ -19,7 +19,7 @@
     <a href="/" th:href="@{/}" class="brand-logo white-text">MockTPO</a>
     <ul class="right hide-on-med-and-down">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="home.html" th:href="@{/home}">Home</a></li>
-      <li><a class="waves-effect waves-light btn orange" href="download.html" th:href="@{/download}">Download MockTPO</a></li>
+      <li class="active"><a class="cyan-text text-lighten-4" href="download.html" th:href="@{/download}">Download</a></li>
       <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="login.html" th:href="@{/login}">Log In</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="account.html" th:href="@{/account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="login.html" th:href="@{/logout.do}">Log Out</a></li>
