@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<link rel="shortcut icon" href="../../assets/favicon.ico" th:href="@{/static/favicon.ico}">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png"/>
+<title>MockTPO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" type="text/css" href="../../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
+</head>
+<body>
+<nav class="blue-grey darken-4" role="navigation" th:fragment="header">
+  <div class="nav-wrapper container">
+    <a href="../index.html" th:href="@{/}" class="brand-logo white-text">MockTPO</a>
+    <ul class="right hide-on-med-and-down">
+      <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
+      <li><a class="cyan-text text-lighten-4" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
+      <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
+      <li class="active" th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-5" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
+      <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../login.html" th:href="@{/logout.do}" th:text="#{logout}">Log Out</a></li>
+    </ul>
+    <ul class="side-nav" id="nav-mobile">
+      <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
+      <li><a class="black-text" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
+      <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
+      <li class="active" th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
+      <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../login.html" th:href="@{/logout}" th:text="#{logout}">Log Out</a></li>
+    </ul>
+    <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+<script src="../../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
+<script src="../../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
+<script src="../../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
+</body>
+</html>
