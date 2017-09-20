@@ -18,7 +18,7 @@
 <div class="container">
   <div class="row">
     <div class="section">
-      <h5>Download</h5>
+      <h5 th:text="#{download}">Download</h5>
     </div>
   </div>
   <div class="row">
@@ -37,7 +37,8 @@
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
 <script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
-<script src="../assets/js/paypal/checkout.min.js" th:src="@{/assets/js/paypal/checkout.min.js}"></script>
+<script src="https://www.paypalobjects.com/api/checkout.min.js" data-version-4></script>
+<!-- <script src="../assets/js/paypal/checkout.min.js" th:src="@{/assets/js/paypal/checkout.min.js}"></script> -->
 <script>
   paypal.Button.render({
     env: 'production',
