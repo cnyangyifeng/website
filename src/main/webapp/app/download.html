@@ -17,54 +17,62 @@
 <div th:replace="views/header::header"></div>
 <div class="container">
   <div class="row">
-    <h4>Choose your ExpressVPN plan</h4>
-    <p class="grey-text">ALL PLANS are covered by a no-hassle 100% Money-Back Guarantee for your first 30 days of service. Get a VPN in 3 easy steps!</p>
+    <h4 th:text="#{download}">Download</h4>
+    <div class="divider"></div>
     <div class="section">
-      <h5>Select a plan that works for you</h5>
+      <h5 th:text="#{select_product}">Select a product that works for you</h5>
       <p class="grey-text">All plans include all ExpressVPN apps, 24/7 customer support, and high-speed unlimited bandwidth.</p>
     </div>
     <div class="row">
-      <div class="col s12 m6">
-        <div class="card-panel hoverable">
+      <div class="col s12 l4">
+        <div class="card cyan lighten-5 z-depth-0">
           <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            <span class="card-title">Windows</span>
           </div>
         </div>
       </div>
-      <div class="col s12 m6">
-        <div class="card-panel hoverable">
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+      <div class="col s12 l4">
+        <div class="card cyan lighten-5 z-depth-0">
+          <div class="card-content">
+            <span class="card-title">Mac OS X</span>
+          </div>
         </div>
       </div>
     </div>
     <div class="section">
-      <h5>Enter your email address</h5>
+      <h5 th:text="#{enter_email}">Enter your email address</h5>
       <p class="grey-text">Privacy Guarantee: We do not share your information and will contact you only as needed to provide our service.</p>
     </div>
     <div class="row">
       <div class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <i class="material-icons prefix teal-text">email</i>
+            <i class="material-icons prefix">email</i>
             <input id="icon_prefix" type="text" class="validate">
-            <label for="icon_prefix">Email</label>
+            <label for="icon_prefix" th:text="#{email}">Email</label>
           </div>
         </div>
       </div>
     </div>
     <div class="section">
-      <h5>Select your preferred method of payment</h5>
+      <h5 th:text="#{select_payment_method}">Select your preferred method of payment</h5>
     </div>
     <div class="row">
       <div class="col s12">
         <ul class="collapsible" data-collapsible="expandable">
           <li>
-            <div class="collapsible-header active"><i class="material-icons">chevron_right</i>Alipay</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <div class="collapsible-header grey lighten-4"><i class="material-icons">arrow_right</i><span th:text="#{alipay}">Alipay</span></div>
+            <div class="collapsible-body">
+              <p class="center">Click on the "Pay with Alipay" button to continue downloading MockTPO.</p>
+              <p class="center"><span class="orange-text" style="font-size:28px;font-weight:bold;">$59.95</span></p>
+            </div>
           </li>
           <li>
-            <div class="collapsible-header"><i class="material-icons">chevron_right</i>PayPal</div>
+            <div class="collapsible-header grey lighten-4"><i class="material-icons">arrow_right</i><span th:text="#{paypal}">PayPal</span></div>
             <div class="collapsible-body">
+              <p class="center" th:text="#{click_on_paypal_button_to_continue_downloading}">Click on the "Pay with PayPal" button to continue downloading MockTPO.</p>
+              <p class="center"><span class="orange-text" style="font-size:28px;font-weight:bold;">$59.95</span></p>
+              <br>
               <div id="paypal-button"></div>
             </div>
           </li>

@@ -13,25 +13,10 @@
 <link rel="stylesheet" type="text/css" href="../../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
 </head>
 <body>
-<footer class="page-footer blue-grey darken-4" th:fragment="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">MockTPO</h5>
-        <p class="grey-text">Build cross platform desktop apps with JavaScript, HTML, and CSS</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Help</h5>
-        <ul>
-          <li><a class="cyan-text text-lighten-4" href="#">Support Center</a></li>
-          <li><a class="cyan-text text-lighten-4" href="#">FAQ</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
+<footer class="page-footer blue-grey darken-4" style="padding-top:0;" th:fragment="footer">
+  <div class="footer-copyright" style="font-weight:normal;">
     <div class="container">
-      <p class="grey-text">© 2017 Copyright MockTPO</p>
+      <p class="grey-text" th:text="#{copyright}">Copyright © 2017 Beijing MengMa Educational Technology Co., Ltd.</p>
     </div>
   </div>
 </footer>
