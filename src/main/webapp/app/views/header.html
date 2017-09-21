@@ -13,15 +13,24 @@
 <link rel="stylesheet" type="text/css" href="../../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
 </head>
 <body>
-<nav class="blue-grey darken-4" role="navigation" th:fragment="header">
+<div th:fragment="header">
+<ul id="lang-dropdown" class="dropdown-content">
+  <li><a class="cyan-text text-darken-4" href="?lang=en">English</a></li>
+  <li><a class="cyan-text text-darken-4" href="?lang=zh">简体中文</a></li>
+  <li><a class="cyan-text text-darken-4" href="?lang=zh_TW">繁體中文</a></li>
+  <li><a class="cyan-text text-darken-4" href="?lang=ja">‪日本語‬</a></li>
+  <li><a class="cyan-text text-darken-4" href="?lang=ko">‪한국어‬</a></li>
+</ul>
+<nav class="blue-grey darken-4" role="navigation">
   <div class="nav-wrapper container">
     <a href="../index.html" th:href="@{/}" class="brand-logo white-text">MockTPO</a>
     <ul class="right hide-on-med-and-down">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
       <li><a class="cyan-text text-lighten-4" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
       <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
-      <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-5" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
+      <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../login.html" th:href="@{/logout.do}" th:text="#{logout}">Log Out</a></li>
+      <li><a class="dropdown-button cyan-text text-lighten-4" href="#" data-activates="lang-dropdown"><i class="material-icons left">language</i><span th:text="${#locale}">English</span><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
     <ul class="side-nav" id="nav-mobile">
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
@@ -33,6 +42,7 @@
     <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="material-icons">menu</i></a>
   </div>
 </nav>
+</div>
 <script src="../../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="../../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
 <script src="../../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
