@@ -6,41 +6,47 @@
 <meta name="renderer" content="webkit"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<link rel="shortcut icon" href="../assets/favicon.ico" th:href="@{/static/favicon.ico}">
+<link rel="shortcut icon" href="../assets/favicon.ico" th:href="@{/assets/favicon.ico}">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
 <title>MockTPO</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" type="text/css" href="../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
-<link rel="stylesheet" type="text/css" href="../assets/css/index.css" th:href="@{/assets/css/index.css}">
+<link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
 </head>
 <body>
 <div th:replace="views/header::header"></div>
 <div class="container">
   <div class="row">
-    <h4 th:text="#{download}">Download</h4>
+    <div class="section">
+      <h4 th:text="#{download}">Download</h4>
+    </div>
     <div class="divider"></div>
     <div class="section">
-      <h5 class="grey-text text-darken-3" th:text="#{select_product}">Please select a product that works for you</h5>
+      <h5 class="grey-text text-darken-3" th:text="#{select_product}">1. Please select a product that works for you</h5>
       <p class="grey-text">All plans include all ExpressVPN apps, 24/7 customer support, and high-speed unlimited bandwidth.</p>
     </div>
     <div class="row">
-      <div class="col s12 l4">
-        <div class="card cyan lighten-5 z-depth-0">
+      <div class="col s12 l6">
+        <div class="product-card active card grey lighten-4">
           <div class="card-content">
-            <span class="card-title">Windows</span>
+            <div class="card-title">MockTPO for Windows</div>
+            <div class="divider"></div>
+            <ul><li>Windows 7, 8, 10</li></ul>
           </div>
         </div>
       </div>
-      <div class="col s12 l4">
-        <div class="card cyan lighten-5 z-depth-0">
+      <div class="col s12 l6">
+        <div class="product-card card grey lighten-4">
           <div class="card-content">
-            <span class="card-title">Mac OS X</span>
+            <div class="card-title">MockTPO for Mac</div>
+            <div class="divider"></div>
+            <ul><li>macOS 10.10 and above</li></ul>
           </div>
         </div>
       </div>
     </div>
     <div class="section">
-      <h5 class="grey-text text-darken-3" th:text="#{enter_email}">Please enter your email address</h5>
+      <h5 class="grey-text text-darken-3" th:text="#{enter_email}">2. Please enter your email address</h5>
       <p class="grey-text">Privacy Guarantee: We do not share your information and will contact you only as needed to provide our service.</p>
     </div>
     <div class="row">
@@ -55,7 +61,7 @@
       </div>
     </div>
     <div class="section">
-      <h5 class="grey-text text-darken-3" th:text="#{select_payment_method}">Please select your preferred method of payment</h5>
+      <h5 class="grey-text text-darken-3" th:text="#{select_payment_method}">3. Please select your preferred method of payment</h5>
     </div>
     <div class="row">
       <div class="col s12">
@@ -64,15 +70,14 @@
             <div class="collapsible-header grey lighten-4"><i class="material-icons">arrow_right</i><span th:text="#{alipay}">Alipay</span></div>
             <div class="collapsible-body">
               <p class="center">Click on the "Pay with Alipay" button to continue downloading MockTPO.</p>
-              <p class="center"><span class="orange-text" style="font-size:28px;font-weight:bold;">$59.95</span></p>
+              <p class="center"><span class="orange-text" style="font-size:24px;font-weight:bold;">$59.95</span></p>
             </div>
           </li>
           <li>
             <div class="collapsible-header grey lighten-4"><i class="material-icons">arrow_right</i><span th:text="#{paypal}">PayPal</span></div>
             <div class="collapsible-body">
               <p class="center" th:text="#{click_on_paypal_button_to_continue_downloading}">Click on the "Pay with PayPal" button to continue downloading MockTPO.</p>
-              <p class="center"><span class="orange-text" style="font-size:28px;font-weight:bold;">$59.95</span></p>
-              <br>
+              <p class="center"><span class="orange-text" style="font-size:24px;font-weight:bold;">$59.95</span></p>
               <div id="paypal-button"></div>
             </div>
           </li>
@@ -87,20 +92,20 @@
 <script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
 <script src="https://www.paypalobjects.com/api/checkout.min.js" data-version-4></script>
 <!-- <script src="../assets/js/paypal/checkout.min.js" th:src="@{/assets/js/paypal/checkout.min.js}"></script> -->
-<script>
+<script th:inline="javascript">
+  /*<![CDATA[*/
   paypal.Button.render({
-    env: 'production',
+    env: 'sandbox',
     style: {
-      label: 'pay',
+      color: 'blue',
       fundingicons: true,
-      size: 'responsive',
+      label: 'pay',
       shape: 'pill',
-      color: 'gold'
+      size: 'responsive'
     },
     client: {
       sandbox: 'AVcpMi7pU8snHgEZzY0LzEtpKJ0l4pwF4d_gahxfb5P6ZCwcZT0t0bdemVghs4Ggo8Tcgu2V2YDMTet6',
       production: 'AY4Tej-i4FaiE-vkBitWPREYibDgI1XFCYYGukZepD7gEWSqSfLuAk6nBhSOl1_yMXLrifp-8XBWk3XY'
-
     },
     commit: true,
     payment: function (data, actions) {
@@ -111,7 +116,10 @@
             {
               amount: {total: '0.01', currency: 'USD'}
             }
-          ]
+          ],
+          redirect_urls: {
+            return_url: /*[[@{/paypal/payment/complete}]]*/ 'http://127.0.0.1/'
+          }
         },
         experience: {
           input_fields: {
@@ -122,13 +130,15 @@
     },
     onAuthorize: function (data, actions) {
       return actions.payment.execute().then(function () {
-        window.alert("Payment Complete.");
+        actions.redirect();
       });
     },
     onCancel: function (data, actions) {
-
+    },
+    onError: function (err) {
     }
   }, '#paypal-button');
+  /*]]>*/
 </script>
 </body>
 </html>

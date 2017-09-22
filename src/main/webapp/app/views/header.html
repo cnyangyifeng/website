@@ -6,7 +6,7 @@
 <meta name="renderer" content="webkit"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<link rel="shortcut icon" href="../../assets/favicon.ico" th:href="@{/static/favicon.ico}">
+<link rel="shortcut icon" href="../../assets/favicon.ico" th:href="@{/assets/favicon.ico}">
 <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png"/>
 <title>MockTPO</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -15,11 +15,10 @@
 <body>
 <div th:fragment="header">
 <ul id="lang-dropdown" class="dropdown-content">
-  <li><a class="cyan-text text-darken-4" href="?lang=en">English</a></li>
-  <li><a class="cyan-text text-darken-4" href="?lang=zh">简体中文</a></li>
-  <li><a class="cyan-text text-darken-4" href="?lang=zh_TW">繁體中文</a></li>
-  <li><a class="cyan-text text-darken-4" href="?lang=ja">‪日本語‬</a></li>
-  <li><a class="cyan-text text-darken-4" href="?lang=ko">‪한국어‬</a></li>
+  <li><a class="blue-grey-text text-darken-4" href="?lang=en">English</a></li>
+  <li><a class="blue-grey-text text-darken-4" href="?lang=zh">简体中文</a></li>
+  <li><a class="blue-grey-text text-darken-4" href="?lang=zh_TW">繁體中文</a></li>
+  <li><a class="blue-grey-text text-darken-4" href="?lang=ja">‪日本語‬</a></li>
 </ul>
 <nav class="blue-grey darken-4" role="navigation">
   <div class="nav-wrapper container">
@@ -30,15 +29,21 @@
       <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
       <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../login.html" th:href="@{/logout.do}" th:text="#{logout}">Log Out</a></li>
-      <li><a class="dropdown-button cyan-text text-lighten-4" href="#" data-activates="lang-dropdown"><i class="material-icons left">language</i><span th:text="${#locale}">English</span><i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button cyan-text text-lighten-4" href="#" data-activates="lang-dropdown"><i class="material-icons left">language</i><span th:text="#{language}">English</span><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
-    <ul class="side-nav" id="nav-mobile">
-      <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
-      <li><a class="black-text" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
-      <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
-      <li class="active" th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
-      <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../login.html" th:href="@{/logout}" th:text="#{logout}">Log Out</a></li>
-    </ul>
+    <div class="side-nav" id="nav-mobile">
+      <div class="section" style="padding-left:24px;">
+        <h5 class="black-text">MockTPO</h5>
+      </div>
+      <div class="divider"></div>
+      <ul>
+        <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
+        <li><a class="black-text" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
+        <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
+        <li class="active" th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
+        <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../login.html" th:href="@{/logout}" th:text="#{logout}">Log Out</a></li>
+      </ul>
+    </div>
     <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="material-icons">menu</i></a>
   </div>
 </nav>

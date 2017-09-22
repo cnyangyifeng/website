@@ -1,0 +1,13 @@
+.product-card {
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.product-card.active, .product-card.active:hover {
+    border: 2px solid #263238; /* cyan darken-3 */
+    background-color: #fff !important;
+}
+
+.product-card:hover {
+    border: 1px solid #9e9e9e; /* cyan darken-3 */
+}

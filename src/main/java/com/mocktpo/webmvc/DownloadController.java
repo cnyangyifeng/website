@@ -24,7 +24,7 @@ public class DownloadController {
     private LicenseService service;
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
-    public ModelAndView toPayView() {
+    public ModelAndView toDownloadView() {
         logger.info("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
         mv.setViewName("download");

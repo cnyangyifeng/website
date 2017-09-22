@@ -58,8 +58,10 @@
 
     <!-- i18n -->
 
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <property name="defaultLocale" value="en"/>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="MOCKTPO_LANG"/>
+        <!-- Cookie max age: 7*24*60*60 = 604800 -->
+        <property name="cookieMaxAge" value="604800"/>
     </bean>
 
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
