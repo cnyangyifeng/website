@@ -27,7 +27,7 @@
     </div>
     <div class="row">
       <div class="col s12 l6">
-        <div class="product-card active card grey lighten-4">
+        <div class="product-card active card grey lighten-4" id="mocktpo-windows">
           <div class="card-content">
             <div class="card-title">MockTPO for Windows</div>
             <div class="divider"></div>
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="col s12 l6">
-        <div class="product-card card grey lighten-4">
+        <div class="product-card card grey lighten-4" id="mocktpo-mac">
           <div class="card-content">
             <div class="card-title">MockTPO for Mac</div>
             <div class="divider"></div>
@@ -86,11 +86,20 @@
     </div>
   </div>
 </div>
+<div id="paypal-modal" class="modal">
+  <div class="modal-content">
+    <h4>Payment Successfully</h4>
+    <p>Please wait for redirecting...</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Just Go</a>
+  </div>
+</div>
 <div th:replace="views/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
 <script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
-<script src="https://www.paypalobjects.com/api/checkout.min.js" data-version-4></script>
+  <script src="https://www.paypalobjects.com/api/checkout.min.js" data-version-4></script>
 <!-- <script src="../assets/js/paypal/checkout.min.js" th:src="@{/assets/js/paypal/checkout.min.js}"></script> -->
 <script th:inline="javascript">
   /*<![CDATA[*/
@@ -132,10 +141,6 @@
       return actions.payment.execute().then(function () {
         actions.redirect();
       });
-    },
-    onCancel: function (data, actions) {
-    },
-    onError: function (err) {
     }
   }, '#paypal-button');
   /*]]>*/

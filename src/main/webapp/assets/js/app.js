@@ -1,6 +1,10 @@
 $(function () {
-    $('.dropdown-button').dropdown();
     $('.button-collapse').sideNav();
-    $('.parallax').parallax();
     $('.collapsible').collapsible();
+    $('.dropdown-button').dropdown();
+    $('.parallax').parallax();
+    $('.product-card').click(function () {
+        $(".product-card").not(this).removeClass('active');
+        $(this).addClass('active');
+    });
 });
