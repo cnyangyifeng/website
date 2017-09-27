@@ -1,0 +1,96 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<link rel="shortcut icon" href="../assets/favicon.ico" th:href="@{/assets/favicon.ico}">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<title>MockTPO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" type="text/css" href="../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
+<link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
+</head>
+<body>
+<div class="app-wrapper">
+  <div th:replace="views/header::header"></div>
+  <div class="container">
+    <form id="payment-req-form" action="#" th:action="@{/payment/request}" th:object="${paymentReqVo}" method="post">
+      <div class="row">
+        <div class="section">
+          <h4 th:text="#{buy}">Buy</h4>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+          <h5 class="grey-text text-darken-3" th:text="#{select_product}">1. Please select a product that works for you</h5>
+          <p class="grey-text">All plans include all ExpressVPN apps, 24/7 customer support, and high-speed unlimited bandwidth.</p>
+        </div>
+        <div class="row">
+          <input type="hidden" id="pid-input" th:field="*{pid}">
+          <div class="col s12 l6">
+            <div class="product-card active card" id="win-card">
+              <div class="card-content">
+                <div class="card-title">MockTPO for Windows</div>
+                <ul>
+                  <li>Windows 7, 8, 10</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 l6">
+            <div class="product-card card" id="mac-card">
+              <div class="card-content">
+                <div class="card-title">MockTPO for macOS</div>
+                <ul>
+                  <li>macOS 10.10 and above</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h5 class="grey-text text-darken-3" th:text="#{enter_email}">2. Please enter your email address</h5>
+          <p class="grey-text">Privacy Guarantee: We do not share your information and will contact you only as needed to provide our service.</p>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input type="text" id="email-input" th:field="*{email}">
+                <label for="email-input" th:text="#{email}">Email</label>
+              </div>
+              <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h5 class="grey-text text-darken-3" th:text="#{select_payment_method}">3. Please select your preferred method of payment</h5>
+        </div>
+        <div class="row">
+          <input type="hidden" id="payment-type-input" th:field="*{paymentType}">
+          <div class="col s12 l4">
+            <div class="payment-card card-panel" id="alipay-card" style="height:108px;">
+              <img src="../assets/img/alipay.png" th:src="@{/assets/img/alipay.png}" style="height:60px;">
+            </div>
+          </div>
+          <div class="col s12 l4">
+            <div class="payment-card card-panel" id="paypal-card" style="height:108px;">
+              <img src="../assets/img/paypal.png" th:src="@{/assets/img/paypal.png}" style="height:60px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="push"></div>
+</div>
+<div th:replace="views/footer::footer"></div>
+<script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
+<script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
+<script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
+<script src="../assets/js/buy.js" th:src="@{/assets/js/buy.js}"></script>
+</body>
+</html>

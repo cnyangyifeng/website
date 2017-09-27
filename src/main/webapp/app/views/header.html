@@ -26,6 +26,7 @@
       <ul class="right hide-on-med-and-down">
         <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
         <li><a class="white-text" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
+        <li><a class="white-text" href="../buy.html" th:href="@{/buy}" th:text="#{buy}">Buy</a></li>
         <li th:if="${#strings.isEmpty(session.email)}"><a class="white-text" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
         <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
         <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../login.html" th:href="@{/logout.do}" th:text="#{logout}">Log Out</a></li>
@@ -39,6 +40,7 @@
         <ul>
           <li th:if="${not #strings.isEmpty(session.email)}"><a class="grey-text text-darken-3" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
           <li><a class="grey-text text-darken-3" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
+          <li><a class="grey-text text-darken-3" href="../buy.html" th:href="@{/buy}" th:text="#{buy}">Buy</a></li>
           <li th:if="${#strings.isEmpty(session.email)}"><a class="grey-text text-darken-3" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
           <li class="active" th:if="${not #strings.isEmpty(session.email)}"><a class="grey-text text-darken-3" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
           <li th:if="${not #strings.isEmpty(session.email)}"><a class="grey-text text-darken-3" href="../login.html" th:href="@{/logout}" th:text="#{logout}">Log Out</a></li>

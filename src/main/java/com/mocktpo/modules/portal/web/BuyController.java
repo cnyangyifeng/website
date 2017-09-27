@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class DownloadController {
+public class BuyController {
 
     private static final Logger logger = LogManager.getLogger();
 
-    @RequestMapping(value = "/download", method = RequestMethod.GET)
-    public ModelAndView toDownloadView(String err) {
+    @RequestMapping(value = "/buy", method = RequestMethod.GET)
+    public ModelAndView toBuyView(String err) {
         logger.info("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
         PaymentReqVo vo = new PaymentReqVo();
         mv.addObject("paymentReqVo", vo);
         mv.addObject("err", err);
-        mv.setViewName("download");
+        mv.setViewName("buy");
         return mv;
     }
 }

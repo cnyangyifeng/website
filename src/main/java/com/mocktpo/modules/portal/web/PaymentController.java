@@ -34,7 +34,7 @@ public class PaymentController {
         String email = paymentReqVo.getEmail();
         try {
             if (StringUtils.isEmpty(email) || !EmailUtils.validate(email)) {
-                resp.sendRedirect(req.getContextPath() + "/download?err=invalid_email");
+                resp.sendRedirect(req.getContextPath() + "/buy?err=invalid_email");
             } else {
                 switch (paymentReqVo.getPaymentType()) {
                     case PAYMENT_TYPE_ALIPAY:
