@@ -19,25 +19,9 @@
   <div class="container">
     <div class="row">
       <div class="section">
-        <h5 th:text="#{home}">Home</h5>
+        <h4>Check Out</h4>
       </div>
       <div class="divider"></div>
-      <table class="responsive-table">
-        <thead>
-        <tr>
-          <th>Product</th>
-          <th>Activation Code</th>
-          <th>Hardware</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="license : ${licenses}">
-          <td th:text="${license.product}"></td>
-          <td th:text="${license.activationCode}"></td>
-          <td th:text="${license.hardware}"></td>
-        </tr>
-        </tbody>
-      </table>
     </div>
   </div>
   <div class="push"></div>

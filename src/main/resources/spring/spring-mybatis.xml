@@ -13,7 +13,9 @@
 
     <!-- Enables component scanning and autowire, but beware that this does not enable mapper scanning -->
 
-    <context:component-scan base-package="com.mocktpo.service"/>
+    <context:component-scan base-package="com.mocktpo.modules.portal.web" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
 
     <!-- Data source -->
 
@@ -40,12 +42,12 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.mocktpo.domain"/>
+        <property name="typeAliasesPackage" value="com.mocktpo.orm.domain"/>
     </bean>
 
     <!-- Scans for mappers and let them be autowired -->
 
-    <mybatis:scan base-package="com.mocktpo.mapper"/>
+    <mybatis:scan base-package="com.mocktpo.orm.mapper"/>
 
     <!-- Transaction manager -->
 

@@ -1,13 +1,60 @@
-.product-card {
-    border: 2px solid #ddd;
+/**
+ * Forms
+ */
+
+/* label color */
+.input-field label {
+    color: #424242;
+}
+
+/* label focus color */
+.input-field input:focus + label {
+    color: #0d47a1 !important;
+}
+
+/* label underline focus color */
+.input-field input:focus {
+    border-bottom: 1px solid #0d47a1 !important;
+    box-shadow: 0 1px 0 0 #0d47a1 !important;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #0d47a1 !important;
+}
+
+/**
+ * App
+ */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.app-wrapper {
+    min-height: 100%;
+    margin-bottom: -73px;
+}
+
+.page-footer, .push {
+    height: 73px;
+    padding-top: 0;
+}
+
+.product-card, .payment-card {
+    border: 1px solid #ddd;
+    background-color: #fff !important;
+    color: #616161;
     cursor: pointer;
 }
 
 .product-card.active, .product-card.active:hover {
-    border: 2px solid #263238; /* cyan darken-3 */
-    background-color: #fff !important;
+    border: 1px solid #0d47a1;
+    background-color: #0d47a1 !important;
+    color: #fff;
 }
 
-.product-card:hover {
-    border: 2px solid #999;
+.product-card:hover, .payment-card:hover {
+    border: 1px solid #9e9e9e;
 }

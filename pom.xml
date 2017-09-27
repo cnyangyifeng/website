@@ -231,7 +231,17 @@
             <version>${javax.mail.version}</version>
         </dependency>
 
-        <!-- JavaMail -->
+        <!-- Alipay -->
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>alipay</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/alipay-sdk-java20170829142630.jar</systemPath>
+        </dependency>
+
+        <!-- PayPal -->
 
         <dependency>
             <groupId>com.paypal.sdk</groupId>

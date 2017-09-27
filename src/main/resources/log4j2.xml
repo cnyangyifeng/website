@@ -8,8 +8,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="com.mocktpo" level="debug"/>
-        <Logger name="com.mocktpo.mapper" level="debug"/>
+        <Logger name="com.mocktpo" level="info"/>
         <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>

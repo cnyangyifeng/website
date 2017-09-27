@@ -14,30 +14,33 @@
 <link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
 </head>
 <body>
-<div th:replace="views/header::header"></div>
-<div class="container">
-  <div class="row">
-    <div class="section center">
-      <h4 th:text="#{login}">Log In</h4>
+<div class="app-wrapper">
+  <div th:replace="views/header::header"></div>
+  <div class="container">
+    <div class="row">
+      <div class="section center">
+        <h4 th:text="#{login}">Log In</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 l8 offset-l2">
+        <form action="#" th:action="@{/login.do}" th:object="${loginVo}" th:method="post">
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" id="email" th:field="*{email}">
+              <label for="email" th:text="#{email}">Email</label>
+            </div>
+            <div class="input-field col s12">
+              <input type="password" id="password" th:field="*{password}">
+              <label for="password" th:text="#{password}">Password</label>
+            </div>
+          </div>
+          <button class="btn blue darken-4" type="submit" th:text="#{login}">Log In</button>
+        </form>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col s12 l8 offset-l2">
-      <form th:action="@{/login.do}" th:object="${loginVo}" th:method="post">
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate" id="email" th:field="*{email}">
-            <label for="email" th:text="#{email}">Email</label>
-          </div>
-          <div class="input-field col s12">
-            <input type="password" class="validate" id="password" th:field="*{password}">
-            <label for="password" th:text="#{password}">Password</label>
-          </div>
-        </div>
-        <button class="btn blue-grey darken-4" type="submit" th:text="#{login}">Log In</button>
-      </form>
-    </div>
-  </div>
+  <div class="push"></div>
 </div>
 <div th:replace="views/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>

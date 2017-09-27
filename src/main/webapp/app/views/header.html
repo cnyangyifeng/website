@@ -14,39 +14,39 @@
 </head>
 <body>
 <div th:fragment="header">
-<ul id="lang-dropdown" class="dropdown-content">
-  <li><a class="blue-grey-text text-darken-4" href="?lang=en">English</a></li>
-  <li><a class="blue-grey-text text-darken-4" href="?lang=zh">简体中文</a></li>
-  <li><a class="blue-grey-text text-darken-4" href="?lang=zh_TW">繁體中文</a></li>
-  <li><a class="blue-grey-text text-darken-4" href="?lang=ja">‪日本語‬</a></li>
-</ul>
-<nav class="blue-grey darken-4" role="navigation">
-  <div class="nav-wrapper container">
-    <a href="../index.html" th:href="@{/}" class="brand-logo white-text">MockTPO</a>
-    <ul class="right hide-on-med-and-down">
-      <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
-      <li><a class="cyan-text text-lighten-4" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
-      <li th:if="${#strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
-      <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
-      <li th:if="${not #strings.isEmpty(session.email)}"><a class="cyan-text text-lighten-4" href="../login.html" th:href="@{/logout.do}" th:text="#{logout}">Log Out</a></li>
-      <li><a class="dropdown-button cyan-text text-lighten-4" href="#" data-activates="lang-dropdown"><i class="material-icons left">language</i><span th:text="#{language}">English</span><i class="material-icons right">arrow_drop_down</i></a></li>
-    </ul>
-    <div class="side-nav" id="nav-mobile">
-      <div class="section" style="padding-left:24px;">
-        <h5 class="black-text">MockTPO</h5>
-      </div>
-      <div class="divider"></div>
-      <ul>
-        <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
-        <li><a class="black-text" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
-        <li th:if="${#strings.isEmpty(session.email)}"><a class="black-text" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
-        <li class="active" th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
-        <li th:if="${not #strings.isEmpty(session.email)}"><a class="black-text" href="../login.html" th:href="@{/logout}" th:text="#{logout}">Log Out</a></li>
+  <ul id="lang-dropdown" class="dropdown-content">
+    <li><a class="grey-text text-darken-3" href="?lang=en">English</a></li>
+    <li><a class="grey-text text-darken-3" href="?lang=zh">简体中文</a></li>
+    <li><a class="grey-text text-darken-3" href="?lang=zh_TW">繁體中文</a></li>
+    <li><a class="grey-text text-darken-3" href="?lang=ja">‪日本語‬</a></li>
+  </ul>
+  <nav class="blue-grey darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="../index.html" th:href="@{/}" class="brand-logo white-text">MockTPO</a>
+      <ul class="right hide-on-med-and-down">
+        <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
+        <li><a class="white-text" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
+        <li th:if="${#strings.isEmpty(session.email)}"><a class="white-text" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
+        <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
+        <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../login.html" th:href="@{/logout.do}" th:text="#{logout}">Log Out</a></li>
+        <li><a class="dropdown-button white-text" href="#" data-activates="lang-dropdown"><i class="material-icons left">language</i><span th:text="#{language}">English</span><i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
+      <div class="side-nav" id="nav-mobile">
+        <div class="section" style="padding-left:24px;">
+          <h5 class="grey-text text-darken-3">MockTPO</h5>
+        </div>
+        <div class="divider"></div>
+        <ul>
+          <li th:if="${not #strings.isEmpty(session.email)}"><a class="grey-text text-darken-3" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
+          <li><a class="grey-text text-darken-3" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
+          <li th:if="${#strings.isEmpty(session.email)}"><a class="grey-text text-darken-3" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
+          <li class="active" th:if="${not #strings.isEmpty(session.email)}"><a class="grey-text text-darken-3" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
+          <li th:if="${not #strings.isEmpty(session.email)}"><a class="grey-text text-darken-3" href="../login.html" th:href="@{/logout}" th:text="#{logout}">Log Out</a></li>
+        </ul>
+      </div>
+      <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="material-icons">menu</i></a>
     </div>
-    <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="material-icons">menu</i></a>
-  </div>
-</nav>
+  </nav>
 </div>
 <script src="../../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="../../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>

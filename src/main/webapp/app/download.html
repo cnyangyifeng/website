@@ -14,136 +14,83 @@
 <link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
 </head>
 <body>
-<div th:replace="views/header::header"></div>
-<div class="container">
-  <div class="row">
-    <div class="section">
-      <h4 th:text="#{download}">Download</h4>
-    </div>
-    <div class="divider"></div>
-    <div class="section">
-      <h5 class="grey-text text-darken-3" th:text="#{select_product}">1. Please select a product that works for you</h5>
-      <p class="grey-text">All plans include all ExpressVPN apps, 24/7 customer support, and high-speed unlimited bandwidth.</p>
-    </div>
-    <div class="row">
-      <div class="col s12 l6">
-        <div class="product-card active card grey lighten-4" id="mocktpo-windows">
-          <div class="card-content">
-            <div class="card-title">MockTPO for Windows</div>
-            <div class="divider"></div>
-            <ul><li>Windows 7, 8, 10</li></ul>
-          </div>
+<div class="app-wrapper">
+  <div th:replace="views/header::header"></div>
+  <div class="container">
+    <form id="payment-req-form" action="#" th:action="@{/payment/request}" th:object="${paymentReqVo}" method="post">
+      <div class="row">
+        <div class="section">
+          <h4 th:text="#{download}">Download</h4>
         </div>
-      </div>
-      <div class="col s12 l6">
-        <div class="product-card card grey lighten-4" id="mocktpo-mac">
-          <div class="card-content">
-            <div class="card-title">MockTPO for Mac</div>
-            <div class="divider"></div>
-            <ul><li>macOS 10.10 and above</li></ul>
-          </div>
+        <div class="divider"></div>
+        <div class="section">
+          <h5 class="grey-text text-darken-3" th:text="#{select_product}">1. Please select a product that works for you</h5>
+          <p class="grey-text">All plans include all ExpressVPN apps, 24/7 customer support, and high-speed unlimited bandwidth.</p>
         </div>
-      </div>
-    </div>
-    <div class="section">
-      <h5 class="grey-text text-darken-3" th:text="#{enter_email}">2. Please enter your email address</h5>
-      <p class="grey-text">Privacy Guarantee: We do not share your information and will contact you only as needed to provide our service.</p>
-    </div>
-    <div class="row">
-      <div class="col s12">
         <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">email</i>
-            <input id="icon_prefix" type="text" class="validate">
-            <label for="icon_prefix" th:text="#{email}">Email</label>
+          <input type="hidden" id="pid-input" th:field="*{pid}">
+          <div class="col s12 l6">
+            <div class="product-card active card" id="win-card">
+              <div class="card-content">
+                <div class="card-title">MockTPO for Windows</div>
+                <ul>
+                  <li>Windows 7, 8, 10</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 l6">
+            <div class="product-card card" id="mac-card">
+              <div class="card-content">
+                <div class="card-title">MockTPO for macOS</div>
+                <ul>
+                  <li>macOS 10.10 and above</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h5 class="grey-text text-darken-3" th:text="#{enter_email}">2. Please enter your email address</h5>
+          <p class="grey-text">Privacy Guarantee: We do not share your information and will contact you only as needed to provide our service.</p>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input type="text" id="email-input" th:field="*{email}">
+                <label for="email-input" th:text="#{email}">Email</label>
+              </div>
+              <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h5 class="grey-text text-darken-3" th:text="#{select_payment_method}">3. Please select your preferred method of payment</h5>
+        </div>
+        <div class="row">
+          <input type="hidden" id="payment-type-input" th:field="*{paymentType}">
+          <div class="col s12 l4">
+            <div class="payment-card card-panel" id="alipay-card" style="height:108px;">
+              <img src="../assets/img/alipay.png" th:src="@{/assets/img/alipay.png}" style="height:60px;">
+            </div>
+          </div>
+          <div class="col s12 l4">
+            <div class="payment-card card-panel" id="paypal-card" style="height:108px;">
+              <img src="../assets/img/paypal.png" th:src="@{/assets/img/paypal.png}" style="height:60px;">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="section">
-      <h5 class="grey-text text-darken-3" th:text="#{select_payment_method}">3. Please select your preferred method of payment</h5>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <ul class="collapsible" data-collapsible="expandable">
-          <li>
-            <div class="collapsible-header grey lighten-4"><i class="material-icons">arrow_right</i><span th:text="#{alipay}">Alipay</span></div>
-            <div class="collapsible-body">
-              <p class="center">Click on the "Pay with Alipay" button to continue downloading MockTPO.</p>
-              <p class="center"><span class="orange-text" style="font-size:24px;font-weight:bold;">$59.95</span></p>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header grey lighten-4"><i class="material-icons">arrow_right</i><span th:text="#{paypal}">PayPal</span></div>
-            <div class="collapsible-body">
-              <p class="center" th:text="#{click_on_paypal_button_to_continue_downloading}">Click on the "Pay with PayPal" button to continue downloading MockTPO.</p>
-              <p class="center"><span class="orange-text" style="font-size:24px;font-weight:bold;">$59.95</span></p>
-              <div id="paypal-button"></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </form>
   </div>
-</div>
-<div id="paypal-modal" class="modal">
-  <div class="modal-content">
-    <h4>Payment Successfully</h4>
-    <p>Please wait for redirecting...</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Just Go</a>
-  </div>
+  <div class="push"></div>
 </div>
 <div th:replace="views/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
 <script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
-  <script src="https://www.paypalobjects.com/api/checkout.min.js" data-version-4></script>
-<!-- <script src="../assets/js/paypal/checkout.min.js" th:src="@{/assets/js/paypal/checkout.min.js}"></script> -->
-<script th:inline="javascript">
-  /*<![CDATA[*/
-  paypal.Button.render({
-    env: 'sandbox',
-    style: {
-      color: 'blue',
-      fundingicons: true,
-      label: 'pay',
-      shape: 'pill',
-      size: 'responsive'
-    },
-    client: {
-      sandbox: 'AVcpMi7pU8snHgEZzY0LzEtpKJ0l4pwF4d_gahxfb5P6ZCwcZT0t0bdemVghs4Ggo8Tcgu2V2YDMTet6',
-      production: 'AY4Tej-i4FaiE-vkBitWPREYibDgI1XFCYYGukZepD7gEWSqSfLuAk6nBhSOl1_yMXLrifp-8XBWk3XY'
-    },
-    commit: true,
-    payment: function (data, actions) {
-      return actions.payment.create({
-        payment: {
-          intent: 'sale',
-          transactions: [
-            {
-              amount: {total: '0.01', currency: 'USD'}
-            }
-          ],
-          redirect_urls: {
-            return_url: /*[[@{/paypal/payment/complete}]]*/ 'http://127.0.0.1/'
-          }
-        },
-        experience: {
-          input_fields: {
-            no_shipping: 1
-          }
-        }
-      });
-    },
-    onAuthorize: function (data, actions) {
-      return actions.payment.execute().then(function () {
-        actions.redirect();
-      });
-    }
-  }, '#paypal-button');
-  /*]]>*/
-</script>
+<script src="../assets/js/download.js" th:src="@{/assets/js/download.js}"></script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mocktpo.orm.mapper.UserMapper">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select id="findByEmail" resultType="User">
+        SELECT
+        MT_USER.MT_ID AS id,
+        MT_USER.MT_EMAIL AS email,
+        MT_USER.MT_PASSCODE AS passcode
+        FROM MT_USER
+        WHERE
+        MT_USER.MT_EMAIL = #{email}
+    </select>
+
+    <select id="findByEmailAndPasscode" resultType="User">
+        SELECT
+        MT_USER.MT_ID AS id,
+        MT_USER.MT_EMAIL AS email,
+        MT_USER.MT_PASSCODE AS passcode
+        FROM MT_USER
+        WHERE
+        MT_USER.MT_EMAIL = #{email} AND
+        MT_USER.MT_PASSCODE = #{passcode}
+    </select>
+
+    <insert id="create" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="MT_ID">
+        INSERT
+        INTO MT_USER (
+        MT_USER.MT_EMAIL,
+        MT_USER.MT_PASSCODE
+        ) VALUES (
+        #{email},
+        #{passcode}
+        )
+    </insert>
+
+</mapper>

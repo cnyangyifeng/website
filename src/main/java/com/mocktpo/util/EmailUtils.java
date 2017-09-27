@@ -1,20 +1,23 @@
 package com.mocktpo.util;
 
-import com.mocktpo.domain.License;
+import com.mocktpo.orm.domain.License;
 import com.mocktpo.util.constants.MT;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 import javax.mail.internet.MimeMessage;
+import java.util.regex.Pattern;
 
 public class EmailUtils {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Pattern r = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     private EmailUtils() {
+    }
+
+    public static boolean validate(String email) {
+        return r.matcher(email).find();
     }
 
     public static void sendActivationCode(License lic) {

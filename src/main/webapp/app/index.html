@@ -14,14 +14,16 @@
 <link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
 </head>
 <body>
-<div th:replace="views/header::header"></div>
-<div class="parallax-container">
-  <div class="section">
-
+<div class="app-wrapper">
+  <div th:replace="views/header::header"></div>
+  <div class="parallax-container">
+    <div class="section">
+    </div>
+    <div class="parallax">
+      <!-- <img src="../assets/img/bg.jpg" th:src="@{/assets/img/bg.jpg}"> -->
+    </div>
   </div>
-  <div class="parallax">
-    <img src="../assets/img/bg.jpg" th:src="@{/assets/img/bg.jpg}">
-  </div>
+  <div class="push"></div>
 </div>
 <div th:replace="views/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
