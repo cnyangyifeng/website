@@ -283,7 +283,7 @@
                     <!-- Edit /etc/tomcat/tomcat-users.xml and add the following. -->
                     <!-- <role rolename="manager-script"/> -->
                     <!-- <user username="mocktpo" password="5suozhu2sheng7xin" roles="manager-script"/> -->
-                    <username>mocktpo</username>
+                    <username>root</username>
                     <password>5suozhu2sheng7xin</password>
                 </configuration>
             </plugin>

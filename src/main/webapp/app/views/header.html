@@ -30,7 +30,7 @@
         <li th:if="${#strings.isEmpty(session.email)}"><a class="white-text" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
         <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
         <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../login.html" th:href="@{/logout.do}" th:text="#{logout}">Log Out</a></li>
-        <li><a class="dropdown-button white-text" href="#" data-activates="lang-dropdown"><i class="material-icons left">language</i><span th:text="#{language}">English</span><i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button white-text" href="#" data-activates="lang-dropdown"><span th:text="#{language}">English</span><i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
       <div class="side-nav" id="nav-mobile">
         <div class="section" style="padding-left:24px;">

@@ -16,23 +16,25 @@
 <body>
 <div class="app-wrapper">
   <div th:replace="views/header::header"></div>
-  <div class="container">
-    <form id="payment-req-form" action="#" th:action="@{/payment/request}" th:object="${paymentReqVo}" method="post">
+  <form id="payment-req-form" action="#" th:action="@{/payment/request}" th:object="${paymentReqVo}" method="post">
+    <div class="container">
       <div class="row">
         <div class="section">
           <h4 th:text="#{buy}">Buy</h4>
         </div>
         <div class="divider"></div>
+      </div>
+      <div class="row">
         <div class="section">
           <h5 class="grey-text text-darken-3" th:text="#{select_product}">1. Please select a product that works for you</h5>
-          <p class="grey-text">All plans include all ExpressVPN apps, 24/7 customer support, and high-speed unlimited bandwidth.</p>
+          <p class="grey-text" th:text="#{select_product_desc}"></p>
         </div>
         <div class="row">
           <input type="hidden" id="pid-input" th:field="*{pid}">
           <div class="col s12 l6">
-            <div class="product-card active card" id="win-card">
+            <div class="product-card card active" id="win-card">
               <div class="card-content">
-                <div class="card-title">MockTPO for Windows</div>
+                <div class="card-title">MockTPO Basic</div>
                 <ul>
                   <li>Windows 7, 8, 10</li>
                 </ul>
@@ -42,7 +44,7 @@
           <div class="col s12 l6">
             <div class="product-card card" id="mac-card">
               <div class="card-content">
-                <div class="card-title">MockTPO for macOS</div>
+                <div class="card-title">MockTPO Professional</div>
                 <ul>
                   <li>macOS 10.10 and above</li>
                 </ul>
@@ -52,7 +54,7 @@
         </div>
         <div class="section">
           <h5 class="grey-text text-darken-3" th:text="#{enter_email}">2. Please enter your email address</h5>
-          <p class="grey-text">Privacy Guarantee: We do not share your information and will contact you only as needed to provide our service.</p>
+          <p class="grey-text" th:text="#{enter_email_desc}"></p>
         </div>
         <div class="row">
           <div class="col s12">
@@ -68,6 +70,7 @@
         </div>
         <div class="section">
           <h5 class="grey-text text-darken-3" th:text="#{select_payment_method}">3. Please select your preferred method of payment</h5>
+          <p class="grey-text" th:text="#{select_payment_method_desc}"></p>
         </div>
         <div class="row">
           <input type="hidden" id="payment-type-input" th:field="*{paymentType}">
@@ -83,8 +86,8 @@
           </div>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
   <div class="push"></div>
 </div>
 <div th:replace="views/footer::footer"></div>
