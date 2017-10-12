@@ -1,12 +1,10 @@
 package com.mocktpo.modules.portal.web;
 
-import com.mocktpo.orm.domain.User;
 import com.mocktpo.modules.portal.service.UserService;
 import com.mocktpo.modules.portal.web.vo.LoginVo;
+import com.mocktpo.orm.domain.User;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,14 +16,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
-    private static final Logger logger = LogManager.getLogger();
-
     @Autowired
     private UserService service;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView toLoginView(HttpSession session) {
-        logger.info("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
         String email = (String) session.getAttribute("email");
         if (StringUtils.isEmpty(email)) {
@@ -39,7 +34,6 @@ public class LoginController {
 
     @RequestMapping(value = "/login.do", method = RequestMethod.POST)
     public ModelAndView login(HttpSession session, LoginVo loginVo) {
-        logger.info("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
         String email = loginVo.getEmail();
         String password = loginVo.getPassword();
@@ -59,7 +53,6 @@ public class LoginController {
 
     @RequestMapping(value = "/logout.do", method = RequestMethod.GET)
     public ModelAndView logout(HttpSession session) {
-        logger.info("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
         String email = (String) session.getAttribute("email");
         if (!StringUtils.isEmpty(email)) {

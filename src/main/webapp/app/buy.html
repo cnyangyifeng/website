@@ -15,8 +15,8 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="views/header::header"></div>
-  <form id="payment-req-form" action="#" th:action="@{/payment/request}" th:object="${paymentReqVo}" method="post">
+  <div th:replace="fragments/header::header"></div>
+  <form id="order-req-form" action="order.html" th:action="@{/order/create}" th:object="${orderReqVo}" method="post">
     <div class="container">
       <div class="row">
         <div class="section">
@@ -32,22 +32,18 @@
         <div class="row">
           <input type="hidden" id="pid-input" th:field="*{pid}">
           <div class="col s12 l6">
-            <div class="product-card card active" id="win-card">
+            <div class="product-card card active" id="basic-card">
               <div class="card-content">
                 <div class="card-title">MockTPO Basic</div>
-                <ul>
-                  <li>Windows 7, 8, 10</li>
-                </ul>
+                <div style="margin-top:20px;font-size:24px;font-weight:bold;">￥99.00</div>
               </div>
             </div>
           </div>
           <div class="col s12 l6">
-            <div class="product-card card" id="mac-card">
+            <div class="product-card card" id="professional-card">
               <div class="card-content">
                 <div class="card-title">MockTPO Professional</div>
-                <ul>
-                  <li>macOS 10.10 and above</li>
-                </ul>
+                <div style="margin-top:20px;font-size:24px;font-weight:bold;">￥299.00</div>
               </div>
             </div>
           </div>
@@ -90,7 +86,7 @@
   </form>
   <div class="push"></div>
 </div>
-<div th:replace="views/footer::footer"></div>
+<div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
 <script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>

@@ -1,20 +1,28 @@
 $(function () {
+    $('#pid-input').val(1);
+    $('#order-req-form').on('keyup keypress', function (e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
     $('.product-card').click(function () {
         $(".product-card").not(this).removeClass('active');
         $(this).addClass('active');
     });
-    $('#win-card').click(function () {
+    $('#basic-card').click(function () {
         $('#pid-input').val(1);
     });
-    $('#mac-card').click(function () {
+    $('#professional-card').click(function () {
         $('#pid-input').val(2);
     });
     $('#alipay-card').click(function () {
         $('#payment-type-input').val(1);
-        $('#payment-req-form').submit();
+        $('#order-req-form').submit();
     });
     $('#paypal-card').click(function () {
         $('#payment-type-input').val(2);
-        $('#payment-req-form').submit();
+        $('#order-req-form').submit();
     });
 });

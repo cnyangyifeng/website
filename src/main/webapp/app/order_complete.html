@@ -15,15 +15,18 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="views/header::header"></div>
+  <div th:replace="fragments/header::header"></div>
   <div class="container">
     <div class="row">
       <div class="section">
         <h4 th:text="#{order_complete}">Order Complete</h4>
       </div>
       <div class="divider"></div>
+    </div>
+    <div class="row">
       <div class="section">
         <h5 class="grey-text text-darken-3" th:text="#{thanks_for_your_order}">Thanks for your order!</h5>
+        <p class="grey-text" th:text="#{thanks_for_your_order}">Thanks for your order!</p>
       </div>
       <table class="responsive-table">
         <thead>
@@ -54,7 +57,7 @@
   </div>
   <div class="push"></div>
 </div>
-<div th:replace="views/footer::footer"></div>
+<div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
 <script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>

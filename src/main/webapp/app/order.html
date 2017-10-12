@@ -1,0 +1,87 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<link rel="shortcut icon" href="../assets/favicon.ico" th:href="@{/assets/favicon.ico}">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<title>MockTPO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" type="text/css" href="../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
+<link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
+</head>
+<body>
+<div class="app-wrapper">
+  <div th:replace="fragments/header::header"></div>
+  <form id="payment-req-form" action="https://www.alipay.com" th:action="@{/payment/alipay/request}" th:object="${orderReqVo}" method="post" target="_blank">
+    <div class="container">
+      <div class="row">
+        <div class="section">
+          <h4 th:text="#{order_confirmation}">Order Confirmation</h4>
+        </div>
+        <div class="divider"></div>
+      </div>
+      <div class="row">
+        <div class="section">
+          <h5 class="grey-text text-darken-3" th:text="#{order_details}">Order Details</h5>
+          <p class="grey-text" th:text="#{order_details}">Order Details</p>
+        </div>
+        <table class="responsive-table">
+          <thead>
+          <tr>
+            <th th:text="#{order_number}">Order Number</th>
+            <th th:text="#{product_name}">Product Name</th>
+            <th th:text="#{email}">Email</th>
+            <th th:text="#{payment_type}">Payment Type</th>
+            <th th:text="#{price}">Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td th:text="*{orderNumber}"></td>
+            <td th:switch="*{pid}">
+              <span th:case="1">MockTPO Basic</span>
+              <span th:case="2">MockTPO Professional</span>
+            </td>
+            <td th:text="*{email}"></td>
+            <td th:switch="*{paymentType}">
+              <span th:case="1" th:text="#{alipay}">Alipay</span>
+              <span th:case="2" th:text="#{paypal}">PayPal</span>
+            </td>
+            <td class="pink-text" style="margin:10px 0;font-size:32px;font-weight:bold;" th:text="*{price}"></td>
+          </tr>
+          </tbody>
+        </table>
+        <input type="hidden" th:field="*{orderNumber}">
+        <input type="hidden" th:field="*{pid}">
+        <input type="hidden" th:field="*{email}">
+        <input type="hidden" th:field="*{paymentType}">
+        <input type="hidden" th:field="*{price}">
+      </div>
+      <div class="row">
+        <a class="btn modal-trigger blue darken-4" id="checkout-button" href="#info-modal">Check Out</a>
+      </div>
+    </div>
+  </form>
+  <div id="info-modal" class="modal">
+    <div class="modal-content">
+      <h4 th:text="#{continue}">Continue</h4>
+      <p th:text="#{continue_in_the_new_window}">Please process your order in the new window.</p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close btn-flat" th:href="@{/order/{path}(path=${orderReqVo.orderNumber})}" th:text="#{payment_was_successful}">Payment was Successful</a>
+      <a href="mailto:service@mocktpo.com" class="modal-action modal-close btn-flat" th:text="#{there_was_a_problem}">There was a Problem</a>
+    </div>
+  </div>
+  <div class="push"></div>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+<script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
+<script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
+<script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
+<script src="../assets/js/order.js" th:src="@{/assets/js/order.js}"></script>
+</body>
+</html>
