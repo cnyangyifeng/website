@@ -60,7 +60,7 @@ public class OrderController {
         if (order != null) {
             emailService.sendActivationEmail();
             mv.addObject("orderVo", OrderHelper.prepareOrderVo(order));
-            mv.setViewName("order_info");
+            mv.setViewName("order");
         } else {
             mv.setViewName("error");
         }
