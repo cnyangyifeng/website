@@ -1,8 +1,8 @@
 package com.mocktpo.modules.portal.web;
 
-import com.mocktpo.modules.pay.service.AlipayService;
+import com.mocktpo.modules.portal.service.EmailService;
 import com.mocktpo.modules.portal.service.OrderService;
-import com.mocktpo.modules.portal.web.vo.OrderReqVo;
+import com.mocktpo.modules.portal.web.vo.OrderVo;
 import com.mocktpo.orm.domain.Order;
 import com.mocktpo.util.EmailUtils;
 import com.mocktpo.util.OrderHelper;
@@ -18,34 +18,34 @@ import org.springframework.web.servlet.ModelAndView;
 public class OrderController {
 
     @Autowired
-    private OrderService orderService;
+    private EmailService emailService;
 
     @Autowired
-    private AlipayService alipayService;
+    private OrderService orderService;
 
     @RequestMapping(value = "/order/create", method = RequestMethod.GET)
     public ModelAndView createOrderView(String err) {
         ModelAndView mv = new ModelAndView();
-        OrderReqVo vo = new OrderReqVo();
-        mv.addObject("orderReqVo", vo);
+        OrderVo vo = new OrderVo();
+        mv.addObject("orderVo", vo);
         mv.addObject("err", err);
         mv.setViewName("buy");
         return mv;
     }
 
     @RequestMapping(value = "/order/create", method = RequestMethod.POST)
-    public ModelAndView createOrderView(OrderReqVo orderReqVo) {
+    public ModelAndView createOrderView(OrderVo orderVo) {
         ModelAndView mv = new ModelAndView();
-        String email = orderReqVo.getEmail();
+        String email = orderVo.getEmail();
         try {
             if (StringUtils.isEmpty(email) || !EmailUtils.validate(email)) {
                 mv.setViewName("redirect:/buy?err=invalid_email");
             } else {
-                orderReqVo.setOrderNumber(OrderHelper.prepareOrderNumber());
-                orderReqVo.setPrice(OrderHelper.preparePrice(orderReqVo.getPid()));
-                orderReqVo.setStatus(OrderHelper.STATUS_CREATED);
-                mv.addObject("orderReqVo", orderReqVo);
-                mv.setViewName("order");
+                orderVo.setOrderNumber(OrderHelper.prepareOrderNumber());
+                orderVo.setPrice(OrderHelper.preparePrice(orderVo.getPid()));
+                orderVo.setStatus(OrderHelper.STATUS_CREATED);
+                mv.addObject("orderVo", orderVo);
+                mv.setViewName("create_order");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -58,15 +58,9 @@ public class OrderController {
         ModelAndView mv = new ModelAndView();
         Order order = orderService.findByOrderNumber(orderNumber);
         if (order != null) {
-            try {
-                if (alipayService.query(order)) {
-                    order.setStatus(OrderHelper.STATUS_COMPLETED);
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            mv.addObject("orderReqVo", OrderHelper.prepareOrderReqVo(order));
-            mv.setViewName("order_complete");
+            emailService.sendActivationEmail();
+            mv.addObject("orderVo", OrderHelper.prepareOrderVo(order));
+            mv.setViewName("order_info");
         } else {
             mv.setViewName("error");
         }

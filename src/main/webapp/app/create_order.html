@@ -16,7 +16,7 @@
 <body>
 <div class="app-wrapper">
   <div th:replace="fragments/header::header"></div>
-  <form id="payment-req-form" action="https://www.alipay.com" th:action="@{/payment/alipay/request}" th:object="${orderReqVo}" method="post" target="_blank">
+  <form id="payment-req-form" action="https://www.alipay.com" th:action="@{/payment/alipay/request}" th:object="${orderVo}" method="post" target="_blank">
     <div class="container">
       <div class="row">
         <div class="section">
@@ -74,7 +74,7 @@
     </div>
     <div class="modal-footer">
       <a class="btn waves-effect waves-light blue darken-4" id="ok-button" th:text="#{payment_was_successful}">Payment was Successful</a>
-      <a class="btn pink" href="#" th:href="'mailto:service@mocktpo.com?subject=MockTPO%20Order%20Issue%20-%20Order%20No.%20' + ${orderReqVo.orderNumber}" target="_blank" th:text="#{there_was_a_problem}">There was a Problem</a>
+      <a class="btn pink" href="#" th:href="'mailto:service@mocktpo.com?subject=MockTPO%20Order%20Issue%20-%20Order%20No.%20' + ${orderVo.orderNumber}" target="_blank" th:text="#{there_was_a_problem}">There was a Problem</a>
     </div>
   </div>
   <div class="push"></div>
@@ -85,18 +85,17 @@
 <script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
 <script src="../assets/js/order.js" th:src="@{/assets/js/order.js}"></script>
 <script th:inline="javascript">
-  var contextPath = /*[[${#request.getContextPath()}]]*/ 'http://mocktpo.com';
-  var orderNumber = /*[[${orderReqVo.orderNumber}]]*/ 'unknown';
+  var contextPath = /*[[${#request.getContextPath()}]]*/ '';
+  var orderNumber = /*[[${orderVo.orderNumber}]]*/ '';
   $('#ok-button').click(function () {
     $.ajax({
-      url: contextPath + '/order/' + orderNumber  + '/status',
+      url: contextPath + '/order/' + orderNumber + '/status/refresh',
       type: 'GET',
       timeout: 9000,
       success: function (data) {
         console.log(data);
-        var orderReqVo = $.parseJSON(data);
-        if (orderReqVo.status == 5) {
-          window.location = contextPath + '/order/' + orderReqVo.orderNumber;
+        if (data == 5) {
+          window.location = contextPath + '/order/' + orderNumber;
         }
       },
       error: function (xhr, textStatus) {

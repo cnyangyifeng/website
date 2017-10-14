@@ -37,10 +37,10 @@ public class AlipayService {
         return cli.pageExecute(req).getBody();
     }
 
-    public boolean query(Order order) throws AlipayApiException {
+    public boolean isOrderCompleted(String orderNumber) throws AlipayApiException {
         AlipayTradeQueryRequest req = new AlipayTradeQueryRequest();
         AlipayTradeQueryBizContent bc = new AlipayTradeQueryBizContent();
-        bc.setOutTradeNo(order.getOrderNumber());
+        bc.setOutTradeNo(orderNumber);
         req.setBizContent(JSON.toJSONString(bc));
         AlipayTradeQueryResponse resp = cli.execute(req);
         if (resp != null && !StringUtils.isEmpty(resp.getTradeStatus())) {

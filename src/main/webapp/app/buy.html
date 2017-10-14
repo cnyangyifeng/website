@@ -16,7 +16,7 @@
 <body>
 <div class="app-wrapper">
   <div th:replace="fragments/header::header"></div>
-  <form id="order-req-form" action="order.html" th:action="@{/order/create}" th:object="${orderReqVo}" method="post">
+  <form id="order-req-form" action="create_order.html" th:action="@{/order/create}" th:object="${orderVo}" method="post">
     <div class="container">
       <div class="row">
         <div class="section">

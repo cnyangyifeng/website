@@ -2,7 +2,7 @@ package com.mocktpo.modules.portal.web.vo;
 
 import java.io.Serializable;
 
-public class OrderReqVo implements Serializable {
+public class OrderVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

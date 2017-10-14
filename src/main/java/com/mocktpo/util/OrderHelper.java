@@ -1,6 +1,6 @@
 package com.mocktpo.util;
 
-import com.mocktpo.modules.portal.web.vo.OrderReqVo;
+import com.mocktpo.modules.portal.web.vo.OrderVo;
 import com.mocktpo.orm.domain.Order;
 
 import java.text.SimpleDateFormat;
@@ -11,6 +11,7 @@ public class OrderHelper {
 
     public static final int PRODUCT_ID_BASIC = 1;
     public static final int PRODUCT_ID_PROFESSIONAL = 2;
+    public static final int STATUS_UNKNOWN = 0;
     public static final int STATUS_CREATED = 1;
     public static final int STATUS_PENDING = 2;
     public static final int STATUS_FAILED = 3;
@@ -23,26 +24,30 @@ public class OrderHelper {
     private OrderHelper() {
     }
 
-    public static Order prepareOrder(OrderReqVo orderReqVo) {
+    public static Order prepareOrder(OrderVo orderVo) {
         Order order = new Order();
-        order.setOrderNumber(orderReqVo.getOrderNumber());
-        order.setPid(orderReqVo.getPid());
-        order.setEmail(orderReqVo.getEmail());
-        order.setPaymentType(orderReqVo.getPaymentType());
-        order.setPrice(orderReqVo.getPrice());
-        order.setStatus(orderReqVo.getStatus());
+        if (orderVo != null) {
+            order.setOrderNumber(orderVo.getOrderNumber());
+            order.setPid(orderVo.getPid());
+            order.setEmail(orderVo.getEmail());
+            order.setPaymentType(orderVo.getPaymentType());
+            order.setPrice(orderVo.getPrice());
+            order.setStatus(orderVo.getStatus());
+        }
         return order;
     }
 
-    public static OrderReqVo prepareOrderReqVo(Order order) {
-        OrderReqVo orderReqVo = new OrderReqVo();
-        orderReqVo.setOrderNumber(order.getOrderNumber());
-        orderReqVo.setPid(order.getPid());
-        orderReqVo.setEmail(order.getEmail());
-        orderReqVo.setPaymentType(order.getPaymentType());
-        orderReqVo.setPrice(order.getPrice());
-        orderReqVo.setStatus(order.getStatus());
-        return orderReqVo;
+    public static OrderVo prepareOrderVo(Order order) {
+        OrderVo orderVo = new OrderVo();
+        if (order != null) {
+            orderVo.setOrderNumber(order.getOrderNumber());
+            orderVo.setPid(order.getPid());
+            orderVo.setEmail(order.getEmail());
+            orderVo.setPaymentType(order.getPaymentType());
+            orderVo.setPrice(order.getPrice());
+            orderVo.setStatus(order.getStatus());
+        }
+        return orderVo;
     }
 
     public static String prepareOrderNumber() {
