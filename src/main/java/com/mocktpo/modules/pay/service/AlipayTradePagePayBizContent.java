@@ -2,7 +2,7 @@ package com.mocktpo.modules.pay.service;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class AlipayBizContent {
+public class AlipayTradePagePayBizContent {
 
     @JSONField(name = "out_trade_no")
     private String outTradeNo;

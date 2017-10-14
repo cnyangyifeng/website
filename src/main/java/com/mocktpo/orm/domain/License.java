@@ -2,9 +2,7 @@ package com.mocktpo.orm.domain;
 
 import com.mocktpo.util.constants.MT;
 
-import java.io.Serializable;
-
-public class License implements Serializable {
+public class License {
 
     private long id;
     private String product = MT.DEFAULT_PRODUCT;

@@ -1,20 +1,27 @@
 package com.mocktpo.modules.portal.web;
 
+import com.mocktpo.modules.pay.service.AlipayService;
+import com.mocktpo.modules.portal.service.OrderService;
 import com.mocktpo.modules.portal.web.vo.OrderReqVo;
+import com.mocktpo.orm.domain.Order;
 import com.mocktpo.util.EmailUtils;
+import com.mocktpo.util.OrderHelper;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 @Controller
 public class OrderController {
 
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private AlipayService alipayService;
 
     @RequestMapping(value = "/order/create", method = RequestMethod.GET)
     public ModelAndView createOrderView(String err) {
@@ -34,17 +41,9 @@ public class OrderController {
             if (StringUtils.isEmpty(email) || !EmailUtils.validate(email)) {
                 mv.setViewName("redirect:/buy?err=invalid_email");
             } else {
-                orderReqVo.setOrderNumber(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
-                switch (orderReqVo.getPid()) {
-                    case 1:
-                        orderReqVo.setPrice(99.00);
-                        break;
-                    case 2:
-                        orderReqVo.setPrice(299.00);
-                        break;
-                    default:
-                        orderReqVo.setPrice(99.00);
-                }
+                orderReqVo.setOrderNumber(OrderHelper.prepareOrderNumber());
+                orderReqVo.setPrice(OrderHelper.preparePrice(orderReqVo.getPid()));
+                orderReqVo.setStatus(OrderHelper.STATUS_CREATED);
                 mv.addObject("orderReqVo", orderReqVo);
                 mv.setViewName("order");
             }
@@ -55,9 +54,22 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/order/{orderNumber}", method = RequestMethod.GET)
-    public ModelAndView check(@PathVariable(value = "orderNumber") String orderNumber) {
+    public ModelAndView toOrderView(@PathVariable(value = "orderNumber") String orderNumber) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("order_complete");
+        Order order = orderService.findByOrderNumber(orderNumber);
+        if (order != null) {
+            try {
+                if (alipayService.query(order)) {
+                    order.setStatus(OrderHelper.STATUS_COMPLETED);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            mv.addObject("orderReqVo", OrderHelper.prepareOrderReqVo(order));
+            mv.setViewName("order_complete");
+        } else {
+            mv.setViewName("error");
+        }
         return mv;
     }
 }

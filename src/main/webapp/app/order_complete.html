@@ -26,33 +26,49 @@
     <div class="row">
       <div class="section">
         <h5 class="grey-text text-darken-3" th:text="#{thanks_for_your_order}">Thanks for your order!</h5>
-        <p class="grey-text" th:text="#{thanks_for_your_order}">Thanks for your order!</p>
-      </div>
-      <table class="responsive-table">
-        <thead>
-        <tr>
-          <th>Order Number</th>
-          <th>Email</th>
-          <th>Product</th>
-          <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>T201712041200123</td>
-          <td>foo@bar.com</td>
-          <td>MockTPO for Windows</td>
-          <td>$39.99</td>
-        </tr>
-        </tbody>
-      </table>
-      <div class="section">
-        <p class="grey-text" th:utext="#{thanks_for_your_order_desc}">Please check your inbox for a activation email. If you have any questions or concerns, please contact us via email at <a href="mailto:service@mocktpo.com">service@mocktpo.com</a>.</p>
+        <p class="grey-text" th:utext="#{thanks_for_your_order_desc}">Please check your inbox for a activation email. If
+          you have any questions or concerns, please contact us via email at <a href="mailto:service@mocktpo.com">service@mocktpo.com</a>.
+        </p>
         <p class="grey-text">
           <span th:text="#{didnt_get_email}">Didn't get the email?</span>
           <a href="#" th:text="#{resend}">Resend</a>
         </p>
       </div>
+      <table class="responsive-table" th:object="${orderReqVo}">
+        <thead>
+        <tr>
+          <th th:text="#{order_number}">Order Number</th>
+          <th th:text="#{product_name}">Product Name</th>
+          <th th:text="#{email}">Email</th>
+          <th th:text="#{payment_type}">Payment Type</th>
+          <th th:text="#{price}">Price</th>
+          <th th:text="#{status}">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td th:text="*{orderNumber}"></td>
+          <td th:switch="*{pid}">
+            <span th:case="1" th:text="#{mocktpo_basic}">MockTPO Basic</span>
+            <span th:case="2" th:text="#{mocktpo_professional}">MockTPO Professional</span>
+          </td>
+          <td th:text="*{email}"></td>
+          <td th:switch="*{paymentType}">
+            <span th:case="1" th:text="#{alipay}">Alipay</span>
+            <span th:case="2" th:text="#{paypal}">PayPal</span>
+          </td>
+          <td th:text="*{price}"></td>
+          <td th:switch="*{status}">
+            <span th:case="1" th:text="#{order_status_created}">Created</span>
+            <span class="pink-text" th:case="2" th:text="#{order_status_pending}">Pending</span>
+            <span th:case="3" th:text="#{order_status_failed}">Failed</span>
+            <span th:case="4" th:text="#{order_status_cancelled}">Cancelled</span>
+            <span class="green-text" th:case="5" th:text="#{order_status_completed}">Completed</span>
+            <span th:case="6" th:text="#{order_status_expired}">Expired</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="push"></div>

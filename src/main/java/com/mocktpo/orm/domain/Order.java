@@ -1,17 +1,22 @@
-package com.mocktpo.modules.portal.web.vo;
+package com.mocktpo.orm.domain;
 
-import java.io.Serializable;
+public class Order {
 
-public class OrderReqVo implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    private long id;
     private String orderNumber;
     private int pid;
     private String email;
     private int paymentType;
     private double price;
     private int status;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getOrderNumber() {
         return orderNumber;

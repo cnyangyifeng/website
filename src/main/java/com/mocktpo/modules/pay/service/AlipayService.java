@@ -5,7 +5,11 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
-import com.mocktpo.modules.portal.web.vo.OrderReqVo;
+import com.alipay.api.request.AlipayTradeQueryRequest;
+import com.alipay.api.response.AlipayTradeQueryResponse;
+import com.mocktpo.orm.domain.Order;
+import com.mocktpo.util.OrderHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ResourceBundle;
@@ -13,40 +17,37 @@ import java.util.ResourceBundle;
 @Service
 public class AlipayService {
 
-    protected static final ResourceBundle msgs = ResourceBundle.getBundle("alipay");
+    private static final ResourceBundle msgs = ResourceBundle.getBundle("alipay_sandbox");
 
     private AlipayClient cli = new DefaultAlipayClient(
             msgs.getString("gateway"), msgs.getString("app_id"),
-            msgs.getString("private_key"), "json", "utf-8", msgs.getString("public_key"), "RSA2");
+            msgs.getString("mocktpo_private_key"), "json", "utf-8", msgs.getString("alipay_public_key"), "RSA2");
 
-    public String pay(OrderReqVo orderReqVo) throws AlipayApiException {
+    public String pay(Order order) throws AlipayApiException {
         AlipayTradePagePayRequest req = new AlipayTradePagePayRequest();
         req.setReturnUrl(msgs.getString("return_url"));
         req.setNotifyUrl(msgs.getString("notify_url"));
-        AlipayBizContent bc = new AlipayBizContent();
-        bc.setOutTradeNo(orderReqVo.getOrderNumber());
+        AlipayTradePagePayBizContent bc = new AlipayTradePagePayBizContent();
+        bc.setOutTradeNo(order.getOrderNumber());
         bc.setProductCode(msgs.getString("product_code"));
-        bc.setTotalAmount(Double.toString(orderReqVo.getPrice()));
-        bc.setSubject(getSubject(orderReqVo));
-        bc.setBody(getBody());
+        bc.setTotalAmount(Double.toString(OrderHelper.preparePrice(order.getPid())));
+        bc.setSubject(OrderHelper.prepareProductName(order.getPid()));
+        bc.setBody("");
         req.setBizContent(JSON.toJSONString(bc));
         return cli.pageExecute(req).getBody();
     }
 
-    private String getSubject(OrderReqVo orderReqVo) {
-        String subject = "";
-        switch (orderReqVo.getPid()) {
-            case 1:
-                subject = "MockTPO Basic";
-                break;
-            case 2:
-                subject = "MockTPO Professional";
-                break;
+    public boolean query(Order order) throws AlipayApiException {
+        AlipayTradeQueryRequest req = new AlipayTradeQueryRequest();
+        AlipayTradeQueryBizContent bc = new AlipayTradeQueryBizContent();
+        bc.setOutTradeNo(order.getOrderNumber());
+        req.setBizContent(JSON.toJSONString(bc));
+        AlipayTradeQueryResponse resp = cli.execute(req);
+        if (resp != null && !StringUtils.isEmpty(resp.getTradeStatus())) {
+            if (resp.getTradeStatus().equals("TRADE_SUCCESS")) {
+                return true;
+            }
         }
-        return subject;
-    }
-
-    private String getBody() {
-        return "MockTPO is a TOEFL Practice Offline Applicaiton.";
+        return false;
     }
 }
