@@ -16,7 +16,9 @@ public interface OrderMapper {
             "MT_EMAIL AS email,",
             "MT_PAYMENT_TYPE AS paymentType,",
             "MT_PRICE AS price,",
-            "MT_STATUS AS status",
+            "MT_STATUS AS status,",
+            "MT_ACTIVATION_CODE AS activationCode,",
+            "MT_HARDWARE AS hardware",
             "FROM MT_ORDER",
             "WHERE",
             "MT_ORDER_NUMBER = #{orderNumber}"
@@ -31,7 +33,9 @@ public interface OrderMapper {
             "MT_EMAIL,",
             "MT_PAYMENT_TYPE,",
             "MT_PRICE,",
-            "MT_STATUS",
+            "MT_STATUS,",
+            "MT_ACTIVATION_CODE,",
+            "MT_HARDWARE",
             ") VALUES (",
             "#{id},",
             "#{orderNumber},",
@@ -39,7 +43,9 @@ public interface OrderMapper {
             "#{email},",
             "#{paymentType},",
             "#{price},",
-            "#{status}",
+            "#{status},",
+            "#{activationCode},",
+            "#{hardware}",
             ")"
     })
     void create(Order order);
@@ -53,7 +59,9 @@ public interface OrderMapper {
             "MT_EMAIL = #{email},",
             "MT_PAYMENT_TYPE = #{paymentType},",
             "MT_PRICE = #{price},",
-            "MT_STATUS = #{status}",
+            "MT_STATUS = #{status},",
+            "MT_ACTIVATION_CODE = #{activationCode},",
+            "MT_HARDWARE = #{hardware}",
             "WHERE",
             "MT_ORDER_NUMBER = #{orderNumber}"
 

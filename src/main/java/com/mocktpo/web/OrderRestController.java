@@ -1,9 +1,10 @@
 package com.mocktpo.web;
 
-import com.mocktpo.modules.pay.AlipayService;
 import com.mocktpo.modules.order.OrderService;
+import com.mocktpo.modules.pay.AlipayService;
 import com.mocktpo.orm.domain.Order;
 import com.mocktpo.util.OrderHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,7 @@ public class OrderRestController {
         if (order != null) {
             try {
                 if (alipayService.isOrderCompleted(orderNumber)) {
-                    order.setStatus(OrderHelper.STATUS_COMPLETED);
-                    orderService.update(order);
+                    orderService.complete(order);
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();

@@ -2,7 +2,6 @@ package com.mocktpo.web;
 
 import com.mocktpo.modules.order.OrderService;
 import com.mocktpo.orm.domain.Order;
-import com.mocktpo.util.OrderHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,8 +17,7 @@ public class PaymentRestController {
     public String alipayNotify() {
         Order order = orderService.findByOrderNumber("20171014222945891");
         if (order != null) {
-            order.setStatus(OrderHelper.STATUS_COMPLETED);
-            orderService.update(order);
+            orderService.complete(order);
             return "success";
         } else {
             return "failure";

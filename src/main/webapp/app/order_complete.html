@@ -16,7 +16,7 @@
 <body>
 <div class="app-wrapper">
   <div th:replace="fragments/header_empty::header"></div>
-  <div class="container">
+  <div class="container" th:object="${orderVo}">
     <div class="row">
       <div class="section">
         <h4 th:text="#{order_complete}">Order Complete</h4>
@@ -31,16 +31,16 @@
           <span th:text="#{didnt_get_email}">Didn't get the email?</span>
           <a href="#" th:text="#{resend}">Resend</a>
         </p>
-        <p class="valign-wrapper">
+        <p>
           <span th:text="#{activation_code}">Activation Code</span>
-          <span class="pink-text" style="margin:0 20px;font-size:32px;font-weight:bold;">A4JF2942KDAF</span>
+          <span class="pink-text" style="margin:0 20px;font-size:32px;font-weight:bold;" th:text="*{activationCode}"></span>
         </p>
         <a class="btn blue darken-4" id="signup-button" th:text="#{create_your_account}">Create your MockTPO Account</a>
-        <a class="btn pink" id="login-button" th:text="#{already_have_account_login}">Already have an account? Log in</a>
+        <a class="btn blue darken-4" id="login-button" th:text="#{already_have_account_login}">Already have an account? Log in</a>
       </div>
     </div>
     <div class="row">
-      <table class="responsive-table" th:object="${orderVo}">
+      <table class="responsive-table">
         <thead>
         <tr>
           <th th:text="#{order_number}">Order Number</th>

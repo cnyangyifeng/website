@@ -2,10 +2,10 @@ package com.mocktpo.web;
 
 import com.mocktpo.modules.email.EmailService;
 import com.mocktpo.modules.order.OrderService;
-import com.mocktpo.web.vo.OrderVo;
 import com.mocktpo.orm.domain.Order;
-import com.mocktpo.util.EmailHelper;
+import com.mocktpo.util.EmailUtils;
 import com.mocktpo.util.OrderHelper;
+import com.mocktpo.web.vo.OrderVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class OrderController {
         ModelAndView mv = new ModelAndView();
         String email = orderVo.getEmail();
         try {
-            if (StringUtils.isEmpty(email) || !EmailHelper.validate(email)) {
+            if (StringUtils.isEmpty(email) || !EmailUtils.validate(email)) {
                 mv.setViewName("redirect:/buy?err=invalid_email");
             } else {
                 orderVo.setOrderNumber(OrderHelper.prepareOrderNumber());

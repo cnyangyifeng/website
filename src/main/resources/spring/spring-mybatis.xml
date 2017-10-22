@@ -13,7 +13,7 @@
 
     <!-- Enables component scanning and autowire, but beware that this does not enable mapper scanning -->
 
-    <context:component-scan base-package="com.mocktpo.web" use-default-filters="false">
+    <context:component-scan base-package="com.mocktpo.modules" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
 

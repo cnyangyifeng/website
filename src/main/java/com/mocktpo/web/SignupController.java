@@ -3,7 +3,7 @@ package com.mocktpo.web;
 import com.mocktpo.modules.user.UserService;
 import com.mocktpo.web.vo.SignupVo;
 import com.mocktpo.orm.domain.User;
-import com.mocktpo.util.EmailHelper;
+import com.mocktpo.util.EmailUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class SignupController {
             mv.addObject("err", "email_or_new_password_cant_be_empty");
             mv.setViewName("redirect:/signup");
         } else {
-            if (!EmailHelper.validate(email)) {
+            if (!EmailUtils.validate(email)) {
                 mv.addObject("email", email);
                 mv.addObject("err", "invalid_email");
                 mv.setViewName("redirect:/signup");

@@ -1,23 +1,27 @@
 package com.mocktpo.util;
 
-import com.mocktpo.web.vo.OrderVo;
 import com.mocktpo.orm.domain.Order;
+import com.mocktpo.web.vo.OrderVo;
+import org.apache.commons.lang3.StringUtils;
 
+import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class OrderHelper {
 
     public static final int PRODUCT_ID_BASIC = 1;
     public static final int PRODUCT_ID_PROFESSIONAL = 2;
+
     public static final int STATUS_UNKNOWN = 0;
     public static final int STATUS_CREATED = 1;
     public static final int STATUS_PENDING = 2;
-    public static final int STATUS_FAILED = 3;
-    public static final int STATUS_CANCELLED = 4;
+    // public static final int STATUS_FAILED = 3;
+    // public static final int STATUS_CANCELLED = 4;
     public static final int STATUS_COMPLETED = 5;
-    public static final int STATUS_EXPIRED = 6;
+    // public static final int STATUS_EXPIRED = 6;
 
     private static final ResourceBundle msgs = ResourceBundle.getBundle("messages");
 
@@ -33,6 +37,8 @@ public class OrderHelper {
             order.setPaymentType(orderVo.getPaymentType());
             order.setPrice(orderVo.getPrice());
             order.setStatus(orderVo.getStatus());
+            order.setActivationCode(orderVo.getActivationCode());
+            order.setHardware(orderVo.getHardware());
         }
         return order;
     }
@@ -46,6 +52,8 @@ public class OrderHelper {
             orderVo.setPaymentType(order.getPaymentType());
             orderVo.setPrice(order.getPrice());
             orderVo.setStatus(order.getStatus());
+            orderVo.setActivationCode(order.getActivationCode());
+            orderVo.setHardware(order.getHardware());
         }
         return orderVo;
     }
@@ -82,5 +90,11 @@ public class OrderHelper {
                 price = 99.00;
         }
         return price;
+    }
+
+    public static String prepareActivationCode() {
+        UUID uuid = UUID.randomUUID();
+        long l = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
+        return StringUtils.upperCase(Long.toString(l, Character.MAX_RADIX));
     }
 }

@@ -12,6 +12,8 @@ public class OrderVo implements Serializable {
     private int paymentType;
     private double price;
     private int status;
+    private String activationCode;
+    private String hardware;
 
     public String getOrderNumber() {
         return orderNumber;
@@ -59,5 +61,21 @@ public class OrderVo implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    public String getHardware() {
+        return hardware;
+    }
+
+    public void setHardware(String hardware) {
+        this.hardware = hardware;
     }
 }

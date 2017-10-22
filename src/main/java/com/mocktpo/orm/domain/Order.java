@@ -9,6 +9,8 @@ public class Order {
     private int paymentType;
     private double price;
     private int status;
+    private String activationCode;
+    private String hardware;
 
     public long getId() {
         return id;
@@ -64,5 +66,21 @@ public class Order {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    public String getHardware() {
+        return hardware;
+    }
+
+    public void setHardware(String hardware) {
+        this.hardware = hardware;
     }
 }

@@ -1,10 +1,10 @@
 package com.mocktpo.web;
 
-import com.mocktpo.modules.pay.AlipayService;
 import com.mocktpo.modules.order.OrderService;
-import com.mocktpo.web.vo.OrderVo;
+import com.mocktpo.modules.pay.AlipayService;
 import com.mocktpo.orm.domain.Order;
 import com.mocktpo.util.OrderHelper;
+import com.mocktpo.web.vo.OrderVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +67,7 @@ public class PaymentController {
         String orderNumber = map.get("out_trade_no").toString();
         Order order = orderService.findByOrderNumber(orderNumber);
         if (order != null) {
-            order.setStatus(OrderHelper.STATUS_COMPLETED);
-            orderService.update(order);
+            orderService.complete(order);
             mv.setViewName("redirect:/order/" + orderNumber);
         } else {
             mv.setViewName("/error");
