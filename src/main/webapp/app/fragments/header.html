@@ -28,7 +28,7 @@
         <li><a class="white-text" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
         <li><a class="white-text" href="../buy.html" th:href="@{/buy}" th:text="#{buy}">Buy</a></li>
         <li th:if="${#strings.isEmpty(session.email)}"><a class="white-text" href="../login.html" th:href="@{/login}" th:text="#{login}">Log In</a></li>
-        <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../account.html" th:href="@{/account}" th:text="#{account}">Account</a></li>
+        <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../account.html" th:href="@{/account}" th:text="${session.email}">Email</a></li>
         <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../login.html" th:href="@{/logout.do}" th:text="#{logout}">Log Out</a></li>
         <li><a class="dropdown-button white-text" href="#" data-activates="lang-dropdown"><span th:text="#{language}">English</span><i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>

@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="fragments/header::header"></div>
+  <div th:replace="fragments/header_empty::header"></div>
   <div class="container">
     <div class="row">
       <div class="section">
@@ -29,15 +29,16 @@
           <form action="#" th:action="@{/signup.do}" th:object="${signupVo}" th:method="post">
             <div class="row">
               <div class="input-field col s12">
-                <input disabled type="text" id="email" th:field="*{email}">
+                <input type="text" id="email" th:field="*{email}">
                 <label for="email" th:text="#{email}">Email</label>
               </div>
               <div class="input-field col s12">
-                <input type="password" id="password" th:field="*{password}">
-                <label for="password" th:text="#{password}">Password</label>
+                <input type="password" id="newPassword" th:field="*{newPassword}">
+                <label for="newPassword" th:text="#{new_password}">Create a New Password</label>
               </div>
             </div>
             <button class="btn blue darken-4" type="submit" th:text="#{signup}">Sign Up</button>
+            <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
           </form>
         </div>
       </div>

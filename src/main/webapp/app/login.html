@@ -38,6 +38,7 @@
               </div>
             </div>
             <button class="btn blue darken-4" type="submit" th:text="#{login}">Log In</button>
+            <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
           </form>
         </div>
       </div>

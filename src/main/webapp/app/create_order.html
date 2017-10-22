@@ -63,39 +63,45 @@
         <input type="hidden" th:field="*{status}">
       </div>
       <div class="row">
-        <a class="btn modal-trigger blue darken-4" id="pay-now-button" href="#info-modal" th:text="#{pay_now}">Pay Now</a>
+        <a class="btn btn-pay-now modal-trigger blue darken-4" href="#info-modal" th:text="#{pay_now}">Pay Now</a>
+      </div>
+    </div>
+    <div id="info-modal" class="modal">
+      <div class="modal-content">
+        <h4 th:text="#{continue}">Continue</h4>
+        <p th:text="#{continue_in_the_new_window}">Please process your order in the new window.</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn waves-effect waves-light blue darken-4" id="ok-button" th:text="#{payment_was_successful}">Payment was Successful</a>
+        <a class="btn pink" th:href="'mailto:service@mocktpo.com?subject=MockTPO%20Order%20Issue%20-%20Order%20No.%20' + ${orderVo.orderNumber}" th:text="#{there_was_a_problem}">There was a Problem</a>
       </div>
     </div>
   </form>
-  <div id="info-modal" class="modal">
-    <div class="modal-content">
-      <h4 th:text="#{continue}">Continue</h4>
-      <p th:text="#{continue_in_the_new_window}">Please process your order in the new window.</p>
-    </div>
-    <div class="modal-footer">
-      <a class="btn waves-effect waves-light blue darken-4" id="ok-button" th:text="#{payment_was_successful}">Payment was Successful</a>
-      <a class="btn pink" href="#" th:href="'mailto:service@mocktpo.com?subject=MockTPO%20Order%20Issue%20-%20Order%20No.%20' + ${orderVo.orderNumber}" target="_blank" th:text="#{there_was_a_problem}">There was a Problem</a>
-    </div>
-  </div>
   <div class="push"></div>
 </div>
 <div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
 <script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
 <script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
-<script src="../assets/js/order.js" th:src="@{/assets/js/order.js}"></script>
 <script th:inline="javascript">
   var contextPath = /*[[${#request.getContextPath()}]]*/ '';
   var orderNumber = /*[[${orderVo.orderNumber}]]*/ '';
+  $('.btn-pay-now').click(function () {
+    $('#payment-req-form').submit();
+  });
+  $('.modal').modal({
+    dismissible: false,
+    opacity: .5
+  });
   $('#ok-button').click(function () {
     $.ajax({
-      url: contextPath + '/order/' + orderNumber + '/status/refresh',
+      url: contextPath + '/api/v1/order/' + orderNumber + '/status/sync',
       type: 'GET',
       timeout: 9000,
       success: function (data) {
         console.log(data);
         if (data == 5) {
-          window.location = contextPath + '/order/' + orderNumber;
+          window.location = contextPath + '/order/' + orderNumber + '/complete';
         }
       },
       error: function (xhr, textStatus) {

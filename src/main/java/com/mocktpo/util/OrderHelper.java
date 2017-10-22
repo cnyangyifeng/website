@@ -1,6 +1,6 @@
 package com.mocktpo.util;
 
-import com.mocktpo.modules.portal.web.vo.OrderVo;
+import com.mocktpo.web.vo.OrderVo;
 import com.mocktpo.orm.domain.Order;
 
 import java.text.SimpleDateFormat;
