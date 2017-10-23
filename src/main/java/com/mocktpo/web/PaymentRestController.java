@@ -13,7 +13,7 @@ public class PaymentRestController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "api/v1/payment/alipay/notify", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/v1/payments/alipay/notify", method = RequestMethod.POST)
     public String alipayNotify() {
         Order order = orderService.findByOrderNumber("20171014222945891");
         if (order != null) {
@@ -24,7 +24,7 @@ public class PaymentRestController {
         }
     }
 
-    @RequestMapping(value = "api/v1/payment/paypal/notify", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/v1/payments/paypal/notify", method = RequestMethod.POST)
     public void paypalNotify() {
     }
 }

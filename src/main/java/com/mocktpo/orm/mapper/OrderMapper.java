@@ -25,6 +25,23 @@ public interface OrderMapper {
     })
     Order findByOrderNumber(@Param("orderNumber") String orderNumber);
 
+    @Select({
+            "SELECT",
+            "MT_ID AS id,",
+            "MT_ORDER_NUMBER AS orderNumber,",
+            "MT_PID AS pid,",
+            "MT_EMAIL AS email,",
+            "MT_PAYMENT_TYPE AS paymentType,",
+            "MT_PRICE AS price,",
+            "MT_STATUS AS status,",
+            "MT_ACTIVATION_CODE AS activationCode,",
+            "MT_HARDWARE AS hardware",
+            "FROM MT_ORDER",
+            "WHERE",
+            "MT_ACTIVATION_CODE = #{activationCode}"
+    })
+    Order findByActivationCode(@Param("activationCode") String activationCode);
+
     @Insert({
             "INSERT INTO MT_ORDER (",
             "MT_ID,",

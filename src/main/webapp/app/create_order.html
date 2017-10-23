@@ -16,7 +16,7 @@
 <body>
 <div class="app-wrapper">
   <div th:replace="fragments/header::header"></div>
-  <form id="payment-req-form" action="https://www.alipay.com" th:action="@{/payment/alipay/request}" th:object="${orderVo}" method="post" target="_blank">
+  <form id="payment-req-form" action="https://www.alipay.com" th:action="@{/payments/alipay/request}" th:object="${orderVo}" method="post" target="_blank">
     <div class="container">
       <div class="row">
         <div class="section">
@@ -95,13 +95,13 @@
   });
   $('#ok-button').click(function () {
     $.ajax({
-      url: contextPath + '/api/v1/order/' + orderNumber + '/status/sync',
+      url: contextPath + '/api/v1/orders/' + orderNumber + '/status/sync',
       type: 'GET',
       timeout: 9000,
       success: function (data) {
         console.log(data);
         if (data == 5) {
-          window.location = contextPath + '/order/' + orderNumber + '/complete';
+          window.location = contextPath + '/orders/' + orderNumber + '/complete';
         }
       },
       error: function (xhr, textStatus) {

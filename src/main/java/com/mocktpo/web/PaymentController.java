@@ -29,7 +29,7 @@ public class PaymentController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/payment/alipay/request", method = RequestMethod.POST)
+    @RequestMapping(value = "/payments/alipay/request", method = RequestMethod.POST)
     public void alipayRequest(OrderVo orderVo, HttpServletResponse resp) {
         Order order = orderService.findByOrderNumber(orderVo.getOrderNumber());
         if (order == null) {
@@ -48,7 +48,7 @@ public class PaymentController {
         }
     }
 
-    @RequestMapping(value = "/payment/alipay/response", method = RequestMethod.GET)
+    @RequestMapping(value = "/payments/alipay/response", method = RequestMethod.GET)
     public ModelAndView alipayResponse(@RequestParam Map map) {
         logger.debug("Callback request parameters from Alipay:");
         logger.debug("app_id: {}", map.get("app_id"));
@@ -68,21 +68,21 @@ public class PaymentController {
         Order order = orderService.findByOrderNumber(orderNumber);
         if (order != null) {
             orderService.complete(order);
-            mv.setViewName("redirect:/order/" + orderNumber);
+            mv.setViewName("redirect:/orders/" + orderNumber);
         } else {
             mv.setViewName("/error");
         }
         return mv;
     }
 
-    @RequestMapping(value = "/payment/paypal/request", method = RequestMethod.POST)
+    @RequestMapping(value = "/payments/paypal/request", method = RequestMethod.POST)
     public void paypalRequest() {
     }
 
-    @RequestMapping(value = "/payment/paypal/response", method = RequestMethod.GET)
+    @RequestMapping(value = "/payments/paypal/response", method = RequestMethod.GET)
     public ModelAndView paypalResponse(@RequestParam Map map) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:/order/" + map.get("out_trade_no").toString());
+        mv.setViewName("redirect:/orders/" + map.get("out_trade_no").toString());
         return mv;
     }
 }

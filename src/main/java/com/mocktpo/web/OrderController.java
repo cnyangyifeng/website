@@ -23,7 +23,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/order/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders/create", method = RequestMethod.POST)
     public ModelAndView createOrder(OrderVo orderVo) {
         ModelAndView mv = new ModelAndView();
         String email = orderVo.getEmail();
@@ -43,7 +43,7 @@ public class OrderController {
         return mv;
     }
 
-    @RequestMapping(value = "/order/{orderNumber}/complete", method = RequestMethod.GET)
+    @RequestMapping(value = "/orders/{orderNumber}/complete", method = RequestMethod.GET)
     public ModelAndView toOrderCompleteView(@PathVariable(value = "orderNumber") String orderNumber) {
         ModelAndView mv = new ModelAndView();
         Order order = orderService.findByOrderNumber(orderNumber);

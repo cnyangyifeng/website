@@ -17,14 +17,14 @@ public class OrderRestController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "api/v1/order/{orderNumber}/status", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/v1/orders/{orderNumber}/status", method = RequestMethod.GET)
     @ResponseBody
     public int getOrderStatus(@PathVariable(value = "orderNumber") String orderNumber) {
         Order order = orderService.findByOrderNumber(orderNumber);
         return order != null ? order.getStatus() : OrderHelper.STATUS_UNKNOWN;
     }
 
-    @RequestMapping(value = "api/v1/order/{orderNumber}/status/sync", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/v1/orders/{orderNumber}/status/sync", method = RequestMethod.GET)
     @ResponseBody
     public int syncOrderStatus(@PathVariable(value = "orderNumber") String orderNumber) {
         Order order = orderService.findByOrderNumber(orderNumber);

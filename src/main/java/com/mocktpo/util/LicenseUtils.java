@@ -31,7 +31,7 @@ public class LicenseUtils {
         String path = LicenseUtils.class.getResource(msgs.getString("keyrings_dir")).getPath();
         try {
             File f = new File(path + encodedFileName);
-            logger.debug("License encoded file created: {}.", f.createNewFile());
+            logger.debug("A new encoded license file has been created: {}.", f.createNewFile());
             OutputStream os = new FileOutputStream(f);
             os.write((new License().setLicense(new File(path + plainFileName)).loadKey(path + msgs.getString("gpg_secring_file"), msgs.getString("gpg_key")).encodeLicense(msgs.getString("gpg_password"))).getBytes("utf-8"));
             os.close();
@@ -43,24 +43,23 @@ public class LicenseUtils {
     public static void decode(String encodedFileName, String plainFileName) {
         String path = LicenseUtils.class.getResource(msgs.getString("keyrings_dir")).getPath();
         try {
-            final License license;
-            if ((license = new License()).loadKeyRing(path + msgs.getString("gpg_pubring_file"), null).setLicenseEncodedFromFile(path + encodedFileName).isVerified()) {
+            final License lic;
+            if ((lic = new License()).loadKeyRing(path + msgs.getString("gpg_pubring_file"), null).setLicenseEncodedFromFile(path + encodedFileName).isVerified()) {
                 OutputStream os = System.out;
                 if (null != plainFileName) {
                     File f = new File(path + plainFileName);
-                    boolean created = f.createNewFile();
-                    logger.debug("A new plain license file created:" + created);
+                    logger.debug("A new plain license file has been created:" + f.createNewFile());
                     os = new FileOutputStream(f);
                 }
                 Writer w = new OutputStreamWriter(os, "utf-8");
                 w.write("-----BEGIN PGP MESSAGE-----\n");
                 w.flush();
-                license.dumpLicense(os);
+                lic.dumpLicense(os);
                 os.flush();
                 w.write("-----END PGP MESSAGE-----\n\n");
-                w.write("Encoding license key id=" + license.getDecodeKeyId() + "L\n\n");
+                w.write("Encoding license key id=" + lic.getDecodeKeyId() + "L\n\n");
                 w.write("-----BEGIN KEYRING DIGEST-----\n");
-                w.write(license.dumpPublicKeyRingDigest());
+                w.write(lic.dumpPublicKeyRingDigest());
                 w.write("-----END KEYRING DIGEST-----\n");
                 w.close();
                 os.close();

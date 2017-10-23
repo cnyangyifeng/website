@@ -17,6 +17,10 @@ public class OrderService {
         return mapper.findByOrderNumber(orderNumber);
     }
 
+    public Order findByActivationCode(String activationCode) {
+        return mapper.findByActivationCode(activationCode);
+    }
+
     public void create(Order order) {
         mapper.create(order);
     }
