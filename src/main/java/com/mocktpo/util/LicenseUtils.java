@@ -46,7 +46,7 @@ public class LicenseUtils {
             final License lic;
             if ((lic = new License()).loadKeyRing(path + msgs.getString("gpg_pubring_file"), null).setLicenseEncodedFromFile(path + encodedFileName).isVerified()) {
                 OutputStream os = System.out;
-                if (null != plainFileName) {
+                if (plainFileName != null) {
                     File f = new File(path + plainFileName);
                     logger.debug("A new plain license file has been created:" + f.createNewFile());
                     os = new FileOutputStream(f);

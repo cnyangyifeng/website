@@ -32,14 +32,13 @@ public class LicenseRestController {
             return ResponseEntity.notFound().build(); // activation code doesn't exist
         } else {
             String activatedHardware = order.getHardware();
+            String licenseCode = LicenseHelper.prepareEncodedText(LicenseUtils.encode(LicenseHelper.preparePlainText(order)));
             if (StringUtils.isEmpty(activatedHardware)) {
                 order.setHardware(activationVo.getHardware());
                 orderService.update(order);
-                String licenseCode = LicenseUtils.encode(LicenseHelper.preparePlainText(order));
                 return ResponseEntity.ok().body(licenseCode); // register a new hardware
             } else {
                 if (activatedHardware.equals(activationVo.getHardware())) {
-                    String licenseCode = LicenseUtils.encode(LicenseHelper.preparePlainText(order));
                     return ResponseEntity.accepted().body(licenseCode); // same hardware has been registered
                 } else {
                     return ResponseEntity.status(HttpStatus.CONFLICT).build(); // different hardwares have been registered

@@ -1,6 +1,7 @@
 package com.mocktpo.util;
 
 import com.mocktpo.orm.domain.Order;
+import org.apache.commons.lang3.StringUtils;
 
 public class LicenseHelper {
 
@@ -26,5 +27,11 @@ public class LicenseHelper {
         sb.append("\nhardware=");
         sb.append(order.getHardware());
         return sb.toString();
+    }
+
+    public static String prepareEncodedText(String encodedText) {
+        encodedText = StringUtils.remove(encodedText, "-----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.52\n\n");
+        encodedText = StringUtils.remove(encodedText, "\n-----END PGP MESSAGE-----\n");
+        return encodedText;
     }
 }
