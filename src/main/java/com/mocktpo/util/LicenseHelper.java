@@ -9,24 +9,7 @@ public class LicenseHelper {
     }
 
     public static String preparePlainText(Order order) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("order_number=");
-        sb.append(order.getOrderNumber());
-        sb.append("\npid=");
-        sb.append(order.getPid());
-        sb.append("\nemail=");
-        sb.append(order.getEmail());
-        sb.append("\npayment_type=");
-        sb.append(order.getPaymentType());
-        sb.append("\nprice=");
-        sb.append(order.getPrice());
-        sb.append("\nstatus=");
-        sb.append(order.getStatus());
-        sb.append("\nactivation_code=");
-        sb.append(order.getActivationCode());
-        sb.append("\nhardware=");
-        sb.append(order.getHardware());
-        return sb.toString();
+        return "order_number=" + order.getOrderNumber() + "\npid=" + order.getPid() + "\nemail=" + order.getEmail() + "\npayment_type=" + order.getPaymentType() + "\nprice=" + order.getPrice() + "\nstatus=" + order.getStatus() + "\nactivation_code=" + order.getActivationCode() + "\nhardware=" + order.getHardware();
     }
 
     public static String prepareEncodedText(String encodedText) {
