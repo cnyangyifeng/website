@@ -5,6 +5,9 @@ import com.mocktpo.orm.domain.TestPaper;
 import com.mocktpo.util.TestPaperHelper;
 import com.mocktpo.web.vo.FileUploadVo;
 import com.mocktpo.web.vo.TestPaperVo;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,14 +75,22 @@ public class TestPaperController {
 
     @RequestMapping(value = "/testpapers/{tid}/upload.do", method = RequestMethod.POST)
     public ModelAndView fileUpload(@PathVariable(value = "tid") String tid, FileUploadVo fileUploadVo, BindingResult result) {
-        logger.info("tid: {}, fileUploadVo: {}, bindingResult: {}", tid, fileUploadVo.getFile(), result);
         ModelAndView mv = new ModelAndView();
         TestPaper testPaper = testPaperService.findByTid(tid);
         if (testPaper != null) {
             if (!result.hasErrors()) {
-                String tmp = ctx.getRealPath("") + File.separator + "tmp" + File.separator;
+                String tmpDir = ctx.getRealPath("") + File.separator + "tmp" + File.separator;
                 try {
-                    FileCopyUtils.copy(fileUploadVo.getFile().getBytes(), new File(tmp + fileUploadVo.getFile().getOriginalFilename()));
+                    String filename = fileUploadVo.getFile().getOriginalFilename();
+                    File tmpFile = new File(tmpDir + filename);
+                    FileCopyUtils.copy(fileUploadVo.getFile().getBytes(), tmpFile);
+                    logger.info("File {} (tid: {}) has been uploaded to {}.", filename, tid, tmpDir);
+                    if (FilenameUtils.getExtension(StringUtils.lowerCase(filename)).equals("zip")) {
+                        String testsDir = ctx.getRealPath("") + File.separator + "tests" + File.separator;
+                        FileUtils.copyFile(tmpFile, new File(testsDir + tid + ".zip"));
+                        testPaper.setStatus(TestPaperHelper.STATUS_COMPLETED);
+                        testPaperService.update(testPaper);
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -15,7 +15,8 @@ public interface TestPaperMapper {
             "MT_CREATOR AS creator,",
             "MT_CREATED_TIME AS createdTime,",
             "MT_UPDATED_TIME AS updatedTime,",
-            "MT_VERSION AS version",
+            "MT_VERSION AS version,",
+            "MT_STATUS AS status",
             "FROM MT_TEST_PAPER"
     })
     List<TestPaper> findAll();
@@ -28,7 +29,8 @@ public interface TestPaperMapper {
             "MT_CREATOR AS creator,",
             "MT_CREATED_TIME AS createdTime,",
             "MT_UPDATED_TIME AS updatedTime,",
-            "MT_VERSION AS version",
+            "MT_VERSION AS version,",
+            "MT_STATUS AS status",
             "FROM MT_TEST_PAPER",
             "WHERE",
             "MT_TID = #{tid}"
@@ -43,7 +45,8 @@ public interface TestPaperMapper {
             "MT_CREATOR,",
             "MT_CREATED_TIME,",
             "MT_UPDATED_TIME,",
-            "MT_VERSION",
+            "MT_VERSION,",
+            "MT_STATUS",
             ") VALUES (",
             "#{tid},",
             "#{title},",
@@ -51,7 +54,8 @@ public interface TestPaperMapper {
             "#{creator},",
             "#{createdTime},",
             "#{updatedTime},",
-            "#{version}",
+            "#{version},",
+            "#{status}",
             ")"
     })
     void create(TestPaper testPaper);
@@ -65,7 +69,8 @@ public interface TestPaperMapper {
             "MT_CREATOR = #{creator},",
             "MT_CREATED_TIME = #{createdTime},",
             "MT_UPDATED_TIME = #{updatedTime},",
-            "MT_VERSION = #{version}",
+            "MT_VERSION = #{version},",
+            "MT_STATUS = #{status}",
             "WHERE",
             "MT_TID = #{tid}"
 

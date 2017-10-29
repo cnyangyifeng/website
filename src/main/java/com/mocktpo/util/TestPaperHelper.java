@@ -6,12 +6,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.UUID;
 
 public class TestPaperHelper {
 
-    private static final ResourceBundle msgs = ResourceBundle.getBundle("messages");
+    public static final int STATUS_CREATED = 1;
+    public static final int STATUS_COMPLETED = 2;
+    public static final int STATUS_EXPIRED = 3;
 
     private TestPaperHelper() {
     }
@@ -26,6 +27,7 @@ public class TestPaperHelper {
             testPaper.setCreatedTime(System.currentTimeMillis());
             testPaper.setUpdatedTime(System.currentTimeMillis());
             testPaper.setVersion(testPaperVo.getVersion() == 0.0d ? 1.0d : testPaperVo.getVersion());
+            testPaper.setStatus(STATUS_CREATED);
         }
         return testPaper;
     }
@@ -38,6 +40,7 @@ public class TestPaperHelper {
             testPaper.setCreator(testPaperVo.getCreator());
             testPaper.setUpdatedTime(System.currentTimeMillis());
             testPaper.setVersion(testPaperVo.getVersion());
+            testPaper.setStatus(testPaperVo.getStatus());
         }
         return testPaper;
     }
@@ -52,6 +55,7 @@ public class TestPaperHelper {
             testPaperVo.setCreatedTime(testPaper.getCreatedTime());
             testPaperVo.setUpdatedTime(testPaper.getUpdatedTime());
             testPaperVo.setVersion(testPaper.getVersion());
+            testPaperVo.setStatus(testPaper.getStatus());
         }
         return testPaperVo;
     }
@@ -68,6 +72,7 @@ public class TestPaperHelper {
                 testPaperVo.setCreatedTime(testPaper.getCreatedTime());
                 testPaperVo.setUpdatedTime(testPaper.getUpdatedTime());
                 testPaperVo.setVersion(testPaper.getVersion());
+                testPaperVo.setStatus(testPaper.getStatus());
             }
             testPaperVos.add(testPaperVo);
         }

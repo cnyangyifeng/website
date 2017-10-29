@@ -34,11 +34,12 @@
         <tr>
           <th>Tid</th>
           <th>Title</th>
-          <th>Stars</th>
+          <!-- <th>Stars</th> -->
           <!-- <th>Creator</th> -->
           <!-- <th>Created Time</th> -->
           <!-- <th>Updated Time</th> -->
           <th>Version</th>
+          <th th:text="#{status}">Status</th>
           <th>Edit</th>
           <th>Upload</th>
           <th>Delete</th>
@@ -48,11 +49,16 @@
         <tr th:each="testPaperVo : ${testPaperVos}">
           <td th:text="${testPaperVo.tid}"></td>
           <td th:text="${testPaperVo.title}"></td>
-          <td th:text="${testPaperVo.stars}"></td>
+          <!-- <td th:text="${testPaperVo.stars}"></td> -->
           <!-- <td th:text="${testPaperVo.creator}"></td> -->
           <!-- <td th:text="${#calendars.format(testPaperVo.createdTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
           <!-- <td th:text="${#calendars.format(testPaperVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
           <td th:text="${testPaperVo.version}"></td>
+          <td th:switch="${testPaperVo.status}">
+            <span th:case="1">Created</span>
+            <span class="teal-text" th:case="2">Completed</span>
+            <span class="pink-text" th:case="3">Expired</span>
+          </td>
           <td><a href="#" th:href="@{/testpapers/{tid}/edit(tid=${testPaperVo.tid})}">Edit</a></td>
           <td><a href="#" th:href="@{/testpapers/{tid}/upload(tid=${testPaperVo.tid})}">Upload</a></td>
           <td><a href="#" th:href="@{/testpapers/{tid}/delete(tid=${testPaperVo.tid})}">Delete</a></td>

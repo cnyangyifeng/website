@@ -13,6 +13,7 @@ public class TestPaperVo implements Serializable {
     private long createdTime;
     private long updatedTime;
     private double version;
+    private int status;
 
     public String getTid() {
         return tid;
@@ -68,5 +69,13 @@ public class TestPaperVo implements Serializable {
 
     public void setVersion(double version) {
         this.version = version;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
