@@ -34,7 +34,7 @@ public class OrderService {
             order.setStatus(OrderHelper.STATUS_COMPLETED);
         }
         if (StringUtils.isEmpty(order.getActivationCode())) {
-            order.setActivationCode(OrderHelper.prepareActivationCode());
+            order.setActivationCode(OrderHelper.createActivationCode());
         }
         update(order);
     }

@@ -24,7 +24,7 @@ public class OrderController {
     private OrderService orderService;
 
     @RequestMapping(value = "/orders/create", method = RequestMethod.POST)
-    public ModelAndView createOrder(OrderVo orderVo) {
+    public ModelAndView toCreateOrderView(OrderVo orderVo) {
         ModelAndView mv = new ModelAndView();
         String email = orderVo.getEmail();
         try {

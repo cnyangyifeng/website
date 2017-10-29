@@ -1,0 +1,71 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<link rel="shortcut icon" href="../assets/favicon.ico" th:href="@{/assets/favicon.ico}">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<title>MockTPO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" type="text/css" href="../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
+<link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
+</head>
+<body>
+<div class="app-wrapper">
+  <div th:replace="fragments/header::header"></div>
+  <div class="container">
+    <div class="row">
+      <div class="section">
+        <h4>Test Papers</h4>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div class="row">
+      <div class="section">
+        <a class="btn blue darken-4" href="create_test_paper.html" th:href="@{/testpapers/create}">Create Test Paper</a>
+      </div>
+    </div>
+    <div class="row">
+      <table class="responsive-table">
+        <thead>
+        <tr>
+          <th>Tid</th>
+          <th>Title</th>
+          <th>Stars</th>
+          <!-- <th>Creator</th> -->
+          <!-- <th>Created Time</th> -->
+          <!-- <th>Updated Time</th> -->
+          <th>Version</th>
+          <th>Edit</th>
+          <th>Upload</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="testPaperVo : ${testPaperVos}">
+          <td th:text="${testPaperVo.tid}"></td>
+          <td th:text="${testPaperVo.title}"></td>
+          <td th:text="${testPaperVo.stars}"></td>
+          <!-- <td th:text="${testPaperVo.creator}"></td> -->
+          <!-- <td th:text="${#calendars.format(testPaperVo.createdTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+          <!-- <td th:text="${#calendars.format(testPaperVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+          <td th:text="${testPaperVo.version}"></td>
+          <td><a href="#" th:href="@{/testpapers/{tid}/edit(tid=${testPaperVo.tid})}">Edit</a></td>
+          <td><a href="#" th:href="@{/testpapers/{tid}/upload(tid=${testPaperVo.tid})}">Upload</a></td>
+          <td><a href="#" th:href="@{/testpapers/{tid}/delete(tid=${testPaperVo.tid})}">Delete</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="push"></div>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+<script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
+<script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
+<script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
+</body>
+</html>

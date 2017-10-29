@@ -1,9 +1,9 @@
 package com.mocktpo.web;
 
 import com.mocktpo.modules.user.UserService;
-import com.mocktpo.web.vo.SignupVo;
 import com.mocktpo.orm.domain.User;
 import com.mocktpo.util.EmailUtils;
+import com.mocktpo.web.vo.SignupVo;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,6 @@ public class SignupController {
         mv.setViewName("signup");
         return mv;
     }
-
 
     @RequestMapping(value = "/signup.do", method = RequestMethod.POST)
     public ModelAndView signup(HttpSession session, SignupVo signupVo) {

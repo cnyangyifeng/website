@@ -1,0 +1,80 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<link rel="shortcut icon" href="../assets/favicon.ico" th:href="@{/assets/favicon.ico}">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
+<title>MockTPO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" type="text/css" href="../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
+<link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
+</head>
+<body>
+<div class="app-wrapper">
+  <div th:replace="fragments/header::header"></div>
+  <form action="test_papers.html" th:action="@{/testpapers/{tid}/edit.do(tid=${testPaperVo.tid})}" th:object="${testPaperVo}" method="post">
+    <div class="container">
+      <div class="row">
+        <div class="section">
+          <h4>Test Paper</h4>
+        </div>
+        <div class="divider"></div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="tid-input" type="text" disabled th:field="*{tid}">
+          <label for="tid-input">Tid</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="title-input" type="text" th:field="*{title}">
+          <label for="title-input" th:text="#{title}">Title</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="stars-select" th:field="*{stars}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <label for="stars-select" th:text="#{stars}">Stars</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="creator-input" type="text" th:field="*{creator}">
+          <label for="creator-input">Creator</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="version-input" type="text" th:field="*{version}">
+          <label for="version-input">Version</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="created-time-input" type="text" disabled th:value="${#calendars.format(testPaperVo.createdTime,'yyyy-MM-dd HH:mm:ss')}">
+          <label for="created-time-input">Created Time</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="updated-time-input" type="text" disabled th:value="${#calendars.format(testPaperVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}">
+          <label for="updated-time-input">Updated Time</label>
+        </div>
+      </div>
+      <button class="btn blue darken-4" type="submit" th:text="#{save}">Save</button>
+      <a class="btn pink" href="test_papers.html" th:href="@{/testpapers}" th:text="#{cancel}">Cancel</a>
+    </div>
+  </form>
+  <div class="push"></div>
+</div>
+<div th:replace="fragments/footer::footer"></div>
+<script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
+<script src="../assets/js/materialize.min.js" th:src="@{/assets/js/materialize.min.js}"></script>
+<script src="../assets/js/app.js" th:src="@{/assets/js/app.js}"></script>
+</body>
+</html>

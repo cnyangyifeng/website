@@ -16,13 +16,38 @@
 <body>
 <div class="app-wrapper">
   <div th:replace="fragments/header::header"></div>
-  <div class="container">
+  <div class="container" th:object="${testPaperVo}">
     <div class="row">
       <div class="section">
-        <h5 th:text="#{home}">Home</h5>
+        <h4>Create Test Paper</h4>
       </div>
       <div class="divider"></div>
     </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="tid-input" type="text" disabled th:field="*{tid}">
+        <label for="tid-input">Tid</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="title-input" type="text" disabled th:field="*{title}">
+        <label for="title-input" th:text="#{title}">Title</label>
+      </div>
+    </div>
+    <form action="test_papers.html" th:object="${fileUploadVo}" th:action="@{/testpapers/{tid}/upload.do(tid=${testPaperVo.tid})}" enctype="multipart/form-data" method="post">
+      <div class="row">
+        <div class="input-field file-field col s12">
+          <div class="btn blue darken-4">
+            <span>File</span>
+            <input type="file" name="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Choose your file...">
+          </div>
+        </div>
+      </div>
+      <button class="btn blue darken-4" type="submit">Upload</button>
+      <a class="btn pink" href="test_papers.html" th:href="@{/testpapers}" th:text="#{cancel}">Cancel</a>
+    </form>
   </div>
   <div class="push"></div>
 </div>

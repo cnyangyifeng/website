@@ -92,7 +92,7 @@ public class OrderHelper {
         return price;
     }
 
-    public static String prepareActivationCode() {
+    public static String createActivationCode() {
         UUID uuid = UUID.randomUUID();
         long l = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
         return StringUtils.upperCase(Long.toString(l, Character.MAX_RADIX));
