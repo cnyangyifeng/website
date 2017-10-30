@@ -1,6 +1,6 @@
 package com.mocktpo.web;
 
-import com.mocktpo.modules.testpaper.TestPaperService;
+import com.mocktpo.modules.testpaper.TestService;
 import com.mocktpo.orm.domain.TestPaper;
 import com.mocktpo.util.TestPaperHelper;
 import com.mocktpo.web.vo.FileUploadVo;
@@ -29,7 +29,7 @@ public class TestPaperController {
     private static final Logger logger = LogManager.getLogger();
 
     @Autowired
-    private TestPaperService testPaperService;
+    private TestService testPaperService;
 
     @Autowired
     ServletContext ctx;
