@@ -16,23 +16,13 @@
 <body>
 <div class="app-wrapper">
   <div th:replace="fragments/header::header"></div>
-  <form action="test_papers.html" th:action="@{/testpapers/{tid}/edit.do(tid=${testPaperVo.tid})}" th:object="${testPaperVo}" method="post">
+  <form action="tests.html" th:action="@{/tests/create.do}" th:object="${testVo}" method="post">
     <div class="container">
       <div class="row">
         <div class="section">
-          <h4>Test Paper</h4>
+          <h4>Create Test</h4>
         </div>
         <div class="divider"></div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="tid-input" type="text" disabled th:field="*{tid}">
-          <label for="tid-input">Tid</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="status-input" type="text" th:field="*{status}">
-          <label for="status-input" th:text="#{status}">Status</label>
-        </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
@@ -60,18 +50,8 @@
           <label for="version-input">Version</label>
         </div>
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="created-time-input" type="text" disabled th:value="${#calendars.format(testPaperVo.createdTime,'yyyy-MM-dd HH:mm:ss')}">
-          <label for="created-time-input">Created Time</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="updated-time-input" type="text" disabled th:value="${#calendars.format(testPaperVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}">
-          <label for="updated-time-input">Updated Time</label>
-        </div>
-      </div>
       <button class="btn blue darken-4" type="submit" th:text="#{save}">Save</button>
-      <a class="btn pink" href="test_papers.html" th:href="@{/testpapers}" th:text="#{cancel}">Cancel</a>
+      <a class="btn pink" href="tests.html" th:href="@{/tests}" th:text="#{cancel}">Cancel</a>
     </div>
   </form>
   <div class="push"></div>

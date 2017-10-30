@@ -1,11 +1,11 @@
 package com.mocktpo.orm.mapper;
 
-import com.mocktpo.orm.domain.TestPaper;
+import com.mocktpo.orm.domain.Test;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-public interface TestPaperMapper {
+public interface TestMapper {
 
     @Select({
             "SELECT",
@@ -17,9 +17,9 @@ public interface TestPaperMapper {
             "MT_UPDATED_TIME AS updatedTime,",
             "MT_VERSION AS version,",
             "MT_STATUS AS status",
-            "FROM MT_TEST_PAPER"
+            "FROM MT_TEST"
     })
-    List<TestPaper> findAll();
+    List<Test> findAll();
 
     @Select({
             "SELECT",
@@ -31,14 +31,14 @@ public interface TestPaperMapper {
             "MT_UPDATED_TIME AS updatedTime,",
             "MT_VERSION AS version,",
             "MT_STATUS AS status",
-            "FROM MT_TEST_PAPER",
+            "FROM MT_TEST",
             "WHERE",
             "MT_TID = #{tid}"
     })
-    TestPaper findByTid(@Param("tid") String tid);
+    Test findByTid(@Param("tid") String tid);
 
     @Insert({
-            "INSERT INTO MT_TEST_PAPER (",
+            "INSERT INTO MT_TEST (",
             "MT_TID,",
             "MT_TITLE,",
             "MT_STARS,",
@@ -58,10 +58,10 @@ public interface TestPaperMapper {
             "#{status}",
             ")"
     })
-    void create(TestPaper testPaper);
+    void create(Test test);
 
     @Update({
-            "UPDATE MT_TEST_PAPER",
+            "UPDATE MT_TEST",
             "SET",
             "MT_TID = #{tid},",
             "MT_TITLE = #{title},",
@@ -75,10 +75,10 @@ public interface TestPaperMapper {
             "MT_TID = #{tid}"
 
     })
-    void update(TestPaper testPaper);
+    void update(Test test);
 
     @Delete({
-            "DELETE FROM MT_TEST_PAPER",
+            "DELETE FROM MT_TEST",
             "WHERE",
             "MT_TID = #{tid}"
     })

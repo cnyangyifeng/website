@@ -19,13 +19,13 @@
   <div class="container">
     <div class="row">
       <div class="section">
-        <h4>Test Papers</h4>
+        <h4>Tests</h4>
       </div>
       <div class="divider"></div>
     </div>
     <div class="row">
       <div class="section">
-        <a class="btn blue darken-4" href="create_test_paper.html" th:href="@{/testpapers/create}">Create Test Paper</a>
+        <a class="btn blue darken-4" href="create_test.html" th:href="@{/tests/create}">Create Test</a>
       </div>
     </div>
     <div class="row">
@@ -46,22 +46,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="testPaperVo : ${testPaperVos}">
-          <td th:text="${testPaperVo.tid}"></td>
-          <td th:text="${testPaperVo.title}"></td>
-          <!-- <td th:text="${testPaperVo.stars}"></td> -->
-          <!-- <td th:text="${testPaperVo.creator}"></td> -->
-          <!-- <td th:text="${#calendars.format(testPaperVo.createdTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
-          <!-- <td th:text="${#calendars.format(testPaperVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
-          <td th:text="${testPaperVo.version}"></td>
-          <td th:switch="${testPaperVo.status}">
+        <tr th:each="testVo : ${testVos}">
+          <td th:text="${testVo.tid}"></td>
+          <td th:text="${testVo.title}"></td>
+          <!-- <td th:text="${testVo.stars}"></td> -->
+          <!-- <td th:text="${testVo.creator}"></td> -->
+          <!-- <td th:text="${#calendars.format(testVo.createdTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+          <!-- <td th:text="${#calendars.format(testVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+          <td th:text="${testVo.version}"></td>
+          <td th:switch="${testVo.status}">
             <span th:case="1">Created</span>
             <span class="teal-text" th:case="2">Completed</span>
             <span class="pink-text" th:case="3">Expired</span>
           </td>
-          <td><a href="#" th:href="@{/testpapers/{tid}/edit(tid=${testPaperVo.tid})}">Edit</a></td>
-          <td><a href="#" th:href="@{/testpapers/{tid}/upload(tid=${testPaperVo.tid})}">Upload</a></td>
-          <td><a href="#" th:href="@{/testpapers/{tid}/delete(tid=${testPaperVo.tid})}">Delete</a></td>
+          <td><a href="#" th:href="@{/tests/{tid}/edit(tid=${testVo.tid})}">Edit</a></td>
+          <td><a href="#" th:href="@{/tests/{tid}/upload(tid=${testVo.tid})}">Upload</a></td>
+          <td><a href="#" th:href="@{/tests/{tid}/delete(tid=${testVo.tid})}">Delete</a></td>
         </tr>
         </tbody>
       </table>

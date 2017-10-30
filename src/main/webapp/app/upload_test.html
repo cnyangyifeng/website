@@ -16,10 +16,10 @@
 <body>
 <div class="app-wrapper">
   <div th:replace="fragments/header::header"></div>
-  <div class="container" th:object="${testPaperVo}">
+  <div class="container" th:object="${testVo}">
     <div class="row">
       <div class="section">
-        <h4>Create Test Paper</h4>
+        <h4>Create Test</h4>
       </div>
       <div class="divider"></div>
     </div>
@@ -33,7 +33,7 @@
         <label for="title-input" th:text="#{title}">Title</label>
       </div>
     </div>
-    <form action="test_papers.html" th:object="${fileUploadVo}" th:action="@{/testpapers/{tid}/upload.do(tid=${testPaperVo.tid})}" enctype="multipart/form-data" method="post">
+    <form action="tests.html" th:object="${fileUploadVo}" th:action="@{/tests/{tid}/upload.do(tid=${testVo.tid})}" enctype="multipart/form-data" method="post">
       <div class="row">
         <div class="input-field file-field col s12">
           <div class="btn blue darken-4">
@@ -46,7 +46,7 @@
         </div>
       </div>
       <button class="btn blue darken-4" type="submit">Upload</button>
-      <a class="btn pink" href="test_papers.html" th:href="@{/testpapers}" th:text="#{cancel}">Cancel</a>
+      <a class="btn pink" href="tests.html" th:href="@{/tests}" th:text="#{cancel}">Cancel</a>
     </form>
   </div>
   <div class="push"></div>

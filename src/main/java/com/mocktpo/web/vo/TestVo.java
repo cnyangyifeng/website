@@ -1,6 +1,10 @@
-package com.mocktpo.orm.domain;
+package com.mocktpo.web.vo;
 
-public class TestPaper {
+import java.io.Serializable;
+
+public class TestVo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String tid;
     private String title;
