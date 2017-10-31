@@ -47,7 +47,7 @@
         </div>
         <div class="input-field col s6">
           <input id="version-input" type="text" th:field="*{version}">
-          <label for="version-input">Version</label>
+          <label for="version-input" th:text="#{version}">Version</label>
         </div>
       </div>
       <button class="btn blue darken-4" type="submit" th:text="#{save}">Save</button>

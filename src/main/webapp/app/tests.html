@@ -33,16 +33,16 @@
         <thead>
         <tr>
           <th>Tid</th>
-          <th>Title</th>
-          <!-- <th>Stars</th> -->
+          <th th:text="#{title}">Title</th>
+          <!-- <th th>Stars</th> -->
           <!-- <th>Creator</th> -->
           <!-- <th>Created Time</th> -->
           <!-- <th>Updated Time</th> -->
-          <th>Version</th>
+          <th th:text="#{version}">Version</th>
           <th th:text="#{status}">Status</th>
-          <th>Edit</th>
-          <th>Upload</th>
-          <th>Delete</th>
+          <th th:text="#{edit}">Edit</th>
+          <th th:text="#{upload}">Upload</th>
+          <th th:text="#{delete}">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -59,9 +59,9 @@
             <span class="teal-text" th:case="2">Completed</span>
             <span class="pink-text" th:case="3">Expired</span>
           </td>
-          <td><a href="#" th:href="@{/tests/{tid}/edit(tid=${testVo.tid})}">Edit</a></td>
-          <td><a href="#" th:href="@{/tests/{tid}/upload(tid=${testVo.tid})}">Upload</a></td>
-          <td><a href="#" th:href="@{/tests/{tid}/delete(tid=${testVo.tid})}">Delete</a></td>
+          <td><a href="#" th:href="@{/tests/{tid}/edit(tid=${testVo.tid})}" th:text="#{edit}">Edit</a></td>
+          <td><a href="#" th:href="@{/tests/{tid}/upload(tid=${testVo.tid})}" th:text="#{upload}">Upload</a></td>
+          <td><a href="#" th:href="@{/tests/{tid}/delete(tid=${testVo.tid})}" th:text="#{delete}">Delete</a></td>
         </tr>
         </tbody>
       </table>
