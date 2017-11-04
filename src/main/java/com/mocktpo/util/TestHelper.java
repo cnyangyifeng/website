@@ -21,25 +21,27 @@ public class TestHelper {
         Test test = new Test();
         if (testVo != null) {
             test.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
+            test.setTagId(testVo.getTagId());
             test.setTitle(StringUtils.isEmpty(testVo.getTitle()) ? "Unknown" : testVo.getTitle());
             test.setStars(testVo.getStars());
+            test.setVersion(testVo.getVersion() == 0.0d ? 1.0d : testVo.getVersion());
             test.setCreator("MockTPO");
             test.setCreatedTime(System.currentTimeMillis());
             test.setUpdatedTime(System.currentTimeMillis());
-            test.setVersion(testVo.getVersion() == 0.0d ? 1.0d : testVo.getVersion());
             test.setStatus(STATUS_CREATED);
         }
         return test;
     }
 
-    public static Test copyTest(TestVo testVo, Test test) {
+    public static Test updateTest(TestVo testVo, Test test) {
         if (testVo != null) {
             test.setTid(testVo.getTid());
+            test.setTagId(testVo.getTagId());
             test.setTitle(testVo.getTitle());
             test.setStars(testVo.getStars());
+            test.setVersion(testVo.getVersion());
             test.setCreator(testVo.getCreator());
             test.setUpdatedTime(System.currentTimeMillis());
-            test.setVersion(testVo.getVersion());
             test.setStatus(testVo.getStatus());
         }
         return test;
@@ -49,12 +51,13 @@ public class TestHelper {
         TestVo testVo = new TestVo();
         if (test != null) {
             testVo.setTid(test.getTid());
+            testVo.setTagId(test.getTagId());
             testVo.setTitle(test.getTitle());
             testVo.setStars(test.getStars());
+            testVo.setVersion(test.getVersion());
             testVo.setCreator(test.getCreator());
             testVo.setCreatedTime(test.getCreatedTime());
             testVo.setUpdatedTime(test.getUpdatedTime());
-            testVo.setVersion(test.getVersion());
             testVo.setStatus(test.getStatus());
         }
         return testVo;
@@ -66,12 +69,13 @@ public class TestHelper {
             TestVo testVo = new TestVo();
             if (test != null) {
                 testVo.setTid(test.getTid());
+                testVo.setTagId(test.getTagId());
                 testVo.setTitle(test.getTitle());
                 testVo.setStars(test.getStars());
+                testVo.setVersion(test.getVersion());
                 testVo.setCreator(test.getCreator());
                 testVo.setCreatedTime(test.getCreatedTime());
                 testVo.setUpdatedTime(test.getUpdatedTime());
-                testVo.setVersion(test.getVersion());
                 testVo.setStatus(test.getStatus());
             }
             testVos.add(testVo);

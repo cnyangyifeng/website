@@ -3,12 +3,13 @@ package com.mocktpo.orm.domain;
 public class Test {
 
     private String tid;
+    private int tagId;
     private String title;
     private int stars;
+    private double version;
     private String creator;
     private long createdTime;
     private long updatedTime;
-    private double version;
     private int status;
 
     public String getTid() {
@@ -17,6 +18,14 @@ public class Test {
 
     public void setTid(String tid) {
         this.tid = tid;
+    }
+
+    public int getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(int tagId) {
+        this.tagId = tagId;
     }
 
     public String getTitle() {
@@ -33,6 +42,14 @@ public class Test {
 
     public void setStars(int stars) {
         this.stars = stars;
+    }
+
+    public double getVersion() {
+        return version;
+    }
+
+    public void setVersion(double version) {
+        this.version = version;
     }
 
     public String getCreator() {
@@ -57,14 +74,6 @@ public class Test {
 
     public void setUpdatedTime(long updatedTime) {
         this.updatedTime = updatedTime;
-    }
-
-    public double getVersion() {
-        return version;
-    }
-
-    public void setVersion(double version) {
-        this.version = version;
     }
 
     public int getStatus() {

@@ -10,6 +10,7 @@ public interface TestMapper {
     @Select({
             "SELECT",
             "MT_TID AS tid,",
+            "MT_TAG_ID AS tagId,",
             "MT_TITLE AS title,",
             "MT_STARS AS stars,",
             "MT_CREATOR AS creator,",
@@ -17,13 +18,15 @@ public interface TestMapper {
             "MT_UPDATED_TIME AS updatedTime,",
             "MT_VERSION AS version,",
             "MT_STATUS AS status",
-            "FROM MT_TEST"
+            "FROM MT_TEST",
+            "ORDER BY MT_TITLE DESC"
     })
     List<Test> findAll();
 
     @Select({
             "SELECT",
             "MT_TID AS tid,",
+            "MT_TAG_ID AS tagId,",
             "MT_TITLE AS title,",
             "MT_STARS AS stars,",
             "MT_CREATOR AS creator,",
@@ -40,6 +43,7 @@ public interface TestMapper {
     @Insert({
             "INSERT INTO MT_TEST (",
             "MT_TID,",
+            "MT_TAG_ID,",
             "MT_TITLE,",
             "MT_STARS,",
             "MT_CREATOR,",
@@ -49,6 +53,7 @@ public interface TestMapper {
             "MT_STATUS",
             ") VALUES (",
             "#{tid},",
+            "#{tagId},",
             "#{title},",
             "#{stars},",
             "#{creator},",
@@ -64,6 +69,7 @@ public interface TestMapper {
             "UPDATE MT_TEST",
             "SET",
             "MT_TID = #{tid},",
+            "MT_TAG_ID = #{tagId},",
             "MT_TITLE = #{title},",
             "MT_STARS = #{stars},",
             "MT_CREATOR = #{creator},",

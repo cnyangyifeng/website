@@ -7,6 +7,7 @@ public class TestVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String tid;
+    private int tagId;
     private String title;
     private int stars;
     private String creator;
@@ -23,6 +24,14 @@ public class TestVo implements Serializable {
         this.tid = tid;
     }
 
+    public int getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(int tagId) {
+        this.tagId = tagId;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -37,6 +46,14 @@ public class TestVo implements Serializable {
 
     public void setStars(int stars) {
         this.stars = stars;
+    }
+
+    public double getVersion() {
+        return version;
+    }
+
+    public void setVersion(double version) {
+        this.version = version;
     }
 
     public String getCreator() {
@@ -61,14 +78,6 @@ public class TestVo implements Serializable {
 
     public void setUpdatedTime(long updatedTime) {
         this.updatedTime = updatedTime;
-    }
-
-    public double getVersion() {
-        return version;
-    }
-
-    public void setVersion(double version) {
-        this.version = version;
     }
 
     public int getStatus() {

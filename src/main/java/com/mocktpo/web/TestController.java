@@ -1,8 +1,10 @@
 package com.mocktpo.web;
 
 import com.mocktpo.modules.test.TestService;
+import com.mocktpo.modules.test.TestTagService;
 import com.mocktpo.orm.domain.Test;
 import com.mocktpo.util.TestHelper;
+import com.mocktpo.util.TestTagHelper;
 import com.mocktpo.web.vo.FileUploadVo;
 import com.mocktpo.web.vo.TestVo;
 import org.apache.commons.io.FileUtils;
@@ -32,6 +34,9 @@ public class TestController {
     private TestService testService;
 
     @Autowired
+    private TestTagService testTagService;
+
+    @Autowired
     ServletContext ctx;
 
     @RequestMapping(value = "/tests", method = RequestMethod.GET)
@@ -47,6 +52,7 @@ public class TestController {
     public ModelAndView toCreateTestView() {
         ModelAndView mv = new ModelAndView();
         mv.addObject("testVo", new TestVo());
+        mv.addObject("testTagVos", TestTagHelper.prepareTestTagVos(testTagService.findAll()));
         mv.setViewName("create_test");
         return mv;
     }
@@ -110,6 +116,7 @@ public class TestController {
         Test test = testService.findByTid(tid);
         if (test != null) {
             mv.addObject("testVo", TestHelper.prepareTestVo(test));
+            mv.addObject("testTagVos", TestTagHelper.prepareTestTagVos(testTagService.findAll()));
             mv.setViewName("edit_test");
         } else {
             mv.setViewName("error");
@@ -122,7 +129,7 @@ public class TestController {
         ModelAndView mv = new ModelAndView();
         Test test = testService.findByTid(tid);
         if (test != null) {
-            testService.update(TestHelper.copyTest(testVo, test));
+            testService.update(TestHelper.updateTest(testVo, test));
             mv.setViewName("redirect:/tests");
         } else {
             mv.setViewName("error");

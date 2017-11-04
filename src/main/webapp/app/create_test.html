@@ -25,11 +25,11 @@
         <div class="divider"></div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 l4">
           <input id="title-input" type="text" th:field="*{title}">
           <label for="title-input" th:text="#{title}">Title</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12 l4">
           <select id="stars-select" th:field="*{stars}">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -39,15 +39,21 @@
           </select>
           <label for="stars-select" th:text="#{stars}">Stars</label>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="creator-input" type="text" th:field="*{creator}">
-          <label for="creator-input">Creator</label>
-        </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12 l4">
           <input id="version-input" type="text" th:field="*{version}">
           <label for="version-input" th:text="#{version}">Version</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 l6">
+          <select id="tag-id-select" th:field="*{tagId}">
+            <option th:each="testTagVo : ${testTagVos}" th:value="${testTagVo.tagId}" th:text="${testTagVo.title}"></option>
+          </select>
+          <label for="tag-id-select" th:text="#{tag}">Tag</label>
+        </div>
+        <div class="input-field col s12 l6">
+          <input id="creator-input" type="text" th:field="*{creator}">
+          <label for="creator-input" th:text="#{creator}">Creator</label>
         </div>
       </div>
       <button class="btn blue darken-4" type="submit" th:text="#{save}">Save</button>
