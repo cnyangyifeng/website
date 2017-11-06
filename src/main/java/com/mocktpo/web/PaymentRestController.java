@@ -5,6 +5,7 @@ import com.mocktpo.orm.domain.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,6 +15,7 @@ public class PaymentRestController {
     private OrderService orderService;
 
     @RequestMapping(value = "/api/v1/payments/alipay/notify", method = RequestMethod.POST)
+    @ResponseBody
     public String alipayNotify() {
         Order order = orderService.findByOrderNumber("20171014222945891");
         if (order != null) {
@@ -25,6 +27,7 @@ public class PaymentRestController {
     }
 
     @RequestMapping(value = "/api/v1/payments/paypal/notify", method = RequestMethod.POST)
+    @ResponseBody
     public void paypalNotify() {
     }
 }
