@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 @Service
 public class AlipayService {
 
-    private static final ResourceBundle msgs = ResourceBundle.getBundle("alipay_sandbox");
+    private static final ResourceBundle msgs = ResourceBundle.getBundle("alipay");
 
     private AlipayClient cli = new DefaultAlipayClient(
             msgs.getString("gateway"), msgs.getString("app_id"),

@@ -81,10 +81,12 @@ public class OrderHelper {
         double price;
         switch (pid) {
             case PRODUCT_ID_BASIC:
-                price = 99.00;
+                // price = 99.00;
+                price = 0.99;
                 break;
             case PRODUCT_ID_PROFESSIONAL:
-                price = 299.00;
+                // price = 299.00;
+                price = 2.99;
                 break;
             default:
                 price = 99.00;
