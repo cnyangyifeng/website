@@ -300,6 +300,13 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
   </component>
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/app/index.html" value="file://$PROJECT_DIR$/src/main/webapp/app" />
+      </map>
+    </option>
+  </component>
   <component name="dataSourceStorageLocal">
     <data-source name="MySQL - mocktpo@118.190.210.249" uuid="354fcea2-fe87-4342-a3e0-f1bbc3a341b6">
       <secret-storage>master_key</secret-storage>

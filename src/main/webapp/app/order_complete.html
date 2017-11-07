@@ -15,69 +15,69 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="fragments/header_empty::header"></div>
-  <div class="container" th:object="${orderVo}">
-    <div class="row">
-      <div class="section">
-        <h4 th:text="#{order_complete}">Order Complete</h4>
-      </div>
-      <div class="divider"></div>
+<div th:replace="fragments/header_empty::header"></div>
+<div class="container" th:object="${orderVo}">
+  <div class="row">
+    <div class="section">
+      <h4 th:text="#{order_complete}">Order Complete</h4>
     </div>
-    <div class="row">
-      <div class="section">
-        <h5 class="grey-text text-darken-3" th:text="#{thanks_for_your_order}">Thanks for your order!</h5>
-        <p class="grey-text" th:utext="#{thanks_for_your_order_desc}">Please check your inbox for a activation email. If you have any questions or concerns, please contact us via email at <a href="mailto:service@mocktpo.com?subject=MockTPO%20Order%20Complete">service@mocktpo.com</a>.</p>
-        <p class="grey-text">
-          <span th:text="#{didnt_get_email}">Didn't get the email?</span>
-          <a href="#" th:text="#{resend}">Resend</a>
-        </p>
-        <p>
-          <span th:text="#{activation_code}">Activation Code</span>
-          <span class="pink-text" style="margin:0 20px;font-size:32px;font-weight:bold;" th:text="*{activationCode}">TO2BSWHJ0S3C</span>
-        </p>
-        <a class="btn blue darken-4" id="signup-button" th:text="#{create_your_account}">Create your MockTPO Account</a>
-        <a class="btn blue darken-4" id="login-button" th:text="#{already_have_account_login}">Already have an account? Log in</a>
-      </div>
-    </div>
-    <div class="row">
-      <table class="responsive-table">
-        <thead>
-        <tr>
-          <th th:text="#{order_number}">Order Number</th>
-          <th th:text="#{product_name}">Product Name</th>
-          <th th:text="#{email}">Email</th>
-          <th th:text="#{payment_type}">Payment Type</th>
-          <th th:text="#{price}">Price</th>
-          <th th:text="#{status}">Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td th:text="*{orderNumber}"></td>
-          <td th:switch="*{pid}">
-            <span th:case="1" th:text="#{mocktpo_basic}">MockTPO Basic</span>
-            <span th:case="2" th:text="#{mocktpo_professional}">MockTPO Professional</span>
-          </td>
-          <td th:text="*{email}"></td>
-          <td th:switch="*{paymentType}">
-            <span th:case="1" th:text="#{alipay}">Alipay</span>
-            <span th:case="2" th:text="#{paypal}">PayPal</span>
-          </td>
-          <td th:text="*{price}"></td>
-          <td th:switch="*{status}">
-            <span th:case="1" th:text="#{order_status_created}">Created</span>
-            <span class="pink-text" th:case="2" th:text="#{order_status_pending}">Pending</span>
-            <span th:case="3" th:text="#{order_status_failed}">Failed</span>
-            <span th:case="4" th:text="#{order_status_cancelled}">Cancelled</span>
-            <span class="teal-text" th:case="5" th:text="#{order_status_completed}">Completed</span>
-            <span th:case="6" th:text="#{order_status_expired}">Expired</span>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <div class="divider"></div>
+  </div>
+  <div class="row">
+    <div class="section">
+      <h5 class="grey-text text-darken-3" th:text="#{thanks_for_your_order}">Thanks for your order!</h5>
+      <p class="grey-text" th:utext="#{thanks_for_your_order_desc}">Please check your inbox for a activation email. If you have any questions or concerns, please contact us via email at <a href="mailto:service@mocktpo.com?subject=MockTPO%20Order%20Complete">service@mocktpo.com</a>.</p>
+      <p class="grey-text">
+        <span th:text="#{didnt_get_email}">Didn't get the email?</span>
+        <a href="#" th:text="#{resend}">Resend</a>
+      </p>
+      <p>
+        <span th:text="#{activation_code}">Activation Code</span>
+        <span class="pink-text" style="margin:0 20px;font-size:32px;font-weight:bold;" th:text="*{activationCode}">TO2BSWHJ0S3C</span>
+      </p>
+      <a class="btn blue darken-4" id="signup-button" th:text="#{create_your_account}">Create your MockTPO Account</a>
+      <a class="btn blue darken-4" id="login-button" th:text="#{already_have_account_login}">Already have an account? Log in</a>
     </div>
   </div>
-  <div class="push"></div>
+  <div class="row">
+    <table class="responsive-table">
+      <thead>
+      <tr>
+        <th th:text="#{order_number}">Order Number</th>
+        <th th:text="#{product_name}">Product Name</th>
+        <th th:text="#{email}">Email</th>
+        <th th:text="#{payment_type}">Payment Type</th>
+        <th th:text="#{price}">Price</th>
+        <th th:text="#{status}">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td th:text="*{orderNumber}"></td>
+        <td th:switch="*{pid}">
+          <span th:case="1" th:text="#{mocktpo_basic}">MockTPO Basic</span>
+          <span th:case="2" th:text="#{mocktpo_professional}">MockTPO Professional</span>
+        </td>
+        <td th:text="*{email}"></td>
+        <td th:switch="*{paymentType}">
+          <span th:case="1" th:text="#{alipay}">Alipay</span>
+          <span th:case="2" th:text="#{paypal}">PayPal</span>
+        </td>
+        <td th:text="*{price}"></td>
+        <td th:switch="*{status}">
+          <span th:case="1" th:text="#{order_status_created}">Created</span>
+          <span class="pink-text" th:case="2" th:text="#{order_status_pending}">Pending</span>
+          <span th:case="3" th:text="#{order_status_failed}">Failed</span>
+          <span th:case="4" th:text="#{order_status_cancelled}">Cancelled</span>
+          <span class="teal-text" th:case="5" th:text="#{order_status_completed}">Completed</span>
+          <span th:case="6" th:text="#{order_status_expired}">Expired</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="push"></div>
 </div>
 <div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>

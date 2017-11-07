@@ -15,41 +15,41 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="fragments/header::header"></div>
-  <div class="container" th:object="${testVo}">
-    <div class="row">
-      <div class="section">
-        <h4>Create Test</h4>
-      </div>
-      <div class="divider"></div>
+<div th:replace="fragments/header::header"></div>
+<div class="container" th:object="${testVo}">
+  <div class="row">
+    <div class="section">
+      <h4>Create Test</h4>
     </div>
-    <div class="row">
-      <div class="input-field col s12 l6">
-        <input id="tid-input" type="text" disabled th:field="*{tid}">
-        <label for="tid-input">TID</label>
-      </div>
-      <div class="input-field col s12 l6">
-        <input id="title-input" type="text" disabled th:field="*{title}">
-        <label for="title-input" th:text="#{title}">Title</label>
-      </div>
+    <div class="divider"></div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12 l6">
+      <input id="tid-input" type="text" disabled th:field="*{tid}">
+      <label for="tid-input">TID</label>
     </div>
-    <form action="tests.html" th:object="${fileUploadVo}" th:action="@{/tests/{tid}/upload.do(tid=${testVo.tid})}" enctype="multipart/form-data" method="post">
-      <div class="row">
-        <div class="input-field file-field col s12">
-          <div class="btn blue darken-4">
-            <span>File</span>
-            <input type="file" name="file">
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Choose your file...">
-          </div>
+    <div class="input-field col s12 l6">
+      <input id="title-input" type="text" disabled th:field="*{title}">
+      <label for="title-input" th:text="#{title}">Title</label>
+    </div>
+  </div>
+  <form action="tests.html" th:object="${fileUploadVo}" th:action="@{/tests/{tid}/upload.do(tid=${testVo.tid})}" enctype="multipart/form-data" method="post">
+    <div class="row">
+      <div class="input-field file-field col s12">
+        <div class="btn blue darken-4">
+          <span>File</span>
+          <input type="file" name="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Choose your file...">
         </div>
       </div>
-      <button class="btn blue darken-4" type="submit" th:text="#{upload}">Upload</button>
-      <a class="btn pink" href="tests.html" th:href="@{/tests}" th:text="#{cancel}">Cancel</a>
-    </form>
-  </div>
-  <div class="push"></div>
+    </div>
+    <button class="btn blue darken-4" type="submit" th:text="#{upload}">Upload</button>
+    <a class="btn pink" href="tests.html" th:href="@{/tests}" th:text="#{cancel}">Cancel</a>
+  </form>
+</div>
+<div class="push"></div>
 </div>
 <div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>

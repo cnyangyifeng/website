@@ -15,60 +15,60 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="fragments/header::header"></div>
-  <div class="container">
-    <div class="row">
-      <div class="section">
-        <h4 th:text="#{download}">Download</h4>
-      </div>
-      <div class="divider"></div>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+  <div class="row">
+    <div class="section">
+      <h4 th:text="#{download}">Download</h4>
     </div>
-    <div class="row">
-      <div class="section">
-        <h5 class="grey-text text-darken-3" th:text="#{mocktpo_basic}">MockTPO Basic</h5>
-        <p class="grey-text" th:text="#{select_product_desc}"></p>
-      </div>
-    </div>
-    <div class="row">
-      <ul class="collection">
-        <li class="collection-item avatar">
-          <img class="circle" src="../assets/img/windows.svg" th:src="@{/assets/img/windows.svg}">
-          <span class="title grey-text text-darken-3">MockTPO Basic 2017 for Windows</span>
-          <p class="grey-text">File size: 256 M</p>
-          <a class="btn blue darken-4" href="#">Download</a>
-        </li>
-        <li class="collection-item avatar">
-          <img class="circle" src="../assets/img/macos.svg" th:src="@{/assets/img/macos.svg}">
-          <span class="title grey-text text-darken-3">MockTPO Basic 2017 for macOS</span>
-          <p class="grey-text">File size: 256 M</p>
-          <a class="btn blue darken-4" href="#">Download</a>
-        </li>
-      </ul>
-    </div>
-    <div class="row">
-      <div class="section">
-        <h5 class="grey-text text-darken-3" th:text="#{mocktpo_professional}">MockTPO Professional</h5>
-        <p class="grey-text" th:text="#{select_product_desc}"></p>
-      </div>
-    </div>
-    <div class="row">
-      <ul class="collection">
-        <li class="collection-item avatar">
-          <img class="circle" src="../assets/img/windows.svg" th:src="@{/assets/img/windows.svg}">
-          <span class="title grey-text text-darken-3">MockTPO Professional 2017 for Windows</span>
-          <p class="grey-text">File size: 256 M</p>
-          <a class="btn blue darken-4" href="#">Download</a>
-        </li>
-        <li class="collection-item avatar">
-          <img class="circle" src="../assets/img/macos.svg" th:src="@{/assets/img/macos.svg}">
-          <span class="title grey-text text-darken-3">MockTPO Professional 2017 for macOS</span>
-          <p class="grey-text">File size: 256 M</p>
-          <a class="btn blue darken-4" href="#">Download</a>
-        </li>
-      </ul>
+    <div class="divider"></div>
+  </div>
+  <div class="row">
+    <div class="section">
+      <h5 class="grey-text text-darken-3" th:text="#{mocktpo_basic}">MockTPO Basic</h5>
+      <p class="grey-text" th:text="#{select_product_desc}"></p>
     </div>
   </div>
-  <div class="push"></div>
+  <div class="row">
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <img class="circle" src="../assets/img/windows.svg" th:src="@{/assets/img/windows.svg}">
+        <span class="title grey-text text-darken-3">MockTPO Basic 2017 for Windows</span>
+        <p class="grey-text">File size: 256 M</p>
+        <a class="btn blue darken-4" href="#">Download</a>
+      </li>
+      <li class="collection-item avatar">
+        <img class="circle" src="../assets/img/macos.svg" th:src="@{/assets/img/macos.svg}">
+        <span class="title grey-text text-darken-3">MockTPO Basic 2017 for macOS</span>
+        <p class="grey-text">File size: 256 M</p>
+        <a class="btn blue darken-4" href="#">Download</a>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="section">
+      <h5 class="grey-text text-darken-3" th:text="#{mocktpo_professional}">MockTPO Professional</h5>
+      <p class="grey-text" th:text="#{select_product_desc}"></p>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <img class="circle" src="../assets/img/windows.svg" th:src="@{/assets/img/windows.svg}">
+        <span class="title grey-text text-darken-3">MockTPO Professional 2017 for Windows</span>
+        <p class="grey-text">File size: 256 M</p>
+        <a class="btn blue darken-4" href="#">Download</a>
+      </li>
+      <li class="collection-item avatar">
+        <img class="circle" src="../assets/img/macos.svg" th:src="@{/assets/img/macos.svg}">
+        <span class="title grey-text text-darken-3">MockTPO Professional 2017 for macOS</span>
+        <p class="grey-text">File size: 256 M</p>
+        <a class="btn blue darken-4" href="#">Download</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="push"></div>
 </div>
 <div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>

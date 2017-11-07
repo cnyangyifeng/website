@@ -15,61 +15,61 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="fragments/header::header"></div>
-  <div class="container">
-    <div class="row">
-      <div class="section">
-        <h4>Tests</h4>
-      </div>
-      <div class="divider"></div>
+<div th:replace="fragments/header::header"></div>
+<div class="container">
+  <div class="row">
+    <div class="section">
+      <h4>Tests</h4>
     </div>
-    <div class="row">
-      <div class="section">
-        <a class="btn blue darken-4" href="create_test.html" th:href="@{/tests/create}">Create Test</a>
-      </div>
-    </div>
-    <div class="row">
-      <table class="responsive-table">
-        <thead>
-        <tr>
-          <th>TID</th>
-          <!-- <th th:text="#{tag}">Tag</th> -->
-          <th th:text="#{title}">Title</th>
-          <!-- <th th:text="#{stars}">Stars</th> -->
-          <th th:text="#{version}">Version</th>
-          <!-- <th th:text="#{creator}">Creator</th> -->
-          <!-- <th th:text="#{created_time}">Created Time</th> -->
-          <!-- <th th:text="#{updated_time}">Updated Time</th> -->
-          <th th:text="#{status}">Status</th>
-          <th th:text="#{edit}">Edit</th>
-          <th th:text="#{upload}">Upload</th>
-          <th th:text="#{delete}">Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="testVo : ${testVos}">
-          <td th:text="${testVo.tid}"></td>
-          <!-- <td th:text="${testVo.tagId}"></td> -->
-          <td th:text="${testVo.title}"></td>
-          <!-- <td th:text="${testVo.stars}"></td> -->
-          <!-- <td th:text="${testVo.creator}"></td> -->
-          <!-- <td th:text="${#calendars.format(testVo.createdTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
-          <!-- <td th:text="${#calendars.format(testVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
-          <td th:text="${testVo.version}"></td>
-          <td th:switch="${testVo.status}">
-            <span th:case="1" th:text="#{test_status_created}">Created</span>
-            <span class="teal-text" th:case="2" th:text="#{test_status_completed}">Completed</span>
-            <span class="pink-text" th:case="3" th:text="#{test_status_expired}">Expired</span>
-          </td>
-          <td><a href="#" th:href="@{/tests/{tid}/edit(tid=${testVo.tid})}" th:text="#{edit}">Edit</a></td>
-          <td><a href="#" th:href="@{/tests/{tid}/upload(tid=${testVo.tid})}" th:text="#{upload}">Upload</a></td>
-          <td><a href="#" th:href="@{/tests/{tid}/delete(tid=${testVo.tid})}" th:text="#{delete}">Delete</a></td>
-        </tr>
-        </tbody>
-      </table>
+    <div class="divider"></div>
+  </div>
+  <div class="row">
+    <div class="section">
+      <a class="btn blue darken-4" href="create_test.html" th:href="@{/tests/create}">Create Test</a>
     </div>
   </div>
-  <div class="push"></div>
+  <div class="row">
+    <table class="responsive-table">
+      <thead>
+      <tr>
+        <th>TID</th>
+        <!-- <th th:text="#{tag}">Tag</th> -->
+        <th th:text="#{title}">Title</th>
+        <!-- <th th:text="#{stars}">Stars</th> -->
+        <th th:text="#{version}">Version</th>
+        <!-- <th th:text="#{creator}">Creator</th> -->
+        <!-- <th th:text="#{created_time}">Created Time</th> -->
+        <!-- <th th:text="#{updated_time}">Updated Time</th> -->
+        <th th:text="#{status}">Status</th>
+        <th th:text="#{edit}">Edit</th>
+        <th th:text="#{upload}">Upload</th>
+        <th th:text="#{delete}">Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="testVo : ${testVos}">
+        <td th:text="${testVo.tid}"></td>
+        <!-- <td th:text="${testVo.tagId}"></td> -->
+        <td th:text="${testVo.title}"></td>
+        <!-- <td th:text="${testVo.stars}"></td> -->
+        <!-- <td th:text="${testVo.creator}"></td> -->
+        <!-- <td th:text="${#calendars.format(testVo.createdTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+        <!-- <td th:text="${#calendars.format(testVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+        <td th:text="${testVo.version}"></td>
+        <td th:switch="${testVo.status}">
+          <span th:case="1" th:text="#{test_status_created}">Created</span>
+          <span class="teal-text" th:case="2" th:text="#{test_status_completed}">Completed</span>
+          <span class="pink-text" th:case="3" th:text="#{test_status_expired}">Expired</span>
+        </td>
+        <td><a href="#" th:href="@{/tests/{tid}/edit(tid=${testVo.tid})}" th:text="#{edit}">Edit</a></td>
+        <td><a href="#" th:href="@{/tests/{tid}/upload(tid=${testVo.tid})}" th:text="#{upload}">Upload</a></td>
+        <td><a href="#" th:href="@{/tests/{tid}/delete(tid=${testVo.tid})}" th:text="#{delete}">Delete</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="push"></div>
 </div>
 <div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>

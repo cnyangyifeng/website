@@ -15,76 +15,76 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="fragments/header::header"></div>
-  <form id="order-req-form" action="create_order.html" th:action="@{/orders/create}" th:object="${orderVo}" method="post">
-    <div class="container">
-      <div class="row">
-        <div class="section">
-          <h4 th:text="#{buy}">Buy</h4>
-        </div>
-        <div class="divider"></div>
+<div th:replace="fragments/header::header"></div>
+<form id="order-req-form" action="create_order.html" th:action="@{/orders/create}" th:object="${orderVo}" method="post">
+  <div class="container">
+    <div class="row">
+      <div class="section">
+        <h4 th:text="#{buy}">Buy</h4>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <div class="row">
+      <div class="section">
+        <h5 class="grey-text text-darken-3" th:text="#{select_product}">1. Please select a product that works for you</h5>
+        <p class="grey-text" th:text="#{select_product_desc}"></p>
       </div>
       <div class="row">
-        <div class="section">
-          <h5 class="grey-text text-darken-3" th:text="#{select_product}">1. Please select a product that works for you</h5>
-          <p class="grey-text" th:text="#{select_product_desc}"></p>
-        </div>
-        <div class="row">
-          <input type="hidden" id="pid-input" th:field="*{pid}">
-          <div class="col s12 l6">
-            <div class="product-card card active" id="basic-card">
-              <div class="card-content">
-                <div class="card-title" th:text="#{mocktpo_basic}">MockTPO Basic</div>
-                <div style="margin-top:20px;font-size:24px;font-weight:bold;">￥99.00</div>
-              </div>
-            </div>
-          </div>
-          <div class="col s12 l6">
-            <div class="product-card card" id="professional-card">
-              <div class="card-content">
-                <div class="card-title" th:text="#{mocktpo_professional}">MockTPO Professional</div>
-                <div style="margin-top:20px;font-size:24px;font-weight:bold;">￥299.00</div>
-              </div>
+        <input type="hidden" id="pid-input" th:field="*{pid}">
+        <div class="col s12 l6">
+          <div class="product-card card active" id="basic-card">
+            <div class="card-content">
+              <div class="card-title" th:text="#{mocktpo_basic}">MockTPO Basic</div>
+              <div style="margin-top:20px;font-size:24px;font-weight:bold;">￥99.00</div>
             </div>
           </div>
         </div>
-        <div class="section">
-          <h5 class="grey-text text-darken-3" th:text="#{enter_email}">2. Please enter your email address</h5>
-          <p class="grey-text" th:text="#{enter_email_desc}"></p>
-        </div>
-        <div class="row">
-          <div class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">email</i>
-                <input type="text" id="email-input" th:field="*{email}">
-                <label for="email-input" th:text="#{email}">Email</label>
-              </div>
-              <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
+        <div class="col s12 l6">
+          <div class="product-card card" id="professional-card">
+            <div class="card-content">
+              <div class="card-title" th:text="#{mocktpo_professional}">MockTPO Professional</div>
+              <div style="margin-top:20px;font-size:24px;font-weight:bold;">￥299.00</div>
             </div>
           </div>
         </div>
-        <div class="section">
-          <h5 class="grey-text text-darken-3" th:text="#{select_payment_method}">3. Please select your preferred method of payment</h5>
-          <p class="grey-text" th:text="#{select_payment_method_desc}"></p>
-        </div>
-        <div class="row">
-          <input type="hidden" id="payment-type-input" th:field="*{paymentType}">
-          <div class="col s12 l4">
-            <div class="payment-card card-panel" id="alipay-card" style="height:108px;">
-              <img src="../assets/img/alipay.png" th:src="@{/assets/img/alipay.png}" style="height:60px;">
+      </div>
+      <div class="section">
+        <h5 class="grey-text text-darken-3" th:text="#{enter_email}">2. Please enter your email address</h5>
+        <p class="grey-text" th:text="#{enter_email_desc}"></p>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input type="text" id="email-input" th:field="*{email}">
+              <label for="email-input" th:text="#{email}">Email</label>
             </div>
+            <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
           </div>
-          <div class="col s12 l4">
-            <div class="payment-card card-panel" id="paypal-card" style="height:108px;">
-              <img src="../assets/img/paypal.png" th:src="@{/assets/img/paypal.png}" style="height:60px;">
-            </div>
+        </div>
+      </div>
+      <div class="section">
+        <h5 class="grey-text text-darken-3" th:text="#{select_payment_method}">3. Please select your preferred method of payment</h5>
+        <p class="grey-text" th:text="#{select_payment_method_desc}"></p>
+      </div>
+      <div class="row">
+        <input type="hidden" id="payment-type-input" th:field="*{paymentType}">
+        <div class="col s12 l4">
+          <div class="payment-card card-panel" id="alipay-card" style="height:108px;">
+            <img src="../assets/img/alipay.png" th:src="@{/assets/img/alipay.png}" style="height:60px;">
+          </div>
+        </div>
+        <div class="col s12 l4">
+          <div class="payment-card card-panel" id="paypal-card" style="height:108px;">
+            <img src="../assets/img/paypal.png" th:src="@{/assets/img/paypal.png}" style="height:60px;">
           </div>
         </div>
       </div>
     </div>
-  </form>
-  <div class="push"></div>
+  </div>
+</form>
+<div class="push"></div>
 </div>
 <div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>

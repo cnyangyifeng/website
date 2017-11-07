@@ -15,74 +15,74 @@
 </head>
 <body>
 <div class="app-wrapper">
-  <div th:replace="fragments/header::header"></div>
-  <form action="tests.html" th:action="@{/tests/{tid}/edit.do(tid=${testVo.tid})}" th:object="${testVo}" method="post">
-    <div class="container">
-      <div class="row">
-        <div class="section">
-          <h4>Test</h4>
-        </div>
-        <div class="divider"></div>
+<div th:replace="fragments/header::header"></div>
+<form action="tests.html" th:action="@{/tests/{tid}/edit.do(tid=${testVo.tid})}" th:object="${testVo}" method="post">
+  <div class="container">
+    <div class="row">
+      <div class="section">
+        <h4>Test</h4>
       </div>
-      <div class="row">
-        <div class="input-field col s12 l4">
-          <input id="tid-input" type="text" disabled th:field="*{tid}">
-          <label for="tid-input">TID</label>
-        </div>
-        <div class="input-field col s12 l4">
-          <select id="tag-id-select" th:field="*{tagId}">
-            <option th:each="testTagVo : ${testTagVos}" th:value="${testTagVo.tagId}" th:text="${testTagVo.title}"></option>
-          </select>
-          <label for="tag-id-select" th:text="#{tag}">Tag</label>
-        </div>
-        <div class="input-field col s12 l4">
-          <select id="status-select" th:field="*{status}">
-            <option value="1" th:text="#{test_status_created}">Created</option>
-            <option value="2" th:text="#{test_status_completed}">Completed</option>
-            <option value="3" th:text="#{test_status_expired}">Expired</option>
-          </select>
-          <label for="status-select" th:text="#{status}">Status</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 l4">
-          <input id="title-input" type="text" th:field="*{title}">
-          <label for="title-input" th:text="#{title}">Title</label>
-        </div>
-        <div class="input-field col s12 l4">
-          <select id="stars-select" th:field="*{stars}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <label for="stars-select" th:text="#{stars}">Stars</label>
-        </div>
-        <div class="input-field col s12 l4">
-          <input id="version-input" type="text" th:field="*{version}">
-          <label for="version-input" th:text="#{version}">Version</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 l4">
-          <input id="creator-input" type="text" th:field="*{creator}">
-          <label for="creator-input" th:text="#{creator}">Creator</label>
-        </div>
-        <div class="input-field col s12 l4">
-          <input id="created-time-input" type="text" disabled th:value="${#calendars.format(testVo.createdTime,'yyyy-MM-dd HH:mm:ss')}">
-          <label for="created-time-input" th:text="#{created_time}">Created Time</label>
-        </div>
-        <div class="input-field col s12 l4">
-          <input id="updated-time-input" type="text" disabled th:value="${#calendars.format(testVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}">
-          <label for="updated-time-input" th:text="#{updated_time}">Updated Time</label>
-        </div>
-      </div>
-      <button class="btn blue darken-4" type="submit" th:text="#{save}">Save</button>
-      <a class="btn pink" href="tests.html" th:href="@{/tests}" th:text="#{cancel}">Cancel</a>
+      <div class="divider"></div>
     </div>
-  </form>
-  <div class="push"></div>
+    <div class="row">
+      <div class="input-field col s12 l4">
+        <input id="tid-input" type="text" disabled th:field="*{tid}">
+        <label for="tid-input">TID</label>
+      </div>
+      <div class="input-field col s12 l4">
+        <select id="tag-id-select" th:field="*{tagId}">
+          <option th:each="testTagVo : ${testTagVos}" th:value="${testTagVo.tagId}" th:text="${testTagVo.title}"></option>
+        </select>
+        <label for="tag-id-select" th:text="#{tag}">Tag</label>
+      </div>
+      <div class="input-field col s12 l4">
+        <select id="status-select" th:field="*{status}">
+          <option value="1" th:text="#{test_status_created}">Created</option>
+          <option value="2" th:text="#{test_status_completed}">Completed</option>
+          <option value="3" th:text="#{test_status_expired}">Expired</option>
+        </select>
+        <label for="status-select" th:text="#{status}">Status</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 l4">
+        <input id="title-input" type="text" th:field="*{title}">
+        <label for="title-input" th:text="#{title}">Title</label>
+      </div>
+      <div class="input-field col s12 l4">
+        <select id="stars-select" th:field="*{stars}">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <label for="stars-select" th:text="#{stars}">Stars</label>
+      </div>
+      <div class="input-field col s12 l4">
+        <input id="version-input" type="text" th:field="*{version}">
+        <label for="version-input" th:text="#{version}">Version</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 l4">
+        <input id="creator-input" type="text" th:field="*{creator}">
+        <label for="creator-input" th:text="#{creator}">Creator</label>
+      </div>
+      <div class="input-field col s12 l4">
+        <input id="created-time-input" type="text" disabled th:value="${#calendars.format(testVo.createdTime,'yyyy-MM-dd HH:mm:ss')}">
+        <label for="created-time-input" th:text="#{created_time}">Created Time</label>
+      </div>
+      <div class="input-field col s12 l4">
+        <input id="updated-time-input" type="text" disabled th:value="${#calendars.format(testVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}">
+        <label for="updated-time-input" th:text="#{updated_time}">Updated Time</label>
+      </div>
+    </div>
+    <button class="btn blue darken-4" type="submit" th:text="#{save}">Save</button>
+    <a class="btn pink" href="tests.html" th:href="@{/tests}" th:text="#{cancel}">Cancel</a>
+  </div>
+</form>
+<div class="push"></div>
 </div>
 <div th:replace="fragments/footer::footer"></div>
 <script src="../assets/js/jquery.min.js" th:src="@{/assets/js/jquery.min.js}"></script>
