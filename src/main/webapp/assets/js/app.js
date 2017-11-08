@@ -5,7 +5,7 @@ $(function () {
     $('.dropdown-button').dropdown();
 
     $('.slider').slider({
-        height: 480,
+        height: 400,
         interval: 3000
     });
 
