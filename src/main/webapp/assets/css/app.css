@@ -42,6 +42,29 @@ html, body {
     padding-top: 0;
 }
 
+/**
+ * App
+ */
+
+.app-icon {
+    margin-top: 8px;
+    content: url("../img/logo.png");
+    width: 48px;
+    height: 48px !important;
+}
+
+/**
+ * Index
+ */
+
+#index-top {
+    background: url("../img/index_top.jpg") 50% 0;
+}
+
+/**
+ * Buy
+ */
+
 .product-card, .payment-card {
     border: 1px solid #ddd;
     background-color: #fff !important;

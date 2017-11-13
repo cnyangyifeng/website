@@ -22,7 +22,7 @@
   </ul>
   <nav class="blue-grey darken-4" role="navigation">
     <div class="nav-wrapper container">
-      <a href="../index.html" th:href="@{/}" class="brand-logo white-text">MockTPO</a>
+      <a href="../index.html" th:href="@{/}" class="brand-logo"><i class="hide-on-small-and-down app-icon"></i>MockTPO</a>
       <ul class="right hide-on-med-and-down">
         <li th:if="${not #strings.isEmpty(session.email)}"><a class="white-text" href="../home.html" th:href="@{/home}" th:text="#{home}">Home</a></li>
         <li><a class="white-text" href="../download.html" th:href="@{/download}" th:text="#{download}">Download</a></li>
