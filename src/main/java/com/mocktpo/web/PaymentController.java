@@ -80,7 +80,7 @@ public class PaymentController {
     @RequestMapping(value = "/payments/paypal/response", method = RequestMethod.GET)
     public ModelAndView paypalResponse(@RequestParam Map map) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:/orders/" + map.get("out_trade_no").toString());
+        mv.setViewName("redirect:/orders/" + map.get("out_trade_no").toString() + "/complete");
         return mv;
     }
 }

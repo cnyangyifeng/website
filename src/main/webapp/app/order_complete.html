@@ -25,9 +25,9 @@
   </div>
   <div class="row">
     <div class="section">
-      <h5 class="grey-text text-darken-3" th:text="#{thanks_for_your_order}">Thanks for your order!</h5>
-      <p class="grey-text" th:utext="#{thanks_for_your_order_desc}">Please check your inbox for a activation email. If you have any questions or concerns, please contact us via email at <a href="mailto:service@mocktpo.com?subject=MockTPO%20Order%20Complete">service@mocktpo.com</a>.</p>
-      <p class="grey-text">
+      <h5 class="grey-text text-darken-4" th:text="#{thanks_for_your_order}">Thanks for your order!</h5>
+      <p class="grey-text text-darken-1" th:utext="#{thanks_for_your_order_desc}">Please check your inbox for a activation email. If you have any questions or concerns, please contact us via email at <a href="mailto:service@mocktpo.com?subject=MockTPO%20Order%20Complete">service@mocktpo.com</a>.</p>
+      <p class="grey-text text-darken-1">
         <span th:text="#{didnt_get_email}">Didn't get the email?</span>
         <a href="#" th:text="#{resend}">Resend</a>
       </p>
@@ -35,8 +35,8 @@
         <span th:text="#{activation_code}">Activation Code</span>
         <span class="pink-text" style="margin:0 20px;font-size:32px;font-weight:bold;" th:text="*{activationCode}">TO2BSWHJ0S3C</span>
       </p>
-      <a class="btn blue darken-4" id="signup-button" th:text="#{create_your_account}">Create your MockTPO Account</a>
-      <a class="btn pink" id="login-button" th:text="#{already_have_account_login}">Already have an account? Log in</a>
+      <a class="btn indigo" id="signup-button" th:text="#{create_your_account}">Create your MockTPO Account</a>
+      <a class="btn-flat" id="login-button" th:text="#{already_have_an_account_login}">Already have an account? Log in</a>
     </div>
   </div>
   <div class="row">

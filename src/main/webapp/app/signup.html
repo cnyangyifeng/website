@@ -37,7 +37,8 @@
               <label for="newPassword" th:text="#{new_password}">Create a New Password</label>
             </div>
           </div>
-          <button class="btn blue darken-4" type="submit" th:text="#{signup}">Sign Up</button>
+          <button class="btn indigo" type="submit" th:text="#{signup}">Sign Up</button>
+          <a class="btn-flat" href="login.html" th:href="@{/login}" th:text="#{already_have_an_account_login}">Already have an account? Log in</a>
           <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
         </form>
       </div>

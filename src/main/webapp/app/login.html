@@ -37,7 +37,8 @@
               <label for="password" th:text="#{password}">Password</label>
             </div>
           </div>
-          <button class="btn blue darken-4" type="submit" th:text="#{login}">Log In</button>
+          <button class="btn indigo" type="submit" th:text="#{login}">Log In</button>
+          <a class="btn-flat" href="signup.html" th:href="@{/signup}" th:text="#{dont_have_an_account_signup}">Don't have an account? Sign up</a>
           <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
         </form>
       </div>
