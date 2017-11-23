@@ -37,9 +37,17 @@
               <label for="newPassword" th:text="#{new_password}">Create a New Password</label>
             </div>
           </div>
-          <button class="btn indigo" type="submit" th:text="#{signup}">Sign Up</button>
-          <a class="btn-flat" href="login.html" th:href="@{/login}" th:text="#{already_have_an_account_login}">Already have an account? Log in</a>
-          <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
+          <div class="row">
+            <div class="col s12">
+              <button class="btn indigo" type="submit" th:text="#{signup}">Sign Up</button>
+              <blockquote class="pink-text text-accent-2" style="border-left:5px solid #ff4081;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <a href="login.html" th:href="@{/login}" th:text="#{already_have_an_account_login}">Already have an account? Log in</a>
+            </div>
+          </div>
         </form>
       </div>
     </div>

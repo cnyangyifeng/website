@@ -40,7 +40,7 @@ public class LoginController {
         String email = loginVo.getEmail();
         String password = loginVo.getPassword();
         if (StringUtils.isEmpty(email) || StringUtils.isEmpty(password)) {
-            mv.addObject("err", "email_or_new_password_cant_be_empty");
+            mv.addObject("err", "email_or_password_cant_be_empty");
             mv.setViewName("redirect:/login");
         } else {
             if (!EmailUtils.validate(email)) {

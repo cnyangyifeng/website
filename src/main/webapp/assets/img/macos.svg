@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
+    <title>macos</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M509.44,461.792 L327.68,201.696 L261.12,201.696 L476.16,509.408 L261.12,817.12 L327.68,817.12 L509.44,557.024 L691.2,817.12 L757.76,817.12 L542.72,509.408 L757.76,201.696 L691.2,201.696 L509.44,461.792 L509.44,461.792 Z M512,0 C793.6,0 1024,227.552 1024,512 C1024,796.448 793.6,1024 512,1024 C230.4,1024 0,796.448 0,512 C0,227.552 230.4,0 512,0 Z" id="Shape" fill="#263238"></path>
+        <g id="macos" fill="#212121">
+            <path d="M47.76,43.293 L30.72,18.909 L24.48,18.909 L44.64,47.757 L24.48,76.605 L30.72,76.605 L47.76,52.221 L64.8,76.605 L71.04,76.605 L50.88,47.757 L71.04,18.909 L64.8,18.909 L47.76,43.293 L47.76,43.293 Z M48,0 C74.4,0 96,21.333 96,48 C96,74.667 74.4,96 48,96 C21.6,96 0,74.667 0,48 C0,21.333 21.6,0 48,0 Z" id="Shape"></path>
+        </g>
     </g>
 </svg>

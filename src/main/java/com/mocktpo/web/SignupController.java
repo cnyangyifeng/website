@@ -38,7 +38,7 @@ public class SignupController {
         String newPassword = signupVo.getNewPassword();
         if (StringUtils.isEmpty(email) || StringUtils.isEmpty(newPassword)) {
             mv.addObject("email", email);
-            mv.addObject("err", "email_or_new_password_cant_be_empty");
+            mv.addObject("err", "email_or_password_cant_be_empty");
             mv.setViewName("redirect:/signup");
         } else {
             if (!EmailUtils.validate(email)) {

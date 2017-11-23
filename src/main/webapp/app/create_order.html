@@ -51,7 +51,7 @@
             <span th:case="1" th:text="#{alipay}">Alipay</span>
             <span th:case="2" th:text="#{paypal}">PayPal</span>
           </td>
-          <td class="pink-text" style="margin:10px 0;font-size:32px;font-weight:bold;" th:text="*{price}"></td>
+          <td class="pink-text text-accent-2" style="margin:10px 0;font-size:32px;font-weight:bold;" th:text="*{price}"></td>
         </tr>
         </tbody>
       </table>
@@ -73,7 +73,7 @@
     </div>
     <div class="modal-footer">
       <a class="btn waves-effect waves-light indigo" id="ok-button" th:text="#{payment_was_successful}">Payment was Successful</a>
-      <a class="btn pink" th:href="'mailto:service@mocktpo.com?subject=MockTPO%20Order%20Issue%20-%20Order%20No.%20' + ${orderVo.orderNumber}" th:text="#{there_was_a_problem}">There was a Problem</a>
+      <a class="btn pink accent-2" th:href="'mailto:service@mocktpo.com?subject=MockTPO%20Order%20Issue%20-%20Order%20No.%20' + ${orderVo.orderNumber}" th:text="#{there_was_a_problem}">There was a Problem</a>
     </div>
   </div>
 </form>

@@ -37,9 +37,17 @@
               <label for="password" th:text="#{password}">Password</label>
             </div>
           </div>
-          <button class="btn indigo" type="submit" th:text="#{login}">Log In</button>
-          <a class="btn-flat" href="signup.html" th:href="@{/signup}" th:text="#{dont_have_an_account_signup}">Don't have an account? Sign up</a>
-          <blockquote class="pink-text" style="border-left:5px solid #e91e63;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
+          <div class="row">
+            <div class="col s12">
+              <button class="btn indigo" type="submit" th:text="#{login}">Log In</button>
+              <blockquote class="pink-text text-accent-2" style="border-left:5px solid #ff4081;" th:text="#{${err}}" th:unless="${err==null}"></blockquote>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <a href="signup.html" th:href="@{/signup}" th:text="#{dont_have_an_account_signup}">Don't have an account? Sign up</a>
+            </div>
+          </div>
         </form>
       </div>
     </div>

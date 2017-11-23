@@ -59,7 +59,7 @@
         <td th:switch="${testVo.status}">
           <span th:case="1" th:text="#{test_status_created}">Created</span>
           <span class="teal-text" th:case="2" th:text="#{test_status_completed}">Completed</span>
-          <span class="pink-text" th:case="3" th:text="#{test_status_expired}">Expired</span>
+          <span class="pink-text text-accent-2" th:case="3" th:text="#{test_status_expired}">Expired</span>
         </td>
         <td><a href="#" th:href="@{/tests/{tid}/edit(tid=${testVo.tid})}" th:text="#{edit}">Edit</a></td>
         <td><a href="#" th:href="@{/tests/{tid}/upload(tid=${testVo.tid})}" th:text="#{upload}">Upload</a></td>
