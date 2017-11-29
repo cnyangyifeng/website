@@ -23,7 +23,7 @@ public class TestTagRestController {
 
     @RequestMapping(value = "/api/v1/test-tags", method = RequestMethod.GET)
     @ResponseBody
-    public List<TestTagVo> toTestTagsView() {
+    public List<TestTagVo> getTestTags() {
         return TestTagHelper.prepareTestTagVos(testTagService.findAll());
     }
 }
