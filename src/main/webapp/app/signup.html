@@ -1,18 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8"/>
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="renderer" content="webkit"/>
-<meta name="description" content=""/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<link rel="shortcut icon" href="../assets/favicon.ico" th:href="@{/assets/favicon.ico}">
-<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"/>
-<title>MockTPO</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" type="text/css" href="../assets/css/materialize.min.css" th:href="@{/assets/css/materialize.min.css}">
-<link rel="stylesheet" type="text/css" href="../assets/css/app.css" th:href="@{/assets/css/app.css}">
-</head>
+<head th:replace="fragments/head::head"></head>
 <body>
 <div class="app-wrapper">
 <div th:replace="fragments/header_empty::header"></div>
