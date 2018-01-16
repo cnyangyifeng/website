@@ -1,19 +1,15 @@
-package com.mocktpo.web.vo;
+package com.mocktpo.orm.domain;
 
-import java.io.Serializable;
-
-public class TestVo implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class TestInfo {
 
     private String tid;
     private int tagId;
     private String title;
     private int stars;
+    private double version;
     private String creator;
     private long createdTime;
     private long updatedTime;
-    private double version;
     private int status;
 
     public String getTid() {

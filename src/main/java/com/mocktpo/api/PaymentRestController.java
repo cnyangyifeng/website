@@ -1,4 +1,4 @@
-package com.mocktpo.web;
+package com.mocktpo.api;
 
 import com.mocktpo.modules.order.OrderService;
 import com.mocktpo.orm.domain.Order;

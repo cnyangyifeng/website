@@ -1,12 +1,12 @@
 package com.mocktpo.web;
 
-import com.mocktpo.modules.test.TestService;
+import com.mocktpo.modules.test.TestInfoService;
 import com.mocktpo.modules.test.TestTagService;
-import com.mocktpo.orm.domain.Test;
-import com.mocktpo.util.TestHelper;
+import com.mocktpo.orm.domain.TestInfo;
+import com.mocktpo.util.TestInfoHelper;
 import com.mocktpo.util.TestTagHelper;
 import com.mocktpo.web.vo.FileUploadVo;
-import com.mocktpo.web.vo.TestVo;
+import com.mocktpo.web.vo.TestInfoVo;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,12 +26,12 @@ import java.io.File;
 import java.util.List;
 
 @Controller
-public class TestController {
+public class TestInfoController {
 
     private static final Logger logger = LogManager.getLogger();
 
     @Autowired
-    private TestService testService;
+    private TestInfoService testInfoService;
 
     @Autowired
     private TestTagService testTagService;
@@ -42,8 +42,8 @@ public class TestController {
     @RequestMapping(value = "/tests", method = RequestMethod.GET)
     public ModelAndView toTestsView() {
         ModelAndView mv = new ModelAndView();
-        List<Test> tests = testService.findAll();
-        mv.addObject("testVos", TestHelper.prepareTestVos(tests));
+        List<TestInfo> tests = testInfoService.findAll();
+        mv.addObject("testInfoVos", TestInfoHelper.prepareTestInfoVos(tests));
         mv.setViewName("tests");
         return mv;
     }
@@ -51,16 +51,16 @@ public class TestController {
     @RequestMapping(value = "/tests/create", method = RequestMethod.GET)
     public ModelAndView toCreateTestView() {
         ModelAndView mv = new ModelAndView();
-        mv.addObject("testVo", new TestVo());
+        mv.addObject("testInfoVo", new TestInfoVo());
         mv.addObject("testTagVos", TestTagHelper.prepareTestTagVos(testTagService.findAll()));
         mv.setViewName("create_test");
         return mv;
     }
 
     @RequestMapping(value = "/tests/create.do", method = RequestMethod.POST)
-    public ModelAndView createTest(TestVo testVo) {
+    public ModelAndView createTest(TestInfoVo testVo) {
         ModelAndView mv = new ModelAndView();
-        testService.create(TestHelper.createTest(testVo));
+        testInfoService.create(TestInfoHelper.createTestInfo(testVo));
         mv.setViewName("redirect:/tests");
         return mv;
     }
@@ -68,9 +68,9 @@ public class TestController {
     @RequestMapping(value = "/tests/{tid}/upload", method = RequestMethod.GET)
     public ModelAndView toUploadTestView(@PathVariable(value = "tid") String tid) {
         ModelAndView mv = new ModelAndView();
-        Test test = testService.findByTid(tid);
-        if (test != null) {
-            mv.addObject("testVo", TestHelper.prepareTestVo(test));
+        TestInfo testInfo = testInfoService.findByTid(tid);
+        if (testInfo != null) {
+            mv.addObject("testInfoVo", TestInfoHelper.prepareTestInfoVo(testInfo));
             mv.addObject("command", new FileUploadVo());
             mv.setViewName("upload_test");
         } else {
@@ -82,8 +82,8 @@ public class TestController {
     @RequestMapping(value = "/tests/{tid}/upload.do", method = RequestMethod.POST)
     public ModelAndView fileUpload(@PathVariable(value = "tid") String tid, FileUploadVo fileUploadVo, BindingResult result) {
         ModelAndView mv = new ModelAndView();
-        Test test = testService.findByTid(tid);
-        if (test != null) {
+        TestInfo testInfo = testInfoService.findByTid(tid);
+        if (testInfo != null) {
             if (!result.hasErrors()) {
                 String tmpDir = ctx.getRealPath("") + File.separator + "tmp" + File.separator;
                 try {
@@ -94,8 +94,8 @@ public class TestController {
                     if (FilenameUtils.getExtension(StringUtils.lowerCase(filename)).equals("zip")) {
                         String testsDir = ctx.getRealPath("") + File.separator + "tests" + File.separator;
                         FileUtils.copyFile(tmpFile, new File(testsDir + tid + ".zip"));
-                        test.setStatus(TestHelper.STATUS_COMPLETED);
-                        testService.update(test);
+                        testInfo.setStatus(TestInfoHelper.STATUS_COMPLETED);
+                        testInfoService.update(testInfo);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -113,9 +113,9 @@ public class TestController {
     @RequestMapping(value = "/tests/{tid}/edit", method = RequestMethod.GET)
     public ModelAndView toEditTestView(@PathVariable(value = "tid") String tid) {
         ModelAndView mv = new ModelAndView();
-        Test test = testService.findByTid(tid);
-        if (test != null) {
-            mv.addObject("testVo", TestHelper.prepareTestVo(test));
+        TestInfo testInfo = testInfoService.findByTid(tid);
+        if (testInfo != null) {
+            mv.addObject("testInfoVo", TestInfoHelper.prepareTestInfoVo(testInfo));
             mv.addObject("testTagVos", TestTagHelper.prepareTestTagVos(testTagService.findAll()));
             mv.setViewName("edit_test");
         } else {
@@ -125,11 +125,11 @@ public class TestController {
     }
 
     @RequestMapping(value = "/tests/{tid}/edit.do", method = RequestMethod.POST)
-    public ModelAndView editTest(@PathVariable(value = "tid") String tid, TestVo testVo) {
+    public ModelAndView editTest(@PathVariable(value = "tid") String tid, TestInfoVo testInfoVo) {
         ModelAndView mv = new ModelAndView();
-        Test test = testService.findByTid(tid);
-        if (test != null) {
-            testService.update(TestHelper.updateTest(testVo, test));
+        TestInfo testInfo = testInfoService.findByTid(tid);
+        if (testInfo != null) {
+            testInfoService.update(TestInfoHelper.updateTestInfo(testInfoVo, testInfo));
             mv.setViewName("redirect:/tests");
         } else {
             mv.setViewName("error");
@@ -140,9 +140,9 @@ public class TestController {
     @RequestMapping(value = "/tests/{tid}/delete", method = RequestMethod.GET)
     public ModelAndView deleteTest(@PathVariable(value = "tid") String tid) {
         ModelAndView mv = new ModelAndView();
-        Test test = testService.findByTid(tid);
-        if (test != null) {
-            testService.deleteByTid(tid);
+        TestInfo testInfo = testInfoService.findByTid(tid);
+        if (testInfo != null) {
+            testInfoService.deleteByTid(tid);
             mv.setViewName("redirect:/tests");
         } else {
             mv.setViewName("error");

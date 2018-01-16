@@ -8,10 +8,6 @@ import java.util.List;
 
 public class TestTagHelper {
 
-    public static final int STATUS_CREATED = 1;
-    public static final int STATUS_COMPLETED = 2;
-    public static final int STATUS_EXPIRED = 3;
-
     private TestTagHelper() {
     }
 
@@ -19,11 +15,9 @@ public class TestTagHelper {
         List<TestTagVo> testTagVos = new ArrayList<>();
         for (TestTag testTag : testTags) {
             TestTagVo testTagVo = new TestTagVo();
-            if (testTag != null) {
-                testTagVo.setTagId(testTag.getTagId());
-                testTagVo.setTitle(testTag.getTitle());
-                testTagVo.setStatus(testTag.getStatus());
-            }
+            testTagVo.setTagId(testTag.getTagId());
+            testTagVo.setTitle(testTag.getTitle());
+            testTagVo.setStatus(testTag.getStatus());
             testTagVos.add(testTagVo);
         }
         return testTagVos;

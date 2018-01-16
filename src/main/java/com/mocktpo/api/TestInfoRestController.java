@@ -1,8 +1,8 @@
-package com.mocktpo.web;
+package com.mocktpo.api;
 
-import com.mocktpo.modules.test.TestTagService;
-import com.mocktpo.util.TestTagHelper;
-import com.mocktpo.web.vo.TestTagVo;
+import com.mocktpo.modules.test.TestInfoService;
+import com.mocktpo.util.TestInfoHelper;
+import com.mocktpo.web.vo.TestInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,17 +13,17 @@ import javax.servlet.ServletContext;
 import java.util.List;
 
 @RestController
-public class TestTagRestController {
+public class TestInfoRestController {
 
     @Autowired
-    private TestTagService testTagService;
+    private TestInfoService testInfoService;
 
     @Autowired
     ServletContext ctx;
 
-    @RequestMapping(value = "/api/v1/test-tags", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/v1/tests", method = RequestMethod.GET)
     @ResponseBody
-    public List<TestTagVo> getTestTags() {
-        return TestTagHelper.prepareTestTagVos(testTagService.findAll());
+    public List<TestInfoVo> getTestInfoVos() {
+        return TestInfoHelper.prepareTestInfoVos(testInfoService.findAll());
     }
 }

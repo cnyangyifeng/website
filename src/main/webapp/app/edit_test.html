@@ -4,7 +4,7 @@
 <body>
 <div class="app-wrapper">
 <div th:replace="fragments/header::header"></div>
-<form action="tests.html" th:action="@{/tests/{tid}/edit.do(tid=${testVo.tid})}" th:object="${testVo}" method="post">
+<form action="tests.html" th:action="@{/tests/{tid}/edit.do(tid=${testInfoVo.tid})}" th:object="${testInfoVo}" method="post">
   <div class="container">
     <div class="row">
       <div class="section">
@@ -58,11 +58,11 @@
         <label for="creator-input" th:text="#{creator}">Creator</label>
       </div>
       <div class="input-field col s12 l4">
-        <input id="created-time-input" type="text" disabled th:value="${#calendars.format(testVo.createdTime,'yyyy-MM-dd HH:mm:ss')}">
+        <input id="created-time-input" type="text" disabled th:value="${#calendars.format(testInfoVo.createdTime,'yyyy-MM-dd HH:mm:ss')}">
         <label for="created-time-input" th:text="#{created_time}">Created Time</label>
       </div>
       <div class="input-field col s12 l4">
-        <input id="updated-time-input" type="text" disabled th:value="${#calendars.format(testVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}">
+        <input id="updated-time-input" type="text" disabled th:value="${#calendars.format(testInfoVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}">
         <label for="updated-time-input" th:text="#{updated_time}">Updated Time</label>
       </div>
     </div>

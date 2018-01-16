@@ -35,23 +35,23 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="testVo : ${testVos}">
-        <td th:text="${testVo.tid}"></td>
-        <!-- <td th:text="${testVo.tagId}"></td> -->
-        <td th:text="${testVo.title}"></td>
-        <!-- <td th:text="${testVo.stars}"></td> -->
-        <!-- <td th:text="${testVo.creator}"></td> -->
-        <!-- <td th:text="${#calendars.format(testVo.createdTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
-        <!-- <td th:text="${#calendars.format(testVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
-        <td th:text="${testVo.version}"></td>
-        <td th:switch="${testVo.status}">
+      <tr th:each="testInfoVo : ${testInfoVos}">
+        <td th:text="${testInfoVo.tid}"></td>
+        <!-- <td th:text="${testInfoVo.tagId}"></td> -->
+        <td th:text="${testInfoVo.title}"></td>
+        <!-- <td th:text="${testInfoVo.stars}"></td> -->
+        <!-- <td th:text="${testInfoVo.creator}"></td> -->
+        <!-- <td th:text="${#calendars.format(testInfoVo.createdTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+        <!-- <td th:text="${#calendars.format(testInfoVo.updatedTime,'yyyy-MM-dd HH:mm:ss')}"></td> -->
+        <td th:text="${testInfoVo.version}"></td>
+        <td th:switch="${testInfoVo.status}">
           <span th:case="1" th:text="#{test_status_created}">Created</span>
           <span class="teal-text" th:case="2" th:text="#{test_status_completed}">Completed</span>
           <span class="pink-text text-accent-2" th:case="3" th:text="#{test_status_expired}">Expired</span>
         </td>
-        <td><a href="#" th:href="@{/tests/{tid}/edit(tid=${testVo.tid})}" th:text="#{edit}">Edit</a></td>
-        <td><a href="#" th:href="@{/tests/{tid}/upload(tid=${testVo.tid})}" th:text="#{upload}">Upload</a></td>
-        <td><a href="#" th:href="@{/tests/{tid}/delete(tid=${testVo.tid})}" th:text="#{delete}">Delete</a></td>
+        <td><a href="#" th:href="@{/tests/{tid}/edit(tid=${testInfoVo.tid})}" th:text="#{edit}">Edit</a></td>
+        <td><a href="#" th:href="@{/tests/{tid}/upload(tid=${testInfoVo.tid})}" th:text="#{upload}">Upload</a></td>
+        <td><a href="#" th:href="@{/tests/{tid}/delete(tid=${testInfoVo.tid})}" th:text="#{delete}">Delete</a></td>
       </tr>
       </tbody>
     </table>
